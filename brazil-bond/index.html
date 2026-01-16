@@ -76,15 +76,15 @@
                 </div>
             </div>
             <div class="card p-6 bg-white border-l-4 border-green-600">
-                <h3 class="text-xl font-bold mb-4 border-b pb-2">기대 효과 요약 (10만 주 기준)</h3>
+                <h3 class="text-xl font-bold mb-4 border-b pb-2">기대 효과 요약 (10만 채 기준)</h3>
                 <div class="space-y-4">
                     <div class="flex justify-between items-center">
                         <span class="text-slate-500">교체 전 수량</span>
-                        <span class="font-mono text-lg">100,000 주</span>
+                        <span class="font-mono text-lg">100,000 채</span>
                     </div>
                     <div class="flex justify-between items-center">
                         <span class="text-slate-500">교체 후 수량 (수수료 차감 후)</span>
-                        <span class="font-mono text-xl font-bold text-green-700">118,385 주</span>
+                        <span class="font-mono text-xl font-bold text-green-700">118,385 채</span>
                     </div>
                     <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
                         <div class="bg-green-600 h-full" style="width: 100%"></div>
@@ -105,7 +105,7 @@
                 <!-- Inputs -->
                 <div class="space-y-6 lg:col-span-1 bg-slate-50 p-6 rounded-xl">
                     <div>
-                        <label class="block text-sm font-medium text-slate-700 mb-1">현재 보유 수량 (주)</label>
+                        <label class="block text-sm font-medium text-slate-700 mb-1">현재 보유 수량 (채)</label>
                         <input type="number" id="inputQuantity" value="100000" class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none font-mono text-lg" oninput="updateCalculator()">
                     </div>
                     <div class="pt-4 border-t border-slate-200 space-y-3 text-sm">
@@ -133,7 +133,7 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                         <div class="bg-white border rounded-xl p-4 text-center">
                             <p class="text-sm text-slate-500 mb-1">증가 수량</p>
-                            <p class="text-2xl font-bold text-green-600" id="displayIncrease">+18,385 주</p>
+                            <p class="text-2xl font-bold text-green-600" id="displayIncrease">+18,385 채</p>
                         </div>
                         <div class="bg-white border rounded-xl p-4 text-center">
                             <p class="text-sm text-slate-500 mb-1">연간 추가 이자소득 (BRL)</p>
@@ -174,7 +174,7 @@
                     <div class="chart-container">
                         <canvas id="rateChart"></canvas>
                     </div>
-                    <p class="text-xs text-center text-slate-400 mt-2">*자료: Bloomberg, 주요 IB 전망치 종합 (2026.01 기준)</p>
+                    <p class="text-xs text-center text-slate-400 mt-2">*자료: Bloomberg, 채요 IB 전망치 종합 (2026.01 기준)</p>
                 </div>
             </div>
         </section>
@@ -194,10 +194,10 @@
                             <span>예상 원/헤알 환율 (현재 ~260원)</span>
                             <span id="valFX" class="text-amber-400">260 KRW</span>
                         </label>
-                        <input type="range" id="sliderFX" min="200" max="300" step="5" value="260" oninput="updateSimulation()">
+                        <input type="range" id="sliderFX" min="200" max="400" step="5" value="260" oninput="updateSimulation()">
                         <div class="flex justify-between text-xs text-slate-500 mt-1">
                             <span>200원(폭락)</span>
-                            <span>300원(강세)</span>
+                            <span>400원(강세)</span>
                         </div>
                     </div>
                     <div>
@@ -328,7 +328,7 @@
             const percentage = ((diff / qty) * 100).toFixed(1);
             
             // Display updates
-            document.getElementById('displayIncrease').innerText = `+${diff.toLocaleString()} 주 (${percentage}%)`;
+            document.getElementById('displayIncrease').innerText = `+${diff.toLocaleString()} 채 (${percentage}%)`;
             document.getElementById('displayIncrease').classList.toggle('text-green-600', diff > 0);
             
             // Coupon Calculation (Annual)
@@ -439,6 +439,7 @@
         }
 
         function formatKRW(val) {
+            if (Math.abs(val) > 1000000000) return (val / 1000000000).toFixed(2) + " 억원";
             if (Math.abs(val) > 100000000) return (val / 100000000).toFixed(2) + " 억원";
             return (val / 10000).toFixed(0) + " 만원";
         }
@@ -467,7 +468,7 @@
                         tooltip: {
                             callbacks: {
                                 label: function(context) {
-                                    return context.raw.toLocaleString() + " 주";
+                                    return context.raw.toLocaleString() + " 채";
                                 }
                             }
                         }
