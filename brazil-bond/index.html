@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026 브라질 국채 리밸런싱 전략 제안서</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Noto Sans KR', sans-serif; background-color: #fdfbf7; color: #333; }
+        .chart-container { position: relative; width: 100%; max-width: 800px; margin: 0 auto; height: 350px; max-height: 400px; }
+        .card { background-color: white; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); transition: transform 0.2s; }
+        .card:hover { transform: translateY(-2px); }
+        .highlight-text { color: #166534; font-weight: 700; }
+        .accent-bg { background-color: #166534; }
+        .soft-bg { background-color: #f0fdf4; }
+        input[type=range] { -webkit-appearance: none; width: 100%; background: transparent; }
+        input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; height: 16px; width: 16px; border-radius: 50%; background: #166534; cursor: pointer; margin-top: -6px; }
+        input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 4px; cursor: pointer; background: #ddd; border-radius: 2px; }
+    </style>
+</head>
+<body class="antialiased text-slate-800">
+
+    <!-- Chosen Palette: Warm Professional (Cream Background, Deep Green/Navy Accents) -->
+    <!-- Application Structure Plan: 
+        1. Executive Summary: The "Hook" - 18% Quantity Increase immediately visible.
+        2. The Strategy (Calculator): Interactive demonstration of the swap math (Sell 29/27yr -> Buy 37yr).
+        3. Market Outlook: Why now? Interest rate cycle visualization.
+        4. Simulation (Risk/Reward): Interactive stress test for Exchange Rate & Interest Rate scenarios.
+        5. Investment Thesis: Textual support using IB consensus and tax benefits.
+    -->
+    <!-- Visualization & Content Choices:
+        - Bar Charts: To compare Quantity and Coupon Income before/after.
+        - Line Chart: To show the Interest Rate Forecast (Selic).
+        - Doughnut Chart: Asset Composition/Buffer effect.
+        - Interactive Sliders: For the Scenario Analysis (User controls FX and Rates).
+        - Justification: Canvas charts provide smooth animations for financial data; HTML interaction allows users to "feel" the numbers.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <!-- Header -->
+    <header class="bg-slate-900 text-white py-6 sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <div>
+                <h1 class="text-2xl font-bold tracking-tight">VIP 투자 제안서</h1>
+                <p class="text-sm text-slate-400">브라질 국채 37년물 교체 매매 전략 (2026.01)</p>
+            </div>
+            <div class="hidden md:block text-right text-sm">
+                <p class="font-semibold">담당 PB: AI 어드바이저</p>
+                <p class="text-slate-400">전용 상담 라인</p>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8 space-y-12 max-w-6xl">
+
+        <!-- Section 1: Executive Summary / The Hook -->
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <div class="space-y-6">
+                <span class="inline-block px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs font-bold">전략 핵심</span>
+                <h2 class="text-3xl md:text-4xl font-bold leading-tight">
+                    "물량 <span class="text-green-700">18%</span> 즉시 확보.<br>
+                    금리 인하 사이클의 <span class="text-amber-600">초입</span>을 선점하십시오."
+                </h2>
+                <p class="text-lg text-slate-600">
+                    현재 보유 중인 27/29년물을 매도하고 37년물로 교체 시, 수수료를 차감하고도 채권 수량이 18% 증가합니다. 이는 향후 금리 하락 시 자본 차익을 극대화하고 환율 변동성을 방어할 강력한 버퍼가 됩니다.
+                </p>
+                <div class="flex space-x-4">
+                    <button onclick="document.getElementById('calculator').scrollIntoView({behavior: 'smooth'})" class="px-6 py-3 bg-green-700 hover:bg-green-800 text-white rounded-lg font-semibold shadow transition">
+                        교체 시뮬레이션 보기
+                    </button>
+                    <button onclick="document.getElementById('simulation').scrollIntoView({behavior: 'smooth'})" class="px-6 py-3 border border-slate-300 hover:bg-slate-50 text-slate-700 rounded-lg font-semibold transition">
+                        리스크 점검
+                    </button>
+                </div>
+            </div>
+            <div class="card p-6 bg-white border-l-4 border-green-600">
+                <h3 class="text-xl font-bold mb-4 border-b pb-2">기대 효과 요약 (10만 채 기준)</h3>
+                <div class="space-y-4">
+                    <div class="flex justify-between items-center">
+                        <span class="text-slate-500">교체 전 수량</span>
+                        <span class="font-mono text-lg">100,000 채</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-slate-500">교체 후 수량 (수수료 차감 후)</span>
+                        <span class="font-mono text-xl font-bold text-green-700">118,385 채</span>
+                    </div>
+                    <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                        <div class="bg-green-600 h-full" style="width: 100%"></div>
+                    </div>
+                    <p class="text-sm text-slate-500 mt-2">* 2026.01.15 시장가 기준 추산 (27년물 매도/37년물 매수)</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Interactive Calculator -->
+        <section id="calculator" class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-8">
+            <div class="mb-6">
+                <h3 class="text-2xl font-bold text-slate-800 mb-2">🔄 리밸런싱 계산기</h3>
+                <p class="text-slate-600">보유 수량을 입력하여 실제 늘어나는 자산 규모를 확인해보세요.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Inputs -->
+                <div class="space-y-6 lg:col-span-1 bg-slate-50 p-6 rounded-xl">
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 mb-1">현재 보유 수량 (채)</label>
+                        <input type="number" id="inputQuantity" value="100000" class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none font-mono text-lg" oninput="updateCalculator()">
+                    </div>
+                    <div class="pt-4 border-t border-slate-200 space-y-3 text-sm">
+                        <div class="flex justify-between">
+                            <span class="text-slate-500">매도 단가 (27/29년)</span>
+                            <span class="font-mono font-semibold">974.65 BRL</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-slate-500">매수 단가 (37년)</span>
+                            <span class="font-mono font-semibold">810.00 BRL</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-slate-500">매수 중개 수수료</span>
+                            <span class="font-mono text-red-500">1.64%</span>
+                        </div>
+                    </div>
+                    <div class="mt-4 p-4 bg-green-50 rounded-lg border border-green-100">
+                        <p class="text-sm text-green-800 font-semibold mb-1">💡 PB의 조언</p>
+                        <p class="text-xs text-green-700 leading-relaxed">매도 시에는 수수료가 발생하지 않습니다. 확보된 헤알화 전액을 더 싼 가격의 37년물 매수에 투입하여 수량을 극대화합니다.</p>
+                    </div>
+                </div>
+
+                <!-- Visualization -->
+                <div class="lg:col-span-2">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                        <div class="bg-white border rounded-xl p-4 text-center">
+                            <p class="text-sm text-slate-500 mb-1">증가 수량</p>
+                            <p class="text-2xl font-bold text-green-600" id="displayIncrease">+18,385 채</p>
+                        </div>
+                        <div class="bg-white border rounded-xl p-4 text-center">
+                            <p class="text-sm text-slate-500 mb-1">연간 추가 이자소득 (BRL)</p>
+                            <p class="text-2xl font-bold text-amber-600" id="displayCouponIncrease">+1,838 BRL</p>
+                        </div>
+                    </div>
+                    <div class="chart-container h-64">
+                        <canvas id="rebalanceChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Market Context & Logic -->
+        <section id="macro" class="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <div>
+                <h3 class="text-2xl font-bold mb-4">왜 지금인가? <span class="text-slate-400 font-light">Global IB View</span></h3>
+                <p class="text-slate-600 mb-6 leading-relaxed">
+                    2026년은 브라질 중앙은행의 <strong>피벗(통화정책 전환)</strong>이 예상되는 해입니다. 현재 15% 수준의 고금리는 2026년 말 12.25% 수준으로 하향 안정화될 전망입니다. 금리 하락기는 채권 가격 상승의 적기이며, <strong>듀레이션(만기)이 긴 채권일수록 가격 상승폭이 큽니다.</strong>
+                </p>
+                <div class="space-y-4">
+                    <div class="card p-4 border-l-4 border-blue-600">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="font-bold text-slate-800">JP Morgan & Goldman Sachs</h4>
+                            <span class="text-xs bg-slate-100 px-2 py-1 rounded">2026 Outlook</span>
+                        </div>
+                        <p class="text-sm text-slate-600">"신흥국 부채 중 브라질 국채의 고금리는 매력적. 인플레이션 안정화에 따른 금리 인하 사이클 진입 시 자본 차익 기대."</p>
+                    </div>
+                    <div class="card p-4 border-l-4 border-amber-500">
+                        <h4 class="font-bold text-slate-800 mb-2">비과세 혜택 (Tax Alpha)</h4>
+                        <p class="text-sm text-slate-600">한국-브라질 조세협약에 의거, 이자소득 및 환차익 <strong>전액 비과세</strong>. 금융소득종합과세 대상자에게는 실질 수익률 +@ 효과.</p>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                    <h4 class="text-lg font-bold mb-4 text-center">브라질 기준금리(Selic) 전망</h4>
+                    <div class="chart-container">
+                        <canvas id="rateChart"></canvas>
+                    </div>
+                    <p class="text-xs text-center text-slate-400 mt-2">*자료: Bloomberg, 채요 IB 전망치 종합 (2026.01 기준)</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Scenario Simulator (The Core Value Add) -->
+        <section id="simulation" class="bg-slate-900 text-white rounded-3xl p-8 md:p-12 shadow-2xl">
+            <div class="text-center mb-10">
+                <h3 class="text-3xl font-bold mb-3">미래 수익 시뮬레이션</h3>
+                <p class="text-slate-400">"환율이 떨어지면 손해 아닌가요?" <br>늘어난 물량(Buffer)이 환차손을 얼마나 방어하는지 직접 확인해보십시오.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+                <!-- Controls -->
+                <div class="space-y-8">
+                    <div>
+                        <label class="flex justify-between mb-2 text-sm font-medium">
+                            <span>예상 원/헤알 환율 (현재 ~260원)</span>
+                            <span id="valFX" class="text-amber-400">260 KRW</span>
+                        </label>
+                        <input type="range" id="sliderFX" min="200" max="400" step="5" value="260" oninput="updateSimulation()">
+                        <div class="flex justify-between text-xs text-slate-500 mt-1">
+                            <span>200원(폭락)</span>
+                            <span>400원(강세)</span>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="flex justify-between mb-2 text-sm font-medium">
+                            <span>예상 시장 금리 변동</span>
+                            <span id="valRate" class="text-green-400">-2.0%</span>
+                        </label>
+                        <input type="range" id="sliderRate" min="-5" max="2" step="0.5" value="-2" oninput="updateSimulation()">
+                        <div class="flex justify-between text-xs text-slate-500 mt-1">
+                            <span>-5%(대폭하락)</span>
+                            <span>+2%(상승)</span>
+                        </div>
+                    </div>
+                    <div class="p-4 bg-slate-800 rounded-lg text-sm text-slate-300">
+                        <p class="mb-2"><strong>🔍 시뮬레이션 로직:</strong></p>
+                        <ul class="list-disc list-inside space-y-1 text-xs">
+                            <li>물량 증가분(18%) 반영</li>
+                            <li>37년물 듀레이션(약 10년) 적용 자본손익 계산</li>
+                            <li>환율 변동에 따른 원화 환산 가치 계산</li>
+                            <li>1년 보유 가정 (이자수익 포함)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Results Display -->
+                <div class="lg:col-span-2 flex flex-col justify-center items-center bg-slate-800 rounded-2xl p-6 relative overflow-hidden">
+                    <!-- Background decoration -->
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-green-500 opacity-5 rounded-full filter blur-3xl transform translate-x-1/2 -translate-y-1/2"></div>
+                    
+                    <div class="grid grid-cols-2 gap-8 w-full max-w-lg mb-8">
+                        <div class="text-center">
+                            <p class="text-slate-400 text-sm mb-1">기존 유지 시 (27년물)</p>
+                            <p class="text-2xl font-mono" id="resultOld">0 KRW</p>
+                            <p class="text-xs text-slate-500 mt-1" id="returnOld">(0%)</p>
+                        </div>
+                        <div class="text-center border-l border-slate-700">
+                            <p class="text-amber-400 text-sm mb-1 font-bold">교체 매매 시 (37년물)</p>
+                            <p class="text-3xl font-bold font-mono text-white" id="resultNew">0 KRW</p>
+                            <p class="text-xs text-green-400 mt-1" id="returnNew">(0%)</p>
+                        </div>
+                    </div>
+                    
+                    <div class="w-full bg-slate-700 h-4 rounded-full overflow-hidden mb-2 relative">
+                         <!-- Center Marker -->
+                        <div class="absolute left-1/2 top-0 bottom-0 w-0.5 bg-slate-500 z-10"></div>
+                        <div id="barOld" class="absolute top-0 bottom-0 bg-slate-400 opacity-50 transition-all duration-500" style="left: 50%; width: 0%"></div>
+                        <div id="barNew" class="absolute top-0 bottom-0 bg-green-500 transition-all duration-500" style="left: 50%; width: 0%"></div>
+                    </div>
+                    <div class="flex justify-between w-full text-xs text-slate-500 px-1">
+                        <span>손실 구간</span>
+                        <span>이익 구간</span>
+                    </div>
+
+                    <div id="analysisText" class="mt-6 text-center text-sm font-medium text-amber-300 bg-amber-900/20 px-4 py-2 rounded-full border border-amber-700/50">
+                        분석 중...
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Risk & Conclusion -->
+        <section id="risks" class="border-t border-slate-200 pt-12">
+            <h3 class="text-xl font-bold mb-6">⚠️ 투자 유의사항 및 리스크 요인</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
+                <div class="bg-white p-5 rounded-lg border border-slate-100 shadow-sm">
+                    <h4 class="font-bold text-slate-700 mb-2">1. 환율 변동성</h4>
+                    <p class="text-slate-500">2026년 대선 및 재정 이슈로 헤알화 약세가 지속될 수 있습니다. 그러나 교체 매매를 통해 확보한 <strong>18%의 추가 물량(Buffer)</strong>이 환차손을 상당 부분 상쇄합니다.</p>
+                </div>
+                <div class="bg-white p-5 rounded-lg border border-slate-100 shadow-sm">
+                    <h4 class="font-bold text-slate-700 mb-2">2. 재정 리스크</h4>
+                    <p class="text-slate-500">브라질 GDP 대비 부채비율이 높습니다. 단, 브라질은 외환보유고가 안정적이며 원자재 수출국으로서의 기초 체력이 존재합니다.</p>
+                </div>
+                <div class="bg-white p-5 rounded-lg border border-slate-100 shadow-sm">
+                    <h4 class="font-bold text-slate-700 mb-2">3. 유동성</h4>
+                    <p class="text-slate-500">37년물은 초장기채로 단기물 대비 거래량이 적을 수 있습니다. 만기 보유 또는 장기 투자를 목적으로 접근하시는 것을 권장합니다.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-100 py-8 mt-12 border-t border-slate-200">
+        <div class="container mx-auto px-4 text-center text-slate-500 text-xs leading-relaxed">
+            <p class="mb-4">본 자료는 고객의 투자를 돕기 위해 작성된 참고 자료이며, 투자 권유를 목적으로 하지 않습니다.<br>
+            투자의 최종 결정과 책임은 투자자 본인에게 있으며, 과거의 수익률이 미래의 수익을 보장하지 않습니다.<br>
+            브라질 국채는 환율 변동에 따라 원금 손실이 발생할 수 있습니다.</p>
+            <p>Copyright © 2026 AI Wealth Management. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // --- Data & State ---
+        const prices = {
+            sell: 974.65,
+            buy: 810.00,
+            feeRate: 0.0164,
+            couponRate: 0.10 // 10% Coupon
+        };
+
+        // Standard BRL/KRW rough conversion factor for simple display logic (1 BRL ~ 260 KRW roughly based on current context)
+        // Note: The prompt implies a cross rate. Assuming 1 USD = 5.4 BRL and 1 USD = 1450 KRW => 1 BRL = ~268 KRW.
+        const baseFX = 268; 
+
+        // --- Chart Objects ---
+        let rebalanceChartInstance = null;
+        let rateChartInstance = null;
+
+        // --- Initialization ---
+        document.addEventListener('DOMContentLoaded', () => {
+            initRebalanceChart();
+            initRateChart();
+            updateCalculator();
+            updateSimulation();
+        });
+
+        // --- Logic: Calculator ---
+        function updateCalculator() {
+            const qty = parseFloat(document.getElementById('inputQuantity').value) || 0;
+            
+            // Sell Logic
+            const totalSellAmount = qty * prices.sell; // No fee on sell as per prompt
+            
+            // Buy Logic
+            const buyPriceWithFee = prices.buy * (1 + prices.feeRate);
+            const newQty = Math.floor(totalSellAmount / buyPriceWithFee);
+            
+            const diff = newQty - qty;
+            const percentage = ((diff / qty) * 100).toFixed(1);
+            
+            // Display updates
+            document.getElementById('displayIncrease').innerText = `+${diff.toLocaleString()} 채 (${percentage}%)`;
+            document.getElementById('displayIncrease').classList.toggle('text-green-600', diff > 0);
+            
+            // Coupon Calculation (Annual)
+            // Face value is typically 1000 BRL for calculation, but prices are quoted differently. 
+            // Assuming Price 974 is near par (1000). Let's assume standard face value logic is maintained.
+            // Simplified: Coupon is proportional to quantity.
+            const oldCoupon = qty * 100; // Assuming 100 BRL coupon per bond (10% of 1000 Face)
+            const newCoupon = newQty * 100;
+            const couponDiff = newCoupon - oldCoupon;
+            
+            document.getElementById('displayCouponIncrease').innerText = `+${couponDiff.toLocaleString()} BRL`;
+
+            // Chart Update
+            updateRebalanceChart(qty, newQty, oldCoupon, newCoupon);
+        }
+
+        // --- Logic: Simulation ---
+        function updateSimulation() {
+            const forecastFX = parseFloat(document.getElementById('sliderFX').value);
+            const rateChange = parseFloat(document.getElementById('sliderRate').value);
+            
+            document.getElementById('valFX').innerText = `${forecastFX} KRW`;
+            document.getElementById('valRate').innerText = `${rateChange > 0 ? '+' : ''}${rateChange}%`;
+
+            const initialQty = 100000;
+            const sellAmount = initialQty * prices.sell;
+            const buyPriceWithFee = prices.buy * (1 + prices.feeRate);
+            const newQty = sellAmount / buyPriceWithFee;
+
+            // Bond Price Sensitivity (Duration Approx)
+            // 27yr duration approx 8, 37yr duration approx 12 (Estimates for visual logic)
+            const durOld = 8;
+            const durNew = 12;
+
+            // Price Change % ≈ -Duration * RateChange
+            // If rates drop (-), price goes up (+)
+            const priceChangeOldPct = -durOld * (rateChange / 100);
+            const priceChangeNewPct = -durNew * (rateChange / 100);
+
+            const finalPriceOld = prices.sell * (1 + priceChangeOldPct);
+            const finalPriceNew = prices.buy * (1 + priceChangeNewPct);
+
+            // Total Value in BRL (Price + 1 Year Coupon)
+            const coupon = 100; // Assumed 100 BRL per bond
+            const totalValBRL_Old = initialQty * (finalPriceOld + coupon);
+            const totalValBRL_New = newQty * (finalPriceNew + coupon);
+
+            // Convert to KRW
+            const totalValKRW_Old = totalValBRL_Old * forecastFX;
+            const totalValKRW_New = totalValBRL_New * forecastFX;
+
+            // Initial Investment Basis (Current Value in KRW at current FX)
+            const currentBasisFX = 268; 
+            const initialBasisKRW = initialQty * prices.sell * currentBasisFX;
+
+            const returnOldPct = ((totalValKRW_Old - initialBasisKRW) / initialBasisKRW * 100).toFixed(1);
+            const returnNewPct = ((totalValKRW_New - initialBasisKRW) / initialBasisKRW * 100).toFixed(1);
+
+            // Display
+            document.getElementById('resultOld').innerText = formatKRW(totalValKRW_Old);
+            document.getElementById('returnOld').innerText = `(${returnOldPct > 0 ? '+' : ''}${returnOldPct}%)`;
+            document.getElementById('resultOld').className = `text-2xl font-mono ${totalValKRW_Old >= initialBasisKRW ? 'text-slate-200' : 'text-red-400'}`;
+
+            document.getElementById('resultNew').innerText = formatKRW(totalValKRW_New);
+            document.getElementById('returnNew').innerText = `(${returnNewPct > 0 ? '+' : ''}${returnNewPct}%)`;
+            document.getElementById('resultNew').className = `text-3xl font-bold font-mono ${totalValKRW_New >= initialBasisKRW ? 'text-white' : 'text-red-400'}`;
+
+            // Visual Bar Logic (Relative to Initial Basis)
+            // Center is 0% return. Max width is +/- 50%
+            const maxRange = 50; 
+            
+            const posOld = Math.min(Math.max(parseFloat(returnOldPct), -maxRange), maxRange);
+            const posNew = Math.min(Math.max(parseFloat(returnNewPct), -maxRange), maxRange);
+
+            const barOld = document.getElementById('barOld');
+            const barNew = document.getElementById('barNew');
+
+            if(posOld >= 0) {
+                barOld.style.left = '50%';
+                barOld.style.width = `${(posOld/maxRange)*50}%`;
+                barOld.className = 'absolute top-0 bottom-0 bg-slate-400 opacity-50 transition-all duration-500 rounded-r';
+            } else {
+                barOld.style.left = `${50 - (Math.abs(posOld)/maxRange)*50}%`;
+                barOld.style.width = `${(Math.abs(posOld)/maxRange)*50}%`;
+                barOld.className = 'absolute top-0 bottom-0 bg-red-400 opacity-30 transition-all duration-500 rounded-l';
+            }
+
+            if(posNew >= 0) {
+                barNew.style.left = '50%';
+                barNew.style.width = `${(posNew/maxRange)*50}%`;
+                barNew.className = 'absolute top-0 bottom-0 bg-green-500 transition-all duration-500 rounded-r shadow-[0_0_10px_rgba(34,197,94,0.5)]';
+            } else {
+                barNew.style.left = `${50 - (Math.abs(posNew)/maxRange)*50}%`;
+                barNew.style.width = `${(Math.abs(posNew)/maxRange)*50}%`;
+                barNew.className = 'absolute top-0 bottom-0 bg-red-500 transition-all duration-500 rounded-l shadow-[0_0_10px_rgba(239,68,68,0.5)]';
+            }
+
+            // Text Analysis
+            const diff = totalValKRW_New - totalValKRW_Old;
+            const analysisEl = document.getElementById('analysisText');
+            if (diff > 0) {
+                analysisEl.innerHTML = `교체 시, 기존 보유 대비 <span class="text-white font-bold">+${formatKRW(diff)}</span> 추가 이익 예상`;
+                analysisEl.className = "mt-6 text-center text-sm font-medium text-green-300 bg-green-900/30 px-4 py-2 rounded-full border border-green-700/50";
+            } else {
+                analysisEl.innerHTML = `교체 시, 기존 보유 대비 <span class="text-red-300 font-bold">${formatKRW(diff)}</span> 차이 발생`;
+                analysisEl.className = "mt-6 text-center text-sm font-medium text-amber-300 bg-amber-900/30 px-4 py-2 rounded-full border border-amber-700/50";
+            }
+        }
+
+        function formatKRW(val) {
+            if (Math.abs(val) > 1000000000) return (val / 1000000000).toFixed(2) + " 억원";
+            if (Math.abs(val) > 100000000) return (val / 100000000).toFixed(2) + " 억원";
+            return (val / 10000).toFixed(0) + " 만원";
+        }
+
+        // --- Charts ---
+
+        function initRebalanceChart() {
+            const ctx = document.getElementById('rebalanceChart').getContext('2d');
+            rebalanceChartInstance = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['현재 보유 (27년물)', '교체 후 (37년물)'],
+                    datasets: [{
+                        label: '보유 수량 (채)',
+                        data: [100000, 118385],
+                        backgroundColor: ['#cbd5e1', '#15803d'],
+                        borderRadius: 6,
+                        barPercentage: 0.6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return context.raw.toLocaleString() + " 채";
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: { beginAtZero: true, grid: { display: false } },
+                        x: { grid: { display: false } }
+                    }
+                }
+            });
+        }
+
+        function updateRebalanceChart(oldQty, newQty, oldCpn, newCpn) {
+            if (!rebalanceChartInstance) return;
+            rebalanceChartInstance.data.datasets[0].data = [oldQty, newQty];
+            rebalanceChartInstance.update();
+        }
+
+        function initRateChart() {
+            const ctx = document.getElementById('rateChart').getContext('2d');
+            rateChartInstance = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['2024', '2025', '2026(E)', '2027(E)'],
+                    datasets: [{
+                        label: '브라질 기준금리 (Selic)',
+                        data: [11.75, 15.00, 12.25, 10.50],
+                        borderColor: '#d97706',
+                        backgroundColor: 'rgba(217, 119, 6, 0.1)',
+                        borderWidth: 3,
+                        tension: 0.3,
+                        fill: true,
+                        pointBackgroundColor: '#fff',
+                        pointBorderColor: '#d97706',
+                        pointRadius: 5
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        annotation: {
+                            annotations: {
+                                line1: {
+                                    type: 'line',
+                                    yMin: 15,
+                                    yMax: 15,
+                                    borderColor: 'rgba(0,0,0,0.2)',
+                                    borderWidth: 1,
+                                    borderDash: [5, 5],
+                                    label: { content: '현재 고점', enabled: true, position: 'start' }
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: { 
+                            beginAtZero: false, 
+                            min: 8, 
+                            max: 16,
+                            grid: { color: '#f1f5f9' }
+                        },
+                        x: { grid: { display: false } }
+                    }
+                }
+            });
+        }
+
+    </script>
+</body>
+</html>
