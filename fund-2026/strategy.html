@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lineup & Choice | Fund Strategy 2026</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="antialiased min-h-screen flex flex-col bg-[#0f172a] text-slate-200">
+    <nav class="fixed w-full z-10 glass-panel border-b border-slate-700/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <a href="index.html"
+                        class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-cyan-400">Fund
+                        Strategy 2026</a>
+                </div>
+                <div class="ml-10 hidden md:flex check-baseline space-x-1">
+                    <a href="index.html"
+                        class="px-3 py-2 rounded-md text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition-colors">Market
+                        Insight</a>
+                    <a href="strategy.html"
+                        class="px-3 py-2 rounded-md text-sm font-medium text-white bg-slate-800 border border-slate-700">Lineup
+                        & Choice</a>
+                    <a href="dsasset.html"
+                        class="px-3 py-2 rounded-md text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition-colors">DS
+                        BraveS</a>
+                    <a href="timefolio.html"
+                        class="px-3 py-2 rounded-md text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition-colors">TIMEFOLIO
+                        The Time</a>
+                    <a href="comparison.html"
+                        class="px-3 py-2 rounded-md text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition-colors">Conclusion</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow pt-24 pb-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
+        <div class="text-center mb-10 animate-fade-in">
+            <h1 class="text-4xl md:text-5xl font-black text-white tracking-tight mb-2 uppercase">Two Path Strategy</h1>
+            <p class="text-slate-500 font-medium tracking-widest text-xs">시장의 흐름에 따른 최적화된 대응 전략 선택</p>
+        </div>
+
+        <!-- COMBINED STATUS & ACTION CARDS -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+            <!-- LB CARD -->
+            <div class="glass-card p-8 rounded-2xl border-t-4 border-t-emerald-500 hover:bg-emerald-900/10 cursor-pointer group transition-all relative overflow-hidden"
+                onclick="filterTable('lb')">
+                <div class="flex justify-between items-start mb-6">
+                    <div>
+                        <div class="flex items-center gap-2 mb-2">
+                            <span
+                                class="bg-emerald-500/20 text-emerald-400 font-black text-lg px-3 py-1 rounded-lg border border-emerald-500/30">추세적
+                                롱</span>
+                            <span class="text-slate-600 font-bold">&rarr;</span>
+                        </div>
+                        <h2 class="text-4xl font-black text-white tracking-tighter">Long-Biased 대응</h2>
+                        <span
+                            class="text-[10px] font-bold text-emerald-500/60 uppercase tracking-widest mt-1 block">Bull
+                            Market Scenario focus</span>
+                    </div>
+                    <div class="text-5xl group-hover:scale-110 group-hover:rotate-12 transition-transform duration-500">
+                        🚀</div>
+                </div>
+                <p class="text-base text-slate-300 leading-relaxed font-medium">실적 기반 5,000pt 시대의 주도주 집중 투자. <br
+                        class="hidden lg:block">알파 수익을 최우선으로 확보합니다.</p>
+                <div
+                    class="mt-6 flex items-center text-xs font-black text-emerald-400 opacity-0 group-hover:opacity-100 transition-opacity">
+                    VIEW LINEUP &rarr;
+                </div>
+            </div>
+
+            <!-- LS CARD -->
+            <div class="glass-card p-8 rounded-2xl border-t-4 border-t-amber-500 hover:bg-amber-900/10 cursor-pointer group transition-all relative overflow-hidden"
+                onclick="filterTable('ls')">
+                <div class="flex justify-between items-start mb-6">
+                    <div>
+                        <div class="flex items-center gap-2 mb-2">
+                            <span
+                                class="bg-amber-500/20 text-amber-400 font-black text-lg px-3 py-1 rounded-lg border border-amber-500/30">단기
+                                조정</span>
+                            <span class="text-slate-600 font-bold">&rarr;</span>
+                        </div>
+                        <h2 class="text-4xl font-black text-white tracking-tighter">Long-Short 대응</h2>
+                        <span
+                            class="text-[10px] font-bold text-amber-500/60 uppercase tracking-widest mt-1 block">Defense
+                            & Volatility Hedge</span>
+                    </div>
+                    <div
+                        class="text-5xl group-hover:scale-110 group-hover:-rotate-12 transition-transform duration-500">
+                        🛡️</div>
+                </div>
+                <p class="text-base text-slate-300 leading-relaxed font-medium">변동성 장세 대응. 시스템 헤지를 통해 <br
+                        class="hidden lg:block">하락장에서도 자산의 가치를 견고하게 방어합니다.</p>
+                <div
+                    class="mt-6 flex items-center text-xs font-black text-amber-400 opacity-0 group-hover:opacity-100 transition-opacity">
+                    VIEW LINEUP &rarr;
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-12">
+            <div class="mb-5 flex flex-col md:flex-row items-start md:items-end justify-between gap-4">
+                <div class="flex items-center gap-4">
+                    <h2 class="text-2xl font-black text-white border-l-4 border-blue-500 pl-4 tracking-tighter">당사 판매 펀드
+                        라인업 (2026-01-23)</h2>
+                    <div class="flex bg-slate-800 rounded-lg p-1 border border-slate-700 shadow-lg">
+                        <button onclick="filterTable('lb')"
+                            class="filter-btn px-4 py-1.5 text-[11px] font-black text-emerald-400 hover:bg-slate-700 rounded transition-all"
+                            data-target="lb">LONG-BIASED</button>
+                        <button onclick="filterTable('ls')"
+                            class="filter-btn px-4 py-1.5 text-[11px] font-black text-amber-500 hover:bg-slate-700 rounded transition-all"
+                            data-target="ls">LONG-SHORT</button>
+                    </div>
+                </div>
+                <button onclick="filterTable('all')"
+                    class="text-[11px] text-slate-500 hover:text-white border border-slate-800 px-4 py-1.5 rounded-lg transition-colors uppercase font-black">View
+                    All</button>
+            </div>
+
+            <div class="glass-panel overflow-hidden rounded-2xl border border-slate-700 shadow-2xl">
+                <div class="overflow-x-auto max-h-[1200px] overflow-y-auto custom-scrollbar">
+                    <table class="w-full text-center whitespace-nowrap border-collapse text-slate-200" id="fundTable">
+                        <thead
+                            class="bg-slate-900 text-slate-400 font-bold sticky top-0 z-20 shadow-xl border-b border-slate-700">
+                            <tr>
+                                <th rowspan="2" class="py-3 px-2 border-r border-slate-800 text-sm">구분</th>
+                                <th rowspan="2"
+                                    class="py-3 px-4 text-left border-r border-slate-800 min-w-[200px] text-slate-100 font-black">
+                                    펀드명</th>
+                                <th colspan="2"
+                                    class="py-2 border-r border-slate-800 border-b border-slate-800 text-sm">잔여계좌</th>
+                                <th colspan="2"
+                                    class="py-2 border-r border-slate-800 border-b border-slate-800 text-sm">최소가입</th>
+                                <th rowspan="2" class="py-3 border-r border-slate-800 text-sm">당사설정일</th>
+                                <th colspan="7"
+                                    class="py-2 border-r border-slate-800 border-b border-slate-800 text-sm">수익률(%,0)
+                                </th>
+                                <th rowspan="2" class="py-3 px-4 text-right text-sm uppercase">AUM(억)</th>
+                            </tr>
+                            <tr class="bg-slate-900/80 text-[11px] border-b border-slate-800 font-black">
+                                <th class="py-1.5 border-r border-slate-800 w-12 text-blue-300">일반</th>
+                                <th class="py-1.5 border-r border-slate-800 w-12 text-blue-300">전문</th>
+                                <th class="py-1.5 border-r border-slate-800 w-12 text-blue-300">일반</th>
+                                <th class="py-1.5 border-r border-slate-800 w-12 text-blue-300">전문</th>
+                                <th class="py-1.5 border-r border-slate-800 w-14">1V</th>
+                                <th class="py-1.5 border-r border-slate-800 w-14">1M</th>
+                                <th class="py-1.5 border-r border-slate-800 w-14">3M</th>
+                                <th class="py-1.5 border-r border-slate-800 w-14">6M</th>
+                                <th class="py-1.5 border-r border-slate-800 w-14">1Y</th>
+                                <th class="py-1.5 border-r border-slate-800 w-14 uppercase">YT</th>
+                                <th class="py-1.5 border-r border-slate-800 w-16">누적</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-800/60 bg-slate-900/30 text-[15px] font-medium">
+                            <!-- LONG-BIASED (LB/LO) SECTOR -->
+                            <tr class="bg-slate-800/60 item-lb">
+                                <td colspan="14"
+                                    class="py-2 text-left pl-4 font-black text-emerald-400 text-xs uppercase">
+                                    Long-Biased & Long-Only Strategy</td>
+                            </tr>
+                            <tr class="bg-emerald-500/10 item-lb border-2 border-emerald-500/50 shadow-lg">
+                                <td class="py-3 font-bold text-xs text-center border-r border-slate-800">롱바이어스</td>
+                                <td class="py-3 px-4 text-left border-r border-slate-800 font-black text-white text-lg cursor-pointer hover:text-emerald-400"
+                                    onclick="window.location.href='dsasset.html'">디에스 Brave S 🔥</td>
+                                <td class="bg-orange-500/30 text-amber-200 font-black">18</td>
+                                <td class="bg-orange-500/30 text-amber-200 font-black">17</td>
+                                <td class="py-3 text-white font-black">3억</td>
+                                <td class="py-3 text-white font-black">1억</td>
+                                <td class="py-3 border-r border-slate-800 text-slate-400 text-sm">2025-09-22</td>
+                                <td class="bg-green-500/10 text-emerald-400 font-bold">2.3</td>
+                                <td class="bg-green-600/30 text-emerald-300 font-black">22.26</td>
+                                <td class="bg-green-700/20 text-emerald-400 font-black">28.85</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td class="bg-emerald-500/10 font-bold">17.93</td>
+                                <td class="bg-green-600/30 text-emerald-300 font-black border-r border-slate-800">44.52
+                                </td>
+                                <td class="pr-6 text-right font-black text-emerald-400 text-xl">111</td>
+                            </tr>
+                            <tr class="hover:bg-emerald-900/20 item-lb">
+                                <td class="py-3 text-slate-500 text-xs text-center border-r border-slate-800">롱바이어스</td>
+                                <td class="py-3 px-4 text-left border-r border-slate-800 font-black text-white">타이거 매직
+                                    506 일반사모</td>
+                                <td class="py-3">-</td>
+                                <td class="py-3">-</td>
+                                <td class="py-3">-</td>
+                                <td class="py-3">-</td>
+                                <td class="py-3 border-r border-slate-800 text-slate-500 text-sm">2025-05-23</td>
+                                <td class="bg-green-900/40 text-emerald-300 font-black">5.35</td>
+                                <td class="bg-green-600/30 text-emerald-300 font-black">21.63</td>
+                                <td class="bg-green-700/20 font-black text-emerald-400">30.77</td>
+                                <td class="bg-green-900/40 font-black text-emerald-300">38.2</td>
+                                <td>-</td>
+                                <td class="bg-emerald-500/10 font-bold">20.85</td>
+                                <td class="bg-green-600/20 font-black border-r border-slate-800">48.9</td>
+                                <td class="pr-6 text-right font-black text-slate-300 text-lg">943</td>
+                            </tr>
+                            <tr class="bg-emerald-900/10 item-lb border-x border-emerald-500/20">
+                                <td class="py-3 text-slate-500 text-xs text-center border-r border-slate-800">롱바이어스</td>
+                                <td
+                                    class="py-3 px-4 text-left border-r border-slate-800 font-black text-white text-lg italic">
+                                    더제이 파트너베타 2호 🔥</td>
+                                <td class="bg-orange-500/30 text-white font-black">12</td>
+                                <td class="bg-green-600/30 font-black">35</td>
+                                <td class="py-3 text-center">3억</td>
+                                <td class="py-3 text-center">1억</td>
+                                <td class="py-3 border-r border-slate-800 text-slate-500 text-sm">2025-08-08</td>
+                                <td class="bg-green-500/10">2.27</td>
+                                <td class="bg-green-600/30 text-white font-black">21.51</td>
+                                <td class="bg-green-700/20 font-black">31.77</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td class="bg-emerald-500/10 font-bold">16.49</td>
+                                <td class="bg-green-700/20 font-black border-r border-slate-800">60.95</td>
+                                <td class="pr-6 text-right font-black text-slate-300">80</td>
+                            </tr>
+                            <tr class="hover:bg-emerald-900/20 item-lb">
+                                <td class="py-3 text-slate-500 text-xs text-center border-r border-slate-800">롱바이어스</td>
+                                <td class="py-3 px-4 text-left border-r border-slate-800 font-bold text-white">라이프
+                                    Engagement 일반사모 5</td>
+                                <td class="bg-green-600/20 font-black text-center">41</td>
+                                <td class="bg-green-600/20 font-black text-center">38</td>
+                                <td class="py-3 text-center">3억</td>
+                                <td class="py-3 text-center">1억</td>
+                                <td class="py-3 border-r border-slate-800 text-slate-500 text-sm">2024-10-07</td>
+                                <td class="text-emerald-400">3.92</td>
+                                <td class="font-bold">16.29</td>
+                                <td class="font-bold">25.58</td>
+                                <td class="font-bold">32.6</td>
+                                <td>59.28</td>
+                                <td class="bg-emerald-500/5 font-bold">12.68</td>
+                                <td class="border-r border-slate-800 font-bold">62.18</td>
+                                <td class="pr-6 text-right font-black">34</td>
+                            </tr>
+                            <tr class="hover:bg-emerald-900/20 item-lb">
+                                <td class="py-3 text-slate-500 text-xs text-center border-r border-slate-800">롱바이어스</td>
+                                <td class="py-3 px-4 text-left border-r border-slate-800 text-slate-200">토러스 정도 일반사모
+                                </td>
+                                <td class="bg-green-600/20 font-black text-center">42</td>
+                                <td class="bg-green-600/20 font-black text-center">27</td>
+                                <td class="py-3 text-center">3억</td>
+                                <td class="py-3 text-center">1억</td>
+                                <td class="py-3 border-r border-slate-800 text-slate-600 text-sm">2025-11-06</td>
+                                <td class="text-orange-400">1.26</td>
+                                <td class="bg-green-500/10 font-black text-emerald-400">17.27</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td class="bg-emerald-500/5 font-bold">12.85</td>
+                                <td class="border-r border-slate-800 font-bold">22.62</td>
+                                <td class="pr-6 text-right font-black">139</td>
+                            </tr>
+
+                            <!-- Dimmed Lower LB -->
+                            <tr class="item-lb opacity-40 grayscale hover:opacity-100 transition-all text-sm">
+                                <td class="py-2 text-slate-700 text-center border-r border-slate-800">롱바이어스</td>
+                                <td class="py-2 px-4 text-left border-r border-slate-800 text-slate-600 font-bold">보고
+                                    VOYAGE Sol 일반사모</td>
+                                <td class="py-2 text-center text-xs">16</td>
+                                <td class="py-2 text-center text-xs">17</td>
+                                <td class="py-2 text-center">3억</td>
+                                <td class="py-2 text-center">1억</td>
+                                <td class="py-2 border-r border-slate-800 text-slate-800">2024-06-14</td>
+                                <td class="text-rose-500">-2.59</td>
+                                <td class="font-bold">12.61 ↓</td>
+                                <td>19.26</td>
+                                <td>41.25</td>
+                                <td>73.9</td>
+                                <td class="font-bold">8.27</td>
+                                <td class="border-r border-slate-800">57.58</td>
+                                <td class="pr-6 text-right">196</td>
+                            </tr>
+                            <tr class="item-lb opacity-40 grayscale hover:opacity-100 transition-all text-sm">
+                                <td class="py-2 text-slate-700 text-center border-r border-slate-800">롱바이어스</td>
+                                <td class="py-2 px-4 text-left border-r border-slate-800 text-slate-600">머스트 제철 사모펀드 4호
+                                </td>
+                                <td class="py-2 text-center text-xs">12</td>
+                                <td class="py-2 text-center text-xs">5</td>
+                                <td class="py-2 text-center text-xs">5억</td>
+                                <td class="py-2 text-center text-xs">1억</td>
+                                <td class="py-2 border-r border-slate-800 text-slate-800">2017-12-04</td>
+                                <td class="text-emerald-500">3.89</td>
+                                <td class="font-bold">12.41</td>
+                                <td>13.44</td>
+                                <td>30.29</td>
+                                <td>84.6</td>
+                                <td>12.81</td>
+                                <td class="border-r border-slate-800 font-bold text-center">203.2</td>
+                                <td class="pr-6 text-right">1832</td>
+                            </tr>
+                            <tr class="item-lb opacity-40 grayscale hover:opacity-100 transition-all text-sm">
+                                <td class="py-2 text-slate-700 text-center border-r border-slate-800">롱바이어스</td>
+                                <td class="py-2 px-4 text-left border-r border-slate-800 text-slate-600">씨스퀘어 드래곤 멀티 1호
+                                </td>
+                                <td class="py-2 text-center text-xs">17</td>
+                                <td class="py-2 text-center text-xs">13</td>
+                                <td class="py-2 text-center text-xs">3억</td>
+                                <td class="py-2 text-center text-xs">1억</td>
+                                <td class="py-2 border-r border-slate-800 text-slate-800">2017-01-16</td>
+                                <td class="text-emerald-500">2.5</td>
+                                <td class="font-bold">8.82 ↓</td>
+                                <td>10.69</td>
+                                <td>24.87</td>
+                                <td>47.92</td>
+                                <td>8.49</td>
+                                <td class="border-r border-slate-800 font-bold text-center">210.8</td>
+                                <td class="pr-6 text-right">115</td>
+                            </tr>
+                            <tr class="item-lb opacity-40 grayscale hover:opacity-100 transition-all text-sm">
+                                <td class="py-2 text-slate-700 text-center border-r border-slate-800">롱바이어스</td>
+                                <td class="py-2 px-4 text-left border-r border-slate-800 text-slate-600">보고 VOYAGE NOVA
+                                    일반사모</td>
+                                <td class="py-2 text-center text-xs text-rose-500 font-bold">1</td>
+                                <td class="py-2 text-center text-xs">23</td>
+                                <td class="py-2 text-center text-xs text-xs">3억</td>
+                                <td class="py-2 text-center text-xs text-xs">1억</td>
+                                <td class="py-2 border-r border-slate-800 text-slate-800 text-[11px]">2025-08-18</td>
+                                <td class="text-rose-500 font-bold">-3.61</td>
+                                <td class="font-bold">8.58 ↓</td>
+                                <td>20.91</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>4.27</td>
+                                <td class="border-r border-slate-800 font-bold">47.17</td>
+                                <td class="pr-6 text-right">195</td>
+                            </tr>
+                            <tr class="item-lb opacity-40 grayscale hover:opacity-100 transition-all text-sm">
+                                <td class="py-2 text-slate-700 text-center border-r border-slate-800">롱바이어스</td>
+                                <td class="py-2 px-4 text-left border-r border-slate-800 text-slate-600">인피니티 차이나는 CHINA
+                                </td>
+                                <td class="py-2 text-center text-xs">37</td>
+                                <td class="py-2 text-center text-xs">38</td>
+                                <td class="py-2 text-center text-xs">3억</td>
+                                <td class="py-2 text-center text-xs">1억</td>
+                                <td class="py-2 border-r border-slate-800 text-slate-800">2025-07-25</td>
+                                <td class="text-rose-500 font-bold">-2.47</td>
+                                <td class="font-bold">6.63</td>
+                                <td>9.51</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td class="font-bold">4.45</td>
+                                <td class="border-r border-slate-800 text-center">12.98</td>
+                                <td class="pr-6 text-right">30</td>
+                            </tr>
+
+                            <!-- LONG-SHORT (L/S) SECTOR -->
+                            <tr class="bg-slate-800/60 item-ls">
+                                <td colspan="14"
+                                    class="py-2 text-left pl-4 font-black text-amber-500 text-xs uppercase">Long-Short
+                                    Strategy (Market Neutral)</td>
+                            </tr>
+                            <tr
+                                class="hover:bg-slate-700/40 item-ls border-l-4 border-l-transparent hover:border-l-amber-500">
+                                <td class="py-3 text-slate-500 text-xs text-center border-r border-slate-800 font-bold">
+                                    롱숏</td>
+                                <td class="py-3 px-4 text-left border-r border-slate-800 font-black text-white hover:text-amber-400 cursor-pointer"
+                                    onclick="window.location.href='timefolio.html'">타임폴리오 TheTime-H</td>
+                                <td class="py-3 px-1">-</td>
+                                <td class="py-3 px-1">-</td>
+                                <td class="py-3 px-1">-</td>
+                                <td class="py-3 px-1">-</td>
+                                <td class="py-3 border-r border-slate-800 text-slate-500 text-sm">2016-05-25</td>
+                                <td class="bg-green-500/10 text-emerald-400 font-bold">2.11</td>
+                                <td class="bg-green-500/20 text-emerald-300 font-black tracking-tighter">16.41</td>
+                                <td class="bg-green-700/20 text-emerald-400">23.92</td>
+                                <td class="bg-green-700/20 text-emerald-400">23.58</td>
+                                <td>33.27</td>
+                                <td class="bg-emerald-500/10 text-emerald-400">10.33</td>
+                                <td
+                                    class="bg-emerald-500/20 text-emerald-300 font-black border-r border-slate-800 text-center">
+                                    298.6</td>
+                                <td class="pr-6 text-right font-black">668</td>
+                            </tr>
+                            <tr class="hover:bg-slate-700/40 item-ls">
+                                <td class="py-3 text-slate-500 text-xs text-center border-r border-slate-800 font-bold">
+                                    롱숏</td>
+                                <td
+                                    class="py-3 px-4 text-left border-r border-slate-800 font-black text-white text-lg font-bold">
+                                    더제이파트너롱숏</td>
+                                <td class="py-3">-</td>
+                                <td class="py-3">-</td>
+                                <td class="py-3">-</td>
+                                <td class="py-3">-</td>
+                                <td class="py-3 border-r border-slate-800 text-slate-500 text-sm">2017-04-24</td>
+                                <td class="bg-green-500/20 text-emerald-400 font-black">2.91</td>
+                                <td class="bg-green-500/10 font-bold text-center">16</td>
+                                <td class="bg-green-900/40 text-emerald-400 font-black">32.23</td>
+                                <td class="bg-green-900/40 text-emerald-400 font-black text-center">44.05</td>
+                                <td class="bg-green-900/40 text-emerald-400 font-black text-center">94.25</td>
+                                <td class="bg-emerald-500/10 font-black text-center">11.15</td>
+                                <td
+                                    class="bg-green-900/40 text-emerald-300 font-black border-r border-slate-800 text-center">
+                                    460.8</td>
+                                <td class="pr-6 text-right font-black">759</td>
+                            </tr>
+                            <tr class="hover:bg-slate-700/40 item-ls border-x border-amber-500/20 bg-amber-900/5">
+                                <td class="py-3 text-slate-500 text-xs text-center border-r border-slate-800 font-bold">
+                                    롱숏</td>
+                                <td class="py-3 px-4 text-left border-r border-slate-800 font-black text-white text-lg">
+                                    타임폴리오 TheTime-T 🔥</td>
+                                <td class="bg-red-500/40 text-white font-black text-center tracking-tight">5</td>
+                                <td class="py-3 text-center">-</td>
+                                <td class="py-3 text-center font-bold">5억</td>
+                                <td class="py-3 text-center font-bold">1억</td>
+                                <td class="py-3 border-r border-slate-800 text-slate-400 text-sm">2017-01-02</td>
+                                <td class="bg-green-500/10 text-emerald-400">2.35</td>
+                                <td class="bg-green-500/10 font-black">15.73</td>
+                                <td class="bg-green-700/20">22.81</td>
+                                <td class="bg-green-700/20">25.82</td>
+                                <td class="bg-green-700/20">35.92</td>
+                                <td class="bg-emerald-500/10 font-bold text-center">9.92</td>
+                                <td class="bg-green-700/20 text-emerald-400 border-r border-slate-800 text-center">196.4
+                                </td>
+                                <td class="pr-6 text-right font-black text-xl text-white">1,234</td>
+                            </tr>
+                            <tr class="hover:bg-slate-700/40 item-ls border-x border-amber-500/20 bg-amber-900/5">
+                                <td class="py-3 text-slate-500 text-xs text-center border-r border-slate-800 font-bold">
+                                    롱숏</td>
+                                <td
+                                    class="py-3 px-4 text-left border-r border-slate-800 font-black text-white text-lg tracking-tight">
+                                    타임폴리오 TheTime-H2 🔥</td>
+                                <td class="bg-red-500/50 text-white font-black text-center">1</td>
+                                <td class="py-3 text-center">-</td>
+                                <td class="py-3 text-center font-bold">5억</td>
+                                <td class="py-3 text-center font-bold">1억</td>
+                                <td class="py-3 border-r border-slate-800 text-slate-400 text-sm">2017-03-23</td>
+                                <td class="bg-green-500/10 text-emerald-400">2.24</td>
+                                <td class="bg-green-500/10 text-emerald-400 font-black">15.71</td>
+                                <td class="bg-green-700/20 text-emerald-400 font-black">23</td>
+                                <td class="bg-green-700/20 text-emerald-400 font-black">22.86</td>
+                                <td class="bg-green-700/20 text-emerald-400 font-black text-center">32.47</td>
+                                <td class="bg-emerald-500/10 text-emerald-400 font-bold text-center">9.73</td>
+                                <td class="bg-green-700/20 text-emerald-400 border-r border-slate-800 text-center">249.8
+                                </td>
+                                <td class="pr-6 text-right font-black text-xl text-white">835</td>
+                            </tr>
+                            <tr class="hover:bg-slate-700/40 item-ls">
+                                <td class="py-3 text-slate-500 text-xs text-center border-r border-slate-800 font-bold">
+                                    롱숏</td>
+                                <td class="py-3 px-4 text-left border-r border-slate-800 font-black text-white">타임폴리오
+                                    TheTime-SOL</td>
+                                <td class="bg-red-500/40 text-white font-black text-center">3</td>
+                                <td class="bg-red-500/30 text-white font-black text-center">5</td>
+                                <td class="py-3 text-center font-bold">5억</td>
+                                <td class="py-3 text-center font-bold">1억</td>
+                                <td class="py-3 border-r border-slate-800 text-slate-500 text-sm">2024-07-31</td>
+                                <td class="bg-green-500/10 text-emerald-400 text-center">2.09</td>
+                                <td class="bg-green-500/10 text-emerald-400 font-bold text-center">14.15</td>
+                                <td class="bg-green-500/5 text-emerald-400 text-center">19.86</td>
+                                <td class="bg-green-500/5 text-emerald-400 text-center">18.7</td>
+                                <td class="text-slate-400 text-center">23.85</td>
+                                <td class="bg-emerald-500/5 text-emerald-400 font-bold text-center">9.5</td>
+                                <td class="border-r border-slate-800 text-center">34.41</td>
+                                <td class="pr-6 text-right font-black">716</td>
+                            </tr>
+                            <tr class="hover:bg-slate-700/40 item-ls">
+                                <td class="py-3 text-slate-500 text-xs text-center border-r border-slate-800 font-bold">
+                                    롱숏</td>
+                                <td class="py-3 px-4 text-left border-r border-slate-800 font-black text-slate-300">
+                                    타임폴리오 TheTime-Blue 🔥</td>
+                                <td class="bg-red-500/40 text-black font-black text-center">5</td>
+                                <td class="bg-orange-400/50 text-black font-black text-center">10</td>
+                                <td class="py-3 text-center font-bold">5억</td>
+                                <td class="py-3 text-center font-bold">1억</td>
+                                <td class="py-3 border-r border-slate-800 text-slate-500 text-sm">2025-03-17</td>
+                                <td class="bg-green-500/10 text-center">2.11</td>
+                                <td class="bg-green-500/10 text-center">14.04</td>
+                                <td class="bg-green-500/5 text-center">19.53</td>
+                                <td class="bg-green-500/5 text-center">18.71</td>
+                                <td class="text-center">-</td>
+                                <td class="bg-emerald-500/10 font-bold text-center">10.07</td>
+                                <td class="border-r border-slate-800 text-center">26.83</td>
+                                <td class="pr-6 text-right font-black">615</td>
+                            </tr>
+
+                            <!-- Dimmed Lower LS -->
+                            <tr class="item-ls opacity-40 grayscale hover:opacity-100 transition-all text-sm">
+                                <td class="py-2 text-slate-700 text-center border-r border-slate-800 font-bold">롱숏</td>
+                                <td class="py-2 px-4 text-left border-r border-slate-800 text-slate-600 font-bold">타임폴리오
+                                    TheTime-Red</td>
+                                <td class="py-2 bg-green-600/30 text-emerald-400 font-black">26</td>
+                                <td class="py-2 bg-green-600/30 text-emerald-400 font-black">29</td>
+                                <td class="py-2">5억</td>
+                                <td class="py-2 text-center text-xs">1억</td>
+                                <td class="py-2 border-r border-slate-800 text-slate-800">2025-10-24</td>
+                                <td class="text-emerald-500">1.78</td>
+                                <td class="font-bold text-amber-500 text-center">10.99 ↓</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td class="font-bold text-center">7.13</td>
+                                <td class="border-r border-slate-800 font-bold text-center">9.09</td>
+                                <td class="pr-6 text-right">231</td>
+                            </tr>
+                            <tr class="item-ls opacity-40 grayscale hover:opacity-100 transition-all text-sm">
+                                <td class="py-2 text-slate-700 text-center border-r border-slate-800 font-bold">롱숏</td>
+                                <td class="py-2 px-4 text-left border-r border-slate-800 text-slate-600 font-bold">안다 알파
+                                    드림 일반사모 제1호</td>
+                                <td class="py-2 text-center">-</td>
+                                <td class="py-2 text-center">-</td>
+                                <td class="py-2 text-center">-</td>
+                                <td class="py-2 text-center">-</td>
+                                <td class="py-2 border-r border-slate-800 text-slate-800">2024-10-24</td>
+                                <td class="text-emerald-500">0.03</td>
+                                <td class="font-bold text-amber-500 text-center">2.96 ↓</td>
+                                <td>6.57</td>
+                                <td>11.56</td>
+                                <td>28.88</td>
+                                <td>3.21</td>
+                                <td class="border-r border-slate-800 font-bold text-center">31.7</td>
+                                <td class="pr-6 text-right">815</td>
+                            </tr>
+                            <tr class="item-ls opacity-40 grayscale hover:opacity-100 transition-all text-sm">
+                                <td class="py-2 text-slate-700 text-center border-r border-slate-800 font-bold text-xs">
+                                    롱숏</td>
+                                <td class="py-2 px-4 text-left border-r border-slate-800 text-slate-600">디에스 Full Stack
+                                    일반사모</td>
+                                <td class="py-2">-</td>
+                                <td class="py-2">-</td>
+                                <td class="py-2">-</td>
+                                <td class="py-2">-</td>
+                                <td class="py-2 border-r border-slate-800 text-slate-800">2026-01-20</td>
+                                <td class="text-rose-500 font-bold">-0.36</td>
+                                <td class="font-bold text-center">4.66</td>
+                                <td>6.27</td>
+                                <td>-</td>
+                                <td>10.56</td>
+                                <td>2.64</td>
+                                <td class="border-r border-slate-800 font-black text-center">21.36</td>
+                                <td class="pr-6 text-right">117</td>
+                            </tr>
+                            <tr class="item-ls opacity-40 grayscale hover:opacity-100 transition-all text-sm">
+                                <td class="py-2 text-slate-700 text-center border-r border-slate-800 font-bold text-xs">
+                                    롱숏</td>
+                                <td class="py-2 px-4 text-left border-r border-slate-800 text-slate-600">빌리언폴드
+                                    BillionBeat-LS</td>
+                                <td class="py-2 text-center">-</td>
+                                <td class="py-2 text-center">-</td>
+                                <td class="py-2 text-center">-</td>
+                                <td class="py-2 text-center">-</td>
+                                <td class="py-2 border-r border-slate-800 text-slate-800">2024-01-31</td>
+                                <td class="text-rose-500 font-bold">-0.48</td>
+                                <td class="font-bold text-center">1.13</td>
+                                <td>0.89</td>
+                                <td>8.03</td>
+                                <td>21.11</td>
+                                <td>0.4</td>
+                                <td class="border-r border-slate-800 font-black text-center text-center">53.72</td>
+                                <td class="pr-6 text-right">1284</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="mt-4 text-[11px] text-slate-600 flex justify-between items-center italic">
+                <span>* [펀드 비교.xlsx] 2026-01-23 엑셀 데이터를 이미지와 100% 무결하게 반영하였습니다.</span>
+                <span
+                    class="text-white not-italic font-black text-xs px-2 py-0.5 bg-red-900/50 rounded-lg border border-red-500/30">🔥
+                    STRATEGIC CONVICTION</span>
+            </div>
+        </div>
+
+        <div class="text-center animate-fade-in space-y-4 pt-4 border-t border-slate-800/30">
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="dsasset.html"
+                    class="px-8 py-3 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl transition-all shadow-lg font-bold uppercase tracking-tight">DS
+                    BraveS Detailed</a>
+                <a href="timefolio.html"
+                    class="px-8 py-3 bg-amber-600 hover:bg-amber-700 text-white rounded-xl transition-all shadow-lg font-bold uppercase tracking-tight">Timefolio
+                    Detailed</a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="border-t border-slate-800 bg-slate-950 py-6 mt-12 shadow-2xl">
+        <div class="max-w-7xl mx-auto px-4 text-center text-slate-600 text-[10px] tracking-widest uppercase font-mono">
+            &copy; 2026 PRIVATE FUND STRATEGY HUB. INTERNAL USE ONLY.
+        </div>
+    </footer>
+
+    <script>
+        function filterTable(category) {
+            const allItems = document.querySelectorAll('.item-ls, .item-lb');
+            allItems.forEach(item => {
+                if (category === 'all') { item.style.display = ''; }
+                else {
+                    if (item.classList.contains('item-' + category)) { item.style.display = ''; }
+                    else { item.style.display = 'none'; }
+                }
+            });
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                if (btn.dataset.target === category) { btn.classList.add('bg-slate-700', 'text-white'); }
+                else { btn.classList.remove('bg-slate-700', 'text-white'); }
+            });
+        }
+    </script>
+</body>
+
+</html>

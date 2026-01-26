@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026 Strategy Report (Formal Print Ver.)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @media print {
+            .page-break {
+                page-break-before: always;
+            }
+
+            body {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+                background-color: white !important;
+            }
+
+            .no-print {
+                display: none !important;
+            }
+
+            .content-block {
+                border: 1px solid #cbd5e1 !important;
+                background: white !important;
+            }
+        }
+
+        body {
+            background-color: white;
+            color: #0f172a;
+            font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+            line-height: 1.5;
+        }
+
+        .content-block {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+        }
+
+        .text-ds {
+            color: #065f46;
+        }
+
+        .text-tf {
+            color: #92400e;
+        }
+
+        .chart-container {
+            height: 240px;
+            width: 100%;
+            position: relative;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th,
+        td {
+            border: 1px solid #e2e8f0;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f8fafc;
+            color: #475569;
+            font-weight: 700;
+        }
+    </style>
+</head>
+
+<body class="p-8 max-w-6xl mx-auto">
+
+    <!-- PAGE 1: MARKET INSIGHT -->
+    <section class="w-full py-8">
+        <div class="text-center mb-12 border-b-2 border-slate-900 pb-8">
+            <h2 class="text-slate-500 font-bold tracking-widest uppercase text-xs mb-2">Internal Use Only | 2026.01.27
+            </h2>
+            <h1 class="text-4xl font-black text-slate-900 tracking-tight">KOSPI 5,000pt 시대의 자산 배분 전략</h1>
+            <p class="mt-4 text-lg text-slate-600">
+                국내 주요 증권사 시황 뷰: <span class="text-red-700 font-bold">[추세적 상승]</span> vs <span
+                    class="text-blue-700 font-bold">[단기 조정]</span>
+            </p>
+        </div>
+
+        <div class="grid grid-cols-2 gap-10">
+            <div class="border-r border-slate-100 pr-10">
+                <h3 class="text-xl font-bold text-red-700 mb-6 flex items-center gap-2">
+                    ● [Long] 추세적 상승 전망
+                </h3>
+                <div class="space-y-4">
+                    <div class="content-block">
+                        <div class="flex justify-between items-center mb-1">
+                            <h4 class="font-bold text-slate-900">NH투자증권 (1/26)</h4>
+                            <span class="text-[10px] text-slate-400">Target 5,500p</span>
+                        </div>
+                        <p class="font-bold text-slate-700 text-sm">"5,500p, 안착 후 추가 랠리"</p>
+                        <p class="text-[11px] text-slate-500 mt-1">반도체 이익 가시성 확보 및 2~3분기 실적 피크아웃 우려 불식.</p>
+                    </div>
+                    <div class="content-block">
+                        <div class="flex justify-between items-center mb-1">
+                            <h4 class="font-bold text-slate-900">하나증권 (1/25)</h4>
+                            <span class="text-[10px] text-slate-400">Target 5,600p</span>
+                        </div>
+                        <p class="font-bold text-slate-700 text-sm">"코스피 5,600p 시대의 개막"</p>
+                        <p class="text-[11px] text-slate-500 mt-1">밸류업 프로그램에 따른 주주환원 확대로 PER 13배 상향 적용 가능.</p>
+                    </div>
+                    <div class="content-block">
+                        <h4 class="font-bold text-slate-900 mb-1">신한투자증권 (1/23)</h4>
+                        <p class="font-bold text-slate-700 text-sm">"반도체 실적 레벨업 지속"</p>
+                        <p class="text-[11px] text-slate-500 mt-1">삼성전자/하이닉스 합산 이익 전망치 상향으로 상방 제한 해제.</p>
+                    </div>
+                    <div class="content-block">
+                        <div class="flex justify-between items-center mb-1">
+                            <h4 class="font-bold text-slate-900">KB증권 (1/12)</h4>
+                            <span class="text-[10px] text-slate-400">Target 7,500p</span>
+                        </div>
+                        <p class="font-bold text-slate-700 text-sm">"최대 7,500p 슈퍼 사이클"</p>
+                        <p class="text-[11px] text-slate-500 mt-1">80년대 3저 호황급 매크로 환경. 코스피 이익 400조 시대 진입.</p>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <h3 class="text-xl font-bold text-blue-700 mb-6 flex items-center gap-2">
+                    ● [Adjustment] 단기 과열 및 리스크
+                </h3>
+                <div class="space-y-4">
+                    <div class="content-block">
+                        <div class="flex justify-between items-center mb-1">
+                            <h4 class="font-bold text-slate-900">대신증권 (1/26)</h4>
+                            <span class="text-[10px] text-slate-400">관망(Neutral)</span>
+                        </div>
+                        <p class="font-bold text-slate-700 text-sm">"단기 과열 해소 국면"</p>
+                        <p class="text-[11px] text-slate-500 mt-1">지수 상승률이 이익(EPS) 상승률을 추월. 추격 매수보다 관망.</p>
+                    </div>
+                    <div class="content-block">
+                        <h4 class="font-bold text-slate-900 mb-1">키움증권 (1/26)</h4>
+                        <p class="font-bold text-slate-700 text-sm">"5,020p 매물대 저항"</p>
+                        <p class="text-[11px] text-slate-500 mt-1">5,000선 심리적 저항 및 차익실현 욕구 증대. 섹터 로테이션 대비.</p>
+                    </div>
+                    <div class="content-block">
+                        <h4 class="font-bold text-slate-900 mb-1">한화투자증권 (1/26)</h4>
+                        <p class="font-bold text-slate-700 text-sm">"속도 조절이 필요한 시점"</p>
+                        <p class="text-[11px] text-slate-500 mt-1">RSI 등 기술적 지표 과열권 진입. 가격보다 기간 조정 가능성.</p>
+                    </div>
+                    <div class="content-block">
+                        <h4 class="font-bold text-slate-900 mb-1">유안타증권 (1/21)</h4>
+                        <p class="font-bold text-slate-700 text-sm">"숨고르기 후 2차 랠리"</p>
+                        <p class="text-[11px] text-slate-500 mt-1">단기적으로는 바이오/인터넷 등 소외주 위주의 순환매 장세 예상.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PAGE 2: STRATEGY & LINEUP -->
+    <section class="w-full py-12 page-break">
+        <h2 class="text-2xl font-black text-slate-900 mb-8 border-l-4 border-slate-900 pl-4 uppercase">II. 전략적 대응 및 상품
+            라인업</h2>
+
+        <div class="grid grid-cols-2 gap-6 mb-10">
+            <div class="content-block border-t-4 border-t-emerald-600">
+                <h3 class="text-lg font-bold text-emerald-800">1. Long-Biased 대응 (추세적 상승 시)</h3>
+                <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+                    실적 기반 5,000pt 시대의 주도주 집중 투자. <br>알파 수익을 최우선으로 확보하여 시장 대비 초과 성과를 추구합니다.
+                </p>
+                <p class="mt-4 text-xs font-bold text-emerald-700">핵심 상품: DS Brave S</p>
+            </div>
+            <div class="content-block border-t-4 border-t-amber-600">
+                <h3 class="text-lg font-bold text-amber-800">2. Long-Short 대응 (단기 조정 시)</h3>
+                <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+                    변동성 장세 대응. 시스템 헤지를 통해 지수 고점 우려를 상쇄하고 하락장에서도 자산의 가치를 견고하게 방어합니다.
+                </p>
+                <p class="mt-4 text-xs font-bold text-amber-700">핵심 상품: TIMEFOLIO The Time</p>
+            </div>
+        </div>
+
+        <div class="mb-4">
+            <h4 class="text-sm font-bold text-slate-700 mb-2">당사 주요 사모펀드 운용 현황 (2026.01.23 기준)</h4>
+            <table class="text-[11px]">
+                <thead>
+                    <tr>
+                        <th>구분</th>
+                        <th class="text-left pl-2">펀드명</th>
+                        <th>잔계(일/전)</th>
+                        <th>최소(일/전)</th>
+                        <th>1M(%)</th>
+                        <th>3M(%)</th>
+                        <th>누적(%)</th>
+                        <th>AUM(억)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="font-bold">
+                        <td class="text-center">롱바이어스</td>
+                        <td class="text-left pl-2 text-emerald-800 text-xs">디에스 Brave S 🔥</td>
+                        <td class="text-center font-bold">18 / 17</td>
+                        <td class="text-center">3억 / 1억</td>
+                        <td class="text-center">22.26</td>
+                        <td class="text-center">28.85</td>
+                        <td class="text-center text-emerald-700 bg-emerald-50">44.52</td>
+                        <td class="text-right pr-2">111</td>
+                    </tr>
+                    <tr class="font-bold">
+                        <td class="text-center">롱숏</td>
+                        <td class="text-left pl-2 text-amber-800 text-xs">타임폴리오 TheTime-H</td>
+                        <td class="text-center text-slate-300">-</td>
+                        <td class="text-center text-slate-300">-</td>
+                        <td class="text-center">16.41</td>
+                        <td class="text-center">23.92</td>
+                        <td class="text-center text-amber-700 bg-amber-50">298.6</td>
+                        <td class="text-right pr-2">668</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">롱바이어스</td>
+                        <td class="text-left pl-2">더제이 파트너베타 2호 🔥</td>
+                        <td class="text-center">12 / 35</td>
+                        <td class="text-center">3억 / 1억</td>
+                        <td class="text-center">21.51</td>
+                        <td class="text-center">31.77</td>
+                        <td class="text-center font-bold">60.95</td>
+                        <td class="text-right pr-2">80</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">롱숏</td>
+                        <td class="text-left pl-2">타임폴리오 TheTime-T 🔥</td>
+                        <td class="text-center text-red-600 font-bold">5</td>
+                        <td class="text-center">5억 / 1억</td>
+                        <td class="text-center">15.73</td>
+                        <td class="text-center">22.81</td>
+                        <td class="text-center font-bold">196.4</td>
+                        <td class="text-right pr-2">1,234</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">롱숏</td>
+                        <td class="text-left pl-2">타임폴리오 TheTime-H2 🔥</td>
+                        <td class="text-center text-red-600 font-bold">1</td>
+                        <td class="text-center">5억 / 1억</td>
+                        <td class="text-center">15.71</td>
+                        <td class="text-center">23.00</td>
+                        <td class="text-center font-bold">249.8</td>
+                        <td class="text-right pr-2">835</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- PAGE 3: PRODUCT DETAILS (DS & TIMEFOLIO) -->
+    <section class="w-full py-12 page-break">
+        <h2 class="text-2xl font-black text-slate-900 mb-8 border-l-4 border-slate-900 pl-4 uppercase">III. 핵심 운용사 전략 상세
+        </h2>
+
+        <!-- DS Brave S -->
+        <div class="mb-12 border-b border-slate-100 pb-10">
+            <div class="flex justify-between items-end mb-6">
+                <h3 class="text-3xl font-black text-emerald-900">1. DS Brave S</h3>
+                <span class="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-1 rounded">Equity Long
+                    Biased</span>
+            </div>
+            <p class="text-lg text-slate-700 font-bold italic mb-6">"가장 강한 주식에 집중하여(Conviction), 시장 수익률을 압도합니다."</p>
+
+            <div class="grid grid-cols-3 gap-4 mb-8">
+                <div class="content-block py-4">
+                    <p class="font-bold text-xs text-emerald-800 mb-1">● Long-Biased</p>
+                    <p class="text-[10px] text-slate-500">성장 산업 내 Top-Pick 기업 선별 집중 투자.</p>
+                </div>
+                <div class="content-block py-4">
+                    <p class="font-bold text-xs text-emerald-800 mb-1">● Pair Trading</p>
+                    <p class="text-[10px] text-slate-500">저평가 매수 + 고평가 매도로 추가 알파 창출.</p>
+                </div>
+                <div class="content-block py-4">
+                    <p class="font-bold text-xs text-emerald-800 mb-1">● Event Driven</p>
+                    <p class="text-[10px] text-slate-500">IPO, 블록딜 등 기회 요인 기민한 대응.</p>
+                </div>
+            </div>
+
+            <div class="bg-slate-50 p-6 rounded-lg">
+                <p class="font-bold text-xs text-slate-700 mb-4 tracking-widest uppercase">Proven Success (Best
+                    Practice)</p>
+                <div class="grid grid-cols-3 gap-6 text-[11px]">
+                    <div><span class="font-black text-emerald-900">두산 (AI 소재):</span> 엔비디아향 CCL 진입 가능성 포착 및 선제 매집 성과.
+                    </div>
+                    <div><span class="font-black text-emerald-900">현대로템 (방산):</span> 글로벌 구조적 성장에 따른 수출 랠리 주도주 선점.</div>
+                    <div><span class="font-black text-emerald-900">에코프로머티 (IPO):</span> 지수 편입 이벤트를 활용한 성공적 알파 전략.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TIMEFOLIO -->
+        <div>
+            <div class="flex justify-between items-end mb-6">
+                <h3 class="text-3xl font-black text-amber-900">2. Timefolio The Time</h3>
+                <span class="text-xs font-bold text-amber-600 bg-amber-50 px-2 py-1 rounded">Absolute Return
+                    System</span>
+            </div>
+            <p class="text-lg text-slate-700 font-bold italic mb-6">"예측할 수 없는 시장에 시스템으로 대응하여 복리 효과를 구현합니다."</p>
+
+            <div class="grid grid-cols-3 gap-4 mb-8">
+                <div class="content-block py-4">
+                    <p class="font-bold text-xs text-amber-800 mb-1">● MMS System</p>
+                    <p class="text-[10px] text-slate-500">수십 명 매니저의 지성이 결합된 철저한 리스크 분산.</p>
+                </div>
+                <div class="content-block py-4">
+                    <p class="font-bold text-xs text-amber-800 mb-1">● Long-Short Hedge</p>
+                    <p class="text-[10px] text-slate-500">매수와 매도를 병행하여 하락장에서도 견고한 방력 확보.</p>
+                </div>
+                <div class="content-block py-4">
+                    <p class="font-bold text-xs text-amber-800 mb-1">● TMS Tech</p>
+                    <p class="text-[10px] text-slate-500">특허 받은 시스템을 통한 전 포지션 실시간 모니터링.</p>
+                </div>
+            </div>
+
+            <div class="border-2 border-amber-100 p-6 rounded-lg">
+                <p
+                    class="font-black text-xs text-amber-900 mb-4 uppercase tracking-widest border-b border-amber-100 pb-2">
+                    "10 Years Zero Loss History"</p>
+                <div class="grid grid-cols-3 gap-4 text-center">
+                    <div class="p-3">
+                        <p class="text-[10px] text-slate-400">2018 (미중 분쟁)</p>
+                        <p class="text-[10px] text-slate-500 italic">KOSPI -17.3%</p>
+                        <p class="text-sm font-black text-amber-800">Outcome +7.4%</p>
+                    </div>
+                    <div class="p-3 border-x border-slate-100">
+                        <p class="text-[10px] text-slate-400">2022 (금리 인하)</p>
+                        <p class="text-[10px] text-slate-500 italic">KOSPI -24.9%</p>
+                        <p class="text-sm font-black text-amber-800">Outcome +1.5%</p>
+                    </div>
+                    <div class="p-3">
+                        <p class="text-[10px] text-slate-400">2024 (변동성 장세)</p>
+                        <p class="text-[10px] text-slate-500 italic">KOSPI -9.6%</p>
+                        <p class="text-sm font-black text-amber-800">Outcome +17.8%</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PAGE 4: PERFORMANCE SUMMARY & CONCLUSION -->
+    <section class="w-full py-12 page-break">
+        <h2 class="text-2xl font-black text-slate-900 mb-8 border-l-4 border-slate-900 pl-4 uppercase">IV. 성과 요약 및 배분 제안
+        </h2>
+
+        <div class="grid grid-cols-2 gap-8 mb-10">
+            <div>
+                <h4 class="text-xs font-bold text-slate-400 uppercase mb-4 border-b pb-1">DS Brave S vs KOSPI (Alpha
+                    Performance)</h4>
+                <div class="chart-container">
+                    <canvas id="dsChartFinal"></canvas>
+                </div>
+                <div class="mt-4 flex justify-between text-[11px] font-bold">
+                    <span class="text-emerald-700">Cumulative: +44.52%</span>
+                    <span class="text-slate-400">KOSPI Comparison: +34.7%p Alpha</span>
+                </div>
+            </div>
+            <div>
+                <h4 class="text-xs font-bold text-slate-400 uppercase mb-4 border-b pb-1">Timefolio The Time vs KOSPI
+                    (Long-term Track)</h4>
+                <div class="chart-container">
+                    <canvas id="tfChartFinal"></canvas>
+                </div>
+                <div class="mt-4 flex justify-between text-[11px] font-bold">
+                    <span class="text-amber-800">Cumulative: +298.6%</span>
+                    <span class="text-slate-400">KOSPI Comparison: +236.6%p Alpha</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center p-8 bg-slate-100 border-2 border-slate-900 rounded-lg mb-10">
+            <p class="text-xl font-black text-slate-900 leading-tight">
+                "성장 동력을 선점하는 <span class="text-emerald-800">DS Brave S</span>와 <br>하방 위험을 통제하는 <span
+                    class="text-amber-800">Timefolio The Time</span>의 조화"
+            </p>
+            <p class="mt-2 text-xs text-slate-500">본 배분 전략은 시장 국면 변화에 최적화된 포트폴리오 성과를 제공합니다.</p>
+        </div>
+
+        <h4 class="text-sm font-bold text-slate-800 mb-3">시장 국면에 따른 자산 배분 매트릭스</h4>
+        <table class="text-[12px] border-2 border-slate-900">
+            <thead class="bg-slate-900 text-white">
+                <tr>
+                    <th class="p-3 border-r border-slate-800 text-white font-bold">전망 및 고객 성향</th>
+                    <th class="p-3 border-r border-slate-800 text-white font-bold">DS Brave S 비중</th>
+                    <th class="p-3 border-r border-slate-800 text-white font-bold">Timefolio (H) 비중</th>
+                    <th class="p-3 text-white font-bold">기대 운용 포인트</th>
+                </tr>
+            </thead>
+            <tbody class="font-bold">
+                <tr>
+                    <td class="p-4 text-left border-r bg-slate-50">성장 우위 & 수익 극대화</td>
+                    <td class="text-emerald-800 text-xl border-r">70%</td>
+                    <td class="text-slate-400 border-r">30%</td>
+                    <td class="p-4 text-left text-[11px] font-medium leading-normal">주도주 중심 포지션 구축으로 탄력적 수익 확보</td>
+                </tr>
+                <tr>
+                    <td class="p-4 text-left border-r bg-white">공격과 방어의 중립 조화</td>
+                    <td class="text-slate-900 text-xl border-r">50%</td>
+                    <td class="text-slate-900 text-xl border-r">50%</td>
+                    <td class="p-4 text-left text-[11px] font-medium leading-normal">상승 참여와 하락 방어 기제의 균형 배분</td>
+                </tr>
+                <tr>
+                    <td class="p-4 text-left border-r bg-slate-50">지수 고점 우려 & 절대수익</td>
+                    <td class="text-slate-400 border-r">30%</td>
+                    <td class="text-amber-800 text-xl border-r">70%</td>
+                    <td class="p-4 text-left text-[11px] font-medium leading-normal">리스크 관리를 통한 하방 경직성 및 복리 성과</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <footer class="mt-12 pt-8 border-t text-center">
+        <p class="text-[10px] text-slate-400 font-mono tracking-widest uppercase mb-4">
+            &copy; 2026 PRIVATE FUND STRATEGY HUB. STRICTLY CONFIDENTIAL.
+        </p>
+    </footer>
+
+    <script>
+        const chartConfig = {
+            responsive: true, maintainAspectRatio: false,
+            plugins: { legend: { display: false } },
+            scales: {
+                y: { grid: { color: '#f1f5f9' }, ticks: { color: '#94a3b8', font: { size: 9 } } },
+                x: { grid: { display: false }, ticks: { color: '#94a3b8', font: { size: 9 } } }
+            }
+        };
+
+        new Chart(document.getElementById('dsChartFinal').getContext('2d'), {
+            type: 'line',
+            data: {
+                labels: ['25.09', '25.10', '25.11', '25.12', '26.01'],
+                datasets: [
+                    { label: 'DS Brave S', data: [0, 4.2, 12.8, 22.1, 44.52], borderColor: '#059669', borderWidth: 3, tension: 0.3, pointRadius: 0 },
+                    { label: 'KOSPI', data: [0, -2.1, 3.5, 6.2, 9.8], borderColor: '#cbd5e1', borderWidth: 1, borderDash: [5, 5], tension: 0.4, pointRadius: 0 }
+                ]
+            },
+            options: chartConfig
+        });
+
+        new Chart(document.getElementById('tfChartFinal').getContext('2d'), {
+            type: 'line',
+            data: {
+                labels: ['16', '17', '18', '20', '21', '23', '24', '25', '26'],
+                datasets: [
+                    { label: 'TF The Time', data: [0, 25, 42, 85, 120, 215, 248, 282, 298.6], borderColor: '#92400e', borderWidth: 3, tension: 0.2, pointRadius: 0 },
+                    { label: 'KOSPI', data: [0, 15, 5, 35, 65, 45, 52, 58, 62], borderColor: '#cbd5e1', borderWidth: 1, borderDash: [5, 5], tension: 0.4, pointRadius: 0 }
+                ]
+            },
+            options: chartConfig
+        });
+    </script>
+</body>
+
+</html>
