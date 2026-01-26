@@ -581,36 +581,11 @@
 
     <script>
         // 스크롤 기반 자동 페이지 이동 (모바일)
-        if (window.innerWidth <= 768) {
-            let scrollTimeout;
-            let lastScrollTop = 0;
-            let scrollDirection = 0;
+        (function() {
+            if (window.innerWidth > 768) return; // 모바일만
             
-            window.addEventListener('scroll', function() {
-                clearTimeout(scrollTimeout);
-                
-                const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-                const windowHeight = window.innerHeight;
-                const documentHeight = document.documentElement.scrollHeight;
-                
-                // 스크롤 방향 감지
-                if (currentScroll > lastScrollTop) {
-                    scrollDirection = 1; // 아래로
-                } else {
-                    scrollDirection = -1; // 위로
-                }
-                lastScrollTop = currentScroll;
-                
-                // 페이지 하단 근처에서 아래로 스크롤 시 다음 페이지로
-                scrollTimeout = setTimeout(function() {
-                    if (scrollDirection === 1 && currentScroll + windowHeight >= documentHeight - 100) {
-                        const nextPage = getNextPage();
-                        if (nextPage) {
-                            window.location.href = nextPage;
-                        }
-                    }
-                }, 500);
-            });
+            let isNavigating = false;
+            let lastScrollTime = 0;
             
             function getNextPage() {
                 const currentPage = window.location.pathname.split('/').pop() || 'index.html';
@@ -623,7 +598,41 @@
                 };
                 return pages[currentPage];
             }
-        }
+            
+            function checkScrollBottom() {
+                if (isNavigating) return;
+                
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                const windowHeight = window.innerHeight;
+                const documentHeight = document.documentElement.scrollHeight;
+                const scrollBottom = scrollTop + windowHeight;
+                
+                // 하단 50px 이내에 도달하면 다음 페이지로
+                if (scrollBottom >= documentHeight - 50) {
+                    const nextPage = getNextPage();
+                    if (nextPage) {
+                        isNavigating = true;
+                        // 약간의 딜레이 후 이동 (사용자가 마지막 내용을 볼 수 있도록)
+                        setTimeout(function() {
+                            window.location.href = nextPage;
+                        }, 300);
+                    }
+                }
+            }
+            
+            // 스크롤 이벤트 (throttle 적용)
+            let scrollTimer = null;
+            window.addEventListener('scroll', function() {
+                if (scrollTimer) return;
+                scrollTimer = setTimeout(function() {
+                    checkScrollBottom();
+                    scrollTimer = null;
+                }, 100);
+            }, { passive: true });
+            
+            // 초기 체크
+            setTimeout(checkScrollBottom, 1000);
+        })();
     </script>
 
     <script>
