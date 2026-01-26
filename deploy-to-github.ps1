@@ -54,10 +54,10 @@ if (-not $gitUser -or -not $gitEmail) {
 # 3. GitHub 레포지토리 연결
 $GitHubUser = "hwangincheolpb"
 $PossibleRepos = @(
+    "financial-products",
     "fund-comparison",
     "fund-strategy",
     "fund-comparison-web",
-    "financial-products",
     "fund-web"
 )
 
@@ -85,8 +85,8 @@ if ($RepoUrl) {
         for ($i = 0; $i -lt $PossibleRepos.Count; $i++) {
             Write-Host "    $($i+1). $($PossibleRepos[$i])" -ForegroundColor Gray
         }
-        Write-Host "`n  기본값 'fund-comparison' 사용" -ForegroundColor Yellow
-        $repoName = "fund-comparison"
+        Write-Host "`n  기본값 'financial-products' 사용" -ForegroundColor Yellow
+        $repoName = "financial-products"
         $finalRepoUrl = "https://github.com/$GitHubUser/$repoName.git"
         Write-Host "  → 사용할 URL: $finalRepoUrl" -ForegroundColor Cyan
     }
