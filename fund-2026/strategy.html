@@ -576,11 +576,84 @@
         </div>
     </main>
 
-    <footer class="border-t border-slate-800 bg-slate-950 py-6 mt-12 shadow-2xl">
+    <footer class="border-t border-slate-800 bg-slate-950 py-6 mt-12 shadow-2xl mb-20 md:mb-0">
         <div class="max-w-7xl mx-auto px-4 text-center text-slate-600 text-[10px] tracking-widest uppercase font-mono">
             &copy; 2026 PRIVATE FUND STRATEGY HUB. INTERNAL USE ONLY.
         </div>
     </footer>
+
+    <!-- Mobile Bottom Navigation -->
+    <nav class="mobile-nav">
+        <div class="flex items-center justify-around h-16">
+            <a href="index.html" class="mobile-nav-item">
+                <span class="mobile-nav-icon">📊</span>
+                <span>Market</span>
+            </a>
+            <a href="strategy.html" class="mobile-nav-item active">
+                <span class="mobile-nav-icon">📋</span>
+                <span>Lineup</span>
+            </a>
+            <a href="dsasset.html" class="mobile-nav-item">
+                <span class="mobile-nav-icon">🚀</span>
+                <span>DS Asset</span>
+            </a>
+            <a href="timefolio.html" class="mobile-nav-item">
+                <span class="mobile-nav-icon">🛡️</span>
+                <span>Timefolio</span>
+            </a>
+            <a href="comparison.html" class="mobile-nav-item">
+                <span class="mobile-nav-icon">📈</span>
+                <span>Conclusion</span>
+            </a>
+        </div>
+    </nav>
+
+    <script>
+        // 스크롤 기반 자동 페이지 이동 (모바일)
+        if (window.innerWidth <= 768) {
+            let scrollTimeout;
+            let lastScrollTop = 0;
+            let scrollDirection = 0;
+            
+            window.addEventListener('scroll', function() {
+                clearTimeout(scrollTimeout);
+                
+                const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+                const windowHeight = window.innerHeight;
+                const documentHeight = document.documentElement.scrollHeight;
+                
+                // 스크롤 방향 감지
+                if (currentScroll > lastScrollTop) {
+                    scrollDirection = 1; // 아래로
+                } else {
+                    scrollDirection = -1; // 위로
+                }
+                lastScrollTop = currentScroll;
+                
+                // 페이지 하단 근처에서 아래로 스크롤 시 다음 페이지로
+                scrollTimeout = setTimeout(function() {
+                    if (scrollDirection === 1 && currentScroll + windowHeight >= documentHeight - 100) {
+                        const nextPage = getNextPage();
+                        if (nextPage) {
+                            window.location.href = nextPage;
+                        }
+                    }
+                }, 500);
+            });
+            
+            function getNextPage() {
+                const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+                const pages = {
+                    'index.html': 'strategy.html',
+                    'strategy.html': 'dsasset.html',
+                    'dsasset.html': 'timefolio.html',
+                    'timefolio.html': 'comparison.html',
+                    'comparison.html': null
+                };
+                return pages[currentPage];
+            }
+        }
+    </script>
 
     <script>
         function filterTable(category) {
