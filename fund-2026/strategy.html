@@ -48,7 +48,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
             <!-- LB CARD -->
             <div class="glass-card p-8 rounded-2xl border-t-4 border-t-emerald-500 hover:bg-emerald-900/10 cursor-pointer group transition-all relative overflow-hidden"
-                onclick="filterTable('lb')">
+                onclick="filterTable('lb'); scrollToTable();">
                 <div class="flex justify-between items-start mb-6">
                     <div>
                         <div class="flex items-center gap-2 mb-2">
@@ -75,7 +75,7 @@
 
             <!-- LS CARD -->
             <div class="glass-card p-8 rounded-2xl border-t-4 border-t-amber-500 hover:bg-amber-900/10 cursor-pointer group transition-all relative overflow-hidden"
-                onclick="filterTable('ls')">
+                onclick="filterTable('ls'); scrollToTable();">
                 <div class="flex justify-between items-start mb-6">
                     <div>
                         <div class="flex items-center gap-2 mb-2">
@@ -121,7 +121,7 @@
                     All</button>
             </div>
 
-            <div class="glass-panel overflow-hidden rounded-2xl border border-slate-700 shadow-2xl">
+            <div class="glass-panel overflow-hidden rounded-2xl border border-slate-700 shadow-2xl" id="fundTableContainer">
                 <div class="overflow-x-auto max-h-[1200px] overflow-y-auto custom-scrollbar">
                     <table class="w-full text-center whitespace-nowrap border-collapse text-slate-200" id="fundTable">
                         <thead
@@ -597,6 +597,90 @@
                 else { btn.classList.remove('bg-slate-700', 'text-white'); }
             });
         }
+
+        function scrollToTable() {
+            const tableContainer = document.getElementById('fundTableContainer');
+            if (tableContainer) {
+                tableContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        // 수익률 색상 기준 적용 함수
+        function applyReturnColorCoding() {
+            const table = document.getElementById('fundTable');
+            if (!table) return;
+
+            // 수익률 컬럼 인덱스: 1V(7), 1M(8), 3M(9), 6M(10), 1Y(11), YT(12), 누적(13)
+            const returnColumns = [7, 8, 9, 10, 11, 12, 13];
+            const columnNames = ['1V', '1M', '3M', '6M', '1Y', 'YT', '누적'];
+
+            // 각 컬럼별로 값 수집
+            returnColumns.forEach((colIndex, idx) => {
+                const values = [];
+                const cells = [];
+
+                // 모든 데이터 행에서 값 수집 (섹션 헤더 제외)
+                const rows = table.querySelectorAll('tbody tr');
+                rows.forEach(row => {
+                    // 섹션 헤더 행은 건너뛰기 (colspan이 있는 행)
+                    if (row.querySelector('td[colspan]')) return;
+
+                    const cell = row.querySelectorAll('td')[colIndex];
+                    if (cell) {
+                        const text = cell.textContent.trim();
+                        // 숫자로 변환 가능한 값만 수집
+                        if (text && text !== '-' && !isNaN(parseFloat(text))) {
+                            const numValue = parseFloat(text);
+                            values.push(numValue);
+                            cells.push({ cell, value: numValue });
+                        }
+                    }
+                });
+
+                // 값이 있으면 정렬하여 중앙값 기준으로 색상 적용
+                if (values.length > 0) {
+                    const sorted = [...values].sort((a, b) => b - a); // 내림차순
+                    const median = sorted[Math.floor(sorted.length / 2)];
+                    const topHalf = sorted.slice(0, Math.ceil(sorted.length / 2));
+                    const topHalfMin = topHalf[topHalf.length - 1];
+
+                    cells.forEach(({ cell, value }) => {
+                        // 기존 색상 클래스 제거
+                        cell.classList.remove('bg-green-500/10', 'bg-green-600/30', 'bg-green-700/20', 'bg-green-900/40',
+                            'text-emerald-400', 'text-emerald-300', 'text-green-400',
+                            'bg-red-500/10', 'bg-red-600/30', 'bg-red-700/20', 'bg-red-900/40',
+                            'text-rose-400', 'text-rose-300', 'text-red-400',
+                            'text-orange-400', 'text-amber-500');
+
+                        // 상위 50%는 초록색, 하위 50%는 빨간색
+                        if (value >= topHalfMin) {
+                            // 상위권: 초록색 계열
+                            if (value >= sorted[0] * 0.8) {
+                                cell.classList.add('bg-green-600/30', 'text-emerald-300', 'font-black');
+                            } else if (value >= sorted[0] * 0.6) {
+                                cell.classList.add('bg-green-700/20', 'text-emerald-400', 'font-black');
+                            } else {
+                                cell.classList.add('bg-green-500/10', 'text-emerald-400', 'font-bold');
+                            }
+                        } else {
+                            // 하위권: 빨간색 계열
+                            if (value < 0) {
+                                cell.classList.add('bg-red-500/10', 'text-rose-500', 'font-bold');
+                            } else if (value < median * 0.5) {
+                                cell.classList.add('bg-red-600/30', 'text-rose-400', 'font-bold');
+                            } else {
+                                cell.classList.add('text-slate-400');
+                            }
+                        }
+                    });
+                }
+            });
+        }
+
+        // 페이지 로드 시 수익률 색상 적용
+        document.addEventListener('DOMContentLoaded', function() {
+            applyReturnColorCoding();
+        });
     </script>
 </body>
 
