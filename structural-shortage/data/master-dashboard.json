@@ -1,0 +1,1831 @@
+{
+  "lastUpdated": "2025-01-27",
+  "summary": {
+    "red": 18,
+    "yellow": 42,
+    "green": 40,
+    "total": 100
+  },
+  "items": [
+    {
+      "id": 1,
+      "name": "GOES (전기강판)",
+      "category": "전력 인프라",
+      "inventory": 2,
+      "leadTime": 2.5,
+      "priceYoY": 100,
+      "utilization": 95,
+      "alertLevel": "red",
+      "ticker": "GOES",
+      "leadingIndicators": [
+        {"name": "EV 생산량 YoY", "value": "+25%", "status": "warning"},
+        {"name": "변압기 수주잔고", "value": "2년치", "status": "critical"}
+      ],
+      "priceData": {"current": 3500, "unit": "USD/ton", "trend": "up", "history": [2800, 2900, 3100, 3200, 3300, 3400, 3500]}
+    },
+    {
+      "id": 2,
+      "name": "대형 변압기",
+      "category": "전력 인프라",
+      "inventory": 3,
+      "leadTime": 4.0,
+      "priceYoY": 80,
+      "utilization": 98,
+      "alertLevel": "red",
+      "ticker": "XFMR",
+      "leadingIndicators": [
+        {"name": "데이터센터 착공", "value": "+40%", "status": "critical"},
+        {"name": "GOES 가격", "value": "+100%", "status": "critical"}
+      ],
+      "priceData": {"current": 15000000, "unit": "USD/unit", "trend": "up", "history": [8000000, 9000000, 10500000, 12000000, 13500000, 14500000, 15000000]}
+    },
+    {
+      "id": 3,
+      "name": "우라늄 (U3O8)",
+      "category": "원자력",
+      "inventory": 4,
+      "leadTime": 3.0,
+      "priceYoY": 90,
+      "utilization": 85,
+      "alertLevel": "red",
+      "ticker": "UXC",
+      "leadingIndicators": [
+        {"name": "신규 원전 착공", "value": "63기", "status": "warning"},
+        {"name": "러시아 농축 비중", "value": "44%", "status": "critical"}
+      ],
+      "priceData": {"current": 95, "unit": "USD/lb", "trend": "up", "history": [50, 55, 65, 75, 85, 90, 95]}
+    },
+    {
+      "id": 4,
+      "name": "농축 우라늄 (SWU)",
+      "category": "원자력",
+      "inventory": 3,
+      "leadTime": 5.0,
+      "priceYoY": 120,
+      "utilization": 92,
+      "alertLevel": "red",
+      "ticker": "SWU",
+      "leadingIndicators": [
+        {"name": "러시아 의존도", "value": "44%", "status": "critical"},
+        {"name": "서방 농축 용량", "value": "부족", "status": "critical"}
+      ],
+      "priceData": {"current": 175, "unit": "USD/SWU", "trend": "up", "history": [80, 95, 110, 130, 150, 165, 175]}
+    },
+    {
+      "id": 5,
+      "name": "HALEU (고농축 우라늄)",
+      "category": "원자력",
+      "inventory": 1,
+      "leadTime": 8.0,
+      "priceYoY": 200,
+      "utilization": 100,
+      "alertLevel": "red",
+      "ticker": "HALEU",
+      "leadingIndicators": [
+        {"name": "SMR 수주", "value": "+300%", "status": "critical"},
+        {"name": "미국 생산시설", "value": "건설중", "status": "warning"}
+      ],
+      "priceData": {"current": 25000, "unit": "USD/kg", "trend": "up", "history": [8000, 10000, 13000, 17000, 20000, 23000, 25000]}
+    },
+    {
+      "id": 6,
+      "name": "구리 (Copper)",
+      "category": "산업금속",
+      "inventory": 3,
+      "leadTime": 2.0,
+      "priceYoY": 45,
+      "utilization": 88,
+      "alertLevel": "red",
+      "ticker": "HG",
+      "leadingIndicators": [
+        {"name": "LME 재고", "value": "3일분", "status": "critical"},
+        {"name": "광산 품위", "value": "-30%", "status": "warning"}
+      ],
+      "priceData": {"current": 9500, "unit": "USD/ton", "trend": "up", "history": [7500, 7800, 8200, 8600, 9000, 9300, 9500]}
+    },
+    {
+      "id": 7,
+      "name": "HBM (고대역폭 메모리)",
+      "category": "반도체",
+      "inventory": 2,
+      "leadTime": 3.0,
+      "priceYoY": 150,
+      "utilization": 100,
+      "alertLevel": "red",
+      "ticker": "HBM",
+      "leadingIndicators": [
+        {"name": "AI 서버 수요", "value": "+200%", "status": "critical"},
+        {"name": "SK하이닉스 점유율", "value": "50%", "status": "warning"}
+      ],
+      "priceData": {"current": 25, "unit": "USD/GB", "trend": "up", "history": [10, 12, 15, 18, 21, 23, 25]}
+    },
+    {
+      "id": 8,
+      "name": "CoWoS (첨단 패키징)",
+      "category": "반도체",
+      "inventory": 2,
+      "leadTime": 2.5,
+      "priceYoY": 80,
+      "utilization": 100,
+      "alertLevel": "red",
+      "ticker": "COWOS",
+      "leadingIndicators": [
+        {"name": "NVIDIA 수요", "value": "6개월 대기", "status": "critical"},
+        {"name": "TSMC 증설", "value": "진행중", "status": "warning"}
+      ],
+      "priceData": {"current": 2500, "unit": "USD/wafer", "trend": "up", "history": [1500, 1700, 1900, 2100, 2300, 2400, 2500]}
+    },
+    {
+      "id": 9,
+      "name": "CLV 선박 (케이블 포설)",
+      "category": "해상풍력",
+      "inventory": 1,
+      "leadTime": 6.0,
+      "priceYoY": 60,
+      "utilization": 100,
+      "alertLevel": "red",
+      "ticker": "CLV",
+      "leadingIndicators": [
+        {"name": "해상풍력 착공", "value": "+50GW", "status": "critical"},
+        {"name": "신조 발주", "value": "12척", "status": "warning"}
+      ],
+      "priceData": {"current": 300000, "unit": "USD/day", "trend": "up", "history": [180000, 200000, 230000, 260000, 280000, 290000, 300000]}
+    },
+    {
+      "id": 10,
+      "name": "HVDC 케이블",
+      "category": "해상풍력",
+      "inventory": 3,
+      "leadTime": 3.0,
+      "priceYoY": 55,
+      "utilization": 95,
+      "alertLevel": "red",
+      "ticker": "HVDC",
+      "leadingIndicators": [
+        {"name": "해저 케이블 수요", "value": "+80%", "status": "critical"},
+        {"name": "Prysmian 수주", "value": "3년치", "status": "warning"}
+      ],
+      "priceData": {"current": 1200, "unit": "USD/m", "trend": "up", "history": [800, 900, 1000, 1050, 1100, 1150, 1200]}
+    },
+    {
+      "id": 11,
+      "name": "코코아",
+      "category": "농산물",
+      "inventory": 4,
+      "leadTime": 1.5,
+      "priceYoY": 180,
+      "utilization": 70,
+      "alertLevel": "red",
+      "ticker": "CC",
+      "leadingIndicators": [
+        {"name": "엘니뇨 지수", "value": "+2.0", "status": "critical"},
+        {"name": "가나 수확량", "value": "-40%", "status": "critical"}
+      ],
+      "priceData": {"current": 10000, "unit": "USD/ton", "trend": "up", "history": [3500, 4500, 6000, 7500, 8500, 9500, 10000]}
+    },
+    {
+      "id": 12,
+      "name": "티타늄 스폰지",
+      "category": "항공우주",
+      "inventory": 3,
+      "leadTime": 2.5,
+      "priceYoY": 70,
+      "utilization": 92,
+      "alertLevel": "red",
+      "ticker": "TI",
+      "leadingIndicators": [
+        {"name": "러시아 의존도", "value": "35%", "status": "critical"},
+        {"name": "항공기 생산", "value": "+30%", "status": "warning"}
+      ],
+      "priceData": {"current": 18000, "unit": "USD/ton", "trend": "up", "history": [11000, 12500, 14000, 15500, 16500, 17500, 18000]}
+    },
+    {
+      "id": 13,
+      "name": "ASML EUV 장비",
+      "category": "반도체장비",
+      "inventory": 2,
+      "leadTime": 4.0,
+      "priceYoY": 25,
+      "utilization": 100,
+      "alertLevel": "red",
+      "ticker": "ASML",
+      "leadingIndicators": [
+        {"name": "TSMC/삼성 수요", "value": "대기 2년", "status": "critical"},
+        {"name": "High-NA 전환", "value": "진행중", "status": "warning"}
+      ],
+      "priceData": {"current": 380000000, "unit": "USD/unit", "trend": "up", "history": [200000000, 250000000, 300000000, 330000000, 350000000, 370000000, 380000000]}
+    },
+    {
+      "id": 14,
+      "name": "갈륨",
+      "category": "특수금속",
+      "inventory": 3,
+      "leadTime": 2.5,
+      "priceYoY": 85,
+      "utilization": 90,
+      "alertLevel": "red",
+      "ticker": "GA",
+      "leadingIndicators": [
+        {"name": "중국 수출 규제", "value": "시행중", "status": "critical"},
+        {"name": "GaN 반도체 수요", "value": "+50%", "status": "critical"}
+      ],
+      "priceData": {"current": 550, "unit": "USD/kg", "trend": "up", "history": [300, 350, 400, 450, 500, 530, 550]}
+    },
+    {
+      "id": 15,
+      "name": "게르마늄",
+      "category": "특수금속",
+      "inventory": 3,
+      "leadTime": 2.5,
+      "priceYoY": 75,
+      "utilization": 88,
+      "alertLevel": "red",
+      "ticker": "GE",
+      "leadingIndicators": [
+        {"name": "중국 수출 규제", "value": "시행중", "status": "critical"},
+        {"name": "광섬유/적외선 수요", "value": "+30%", "status": "warning"}
+      ],
+      "priceData": {"current": 2200, "unit": "USD/kg", "trend": "up", "history": [1250, 1400, 1600, 1800, 2000, 2100, 2200]}
+    },
+    {
+      "id": 16,
+      "name": "안티몬",
+      "category": "특수금속",
+      "inventory": 3,
+      "leadTime": 2.2,
+      "priceYoY": 120,
+      "utilization": 92,
+      "alertLevel": "red",
+      "ticker": "SB",
+      "leadingIndicators": [
+        {"name": "중국 수출 규제", "value": "시행중", "status": "critical"},
+        {"name": "방산/배터리 수요", "value": "+40%", "status": "critical"}
+      ],
+      "priceData": {"current": 25000, "unit": "USD/ton", "trend": "up", "history": [11000, 13000, 16000, 19000, 22000, 24000, 25000]}
+    },
+    {
+      "id": 17,
+      "name": "헬륨",
+      "category": "희소가스",
+      "inventory": 4,
+      "leadTime": 2.0,
+      "priceYoY": 55,
+      "utilization": 92,
+      "alertLevel": "red",
+      "ticker": "HE",
+      "leadingIndicators": [
+        {"name": "MRI/반도체 수요", "value": "+20%", "status": "warning"},
+        {"name": "카타르 공급", "value": "지배적", "status": "critical"}
+      ],
+      "priceData": {"current": 35, "unit": "USD/L", "trend": "up", "history": [22, 25, 28, 30, 32, 34, 35]}
+    },
+    {
+      "id": 18,
+      "name": "ABF 기판",
+      "category": "반도체",
+      "inventory": 3,
+      "leadTime": 2.5,
+      "priceYoY": 45,
+      "utilization": 95,
+      "alertLevel": "red",
+      "ticker": "ABF",
+      "leadingIndicators": [
+        {"name": "AI 서버 수요", "value": "+150%", "status": "critical"},
+        {"name": "Ajinomoto 독점", "value": "80%", "status": "critical"}
+      ],
+      "priceData": {"current": 180, "unit": "USD/unit", "trend": "up", "history": [125, 140, 150, 160, 170, 175, 180]}
+    },
+    {
+      "id": 19,
+      "name": "리튬 (탄산리튬)",
+      "category": "배터리",
+      "inventory": 8,
+      "leadTime": 1.8,
+      "priceYoY": -60,
+      "utilization": 65,
+      "alertLevel": "yellow",
+      "ticker": "LIT",
+      "leadingIndicators": [
+        {"name": "EV 판매 YoY", "value": "+25%", "status": "normal"},
+        {"name": "칠레 생산량", "value": "+15%", "status": "normal"}
+      ],
+      "priceData": {"current": 15000, "unit": "USD/ton", "trend": "down", "history": [75000, 65000, 50000, 35000, 25000, 18000, 15000]}
+    },
+    {
+      "id": 20,
+      "name": "니켈 (Class 1)",
+      "category": "배터리",
+      "inventory": 6,
+      "leadTime": 1.5,
+      "priceYoY": -20,
+      "utilization": 75,
+      "alertLevel": "yellow",
+      "ticker": "NI",
+      "leadingIndicators": [
+        {"name": "인도네시아 공급", "value": "+40%", "status": "normal"},
+        {"name": "EV 배터리 수요", "value": "+30%", "status": "warning"}
+      ],
+      "priceData": {"current": 16000, "unit": "USD/ton", "trend": "stable", "history": [22000, 20000, 18000, 17000, 16500, 16200, 16000]}
+    },
+    {
+      "id": 21,
+      "name": "흑연 (천연)",
+      "category": "배터리",
+      "inventory": 5,
+      "leadTime": 2.0,
+      "priceYoY": 35,
+      "utilization": 85,
+      "alertLevel": "yellow",
+      "ticker": "GR",
+      "leadingIndicators": [
+        {"name": "중국 수출 규제", "value": "강화", "status": "critical"},
+        {"name": "대체 공급선", "value": "개발중", "status": "warning"}
+      ],
+      "priceData": {"current": 850, "unit": "USD/ton", "trend": "up", "history": [630, 680, 720, 760, 800, 830, 850]}
+    },
+    {
+      "id": 22,
+      "name": "코발트",
+      "category": "배터리",
+      "inventory": 7,
+      "leadTime": 1.6,
+      "priceYoY": -15,
+      "utilization": 70,
+      "alertLevel": "yellow",
+      "ticker": "CO",
+      "leadingIndicators": [
+        {"name": "콩고 공급", "value": "안정", "status": "normal"},
+        {"name": "NCM 배터리 비중", "value": "-5%", "status": "normal"}
+      ],
+      "priceData": {"current": 28000, "unit": "USD/ton", "trend": "down", "history": [38000, 35000, 32000, 30000, 29000, 28500, 28000]}
+    },
+    {
+      "id": 23,
+      "name": "희토류 (NdPr)",
+      "category": "희토류",
+      "inventory": 5,
+      "leadTime": 2.2,
+      "priceYoY": 40,
+      "utilization": 88,
+      "alertLevel": "yellow",
+      "ticker": "NDPR",
+      "leadingIndicators": [
+        {"name": "중국 비중", "value": "70%", "status": "warning"},
+        {"name": "EV 모터 수요", "value": "+35%", "status": "warning"}
+      ],
+      "priceData": {"current": 75000, "unit": "USD/ton", "trend": "up", "history": [55000, 58000, 62000, 67000, 71000, 73000, 75000]}
+    },
+    {
+      "id": 24,
+      "name": "디스프로슘",
+      "category": "희토류",
+      "inventory": 4,
+      "leadTime": 2.5,
+      "priceYoY": 50,
+      "utilization": 90,
+      "alertLevel": "yellow",
+      "ticker": "DY",
+      "leadingIndicators": [
+        {"name": "중국 비중", "value": "95%", "status": "critical"},
+        {"name": "고온 자석 수요", "value": "+40%", "status": "warning"}
+      ],
+      "priceData": {"current": 350, "unit": "USD/kg", "trend": "up", "history": [230, 260, 290, 310, 330, 340, 350]}
+    },
+    {
+      "id": 25,
+      "name": "터븀",
+      "category": "희토류",
+      "inventory": 4,
+      "leadTime": 2.5,
+      "priceYoY": 45,
+      "utilization": 88,
+      "alertLevel": "yellow",
+      "ticker": "TB",
+      "leadingIndicators": [
+        {"name": "중국 비중", "value": "95%", "status": "critical"},
+        {"name": "EV 모터 수요", "value": "+35%", "status": "warning"}
+      ],
+      "priceData": {"current": 1200, "unit": "USD/kg", "trend": "up", "history": [820, 900, 980, 1050, 1120, 1170, 1200]}
+    },
+    {
+      "id": 26,
+      "name": "알루미늄",
+      "category": "산업금속",
+      "inventory": 6,
+      "leadTime": 1.5,
+      "priceYoY": 25,
+      "utilization": 82,
+      "alertLevel": "yellow",
+      "ticker": "AL",
+      "leadingIndicators": [
+        {"name": "전력비 상승", "value": "+20%", "status": "warning"},
+        {"name": "중국 생산량", "value": "안정", "status": "normal"}
+      ],
+      "priceData": {"current": 2600, "unit": "USD/ton", "trend": "up", "history": [2100, 2200, 2300, 2400, 2500, 2550, 2600]}
+    },
+    {
+      "id": 27,
+      "name": "아연",
+      "category": "산업금속",
+      "inventory": 7,
+      "leadTime": 1.4,
+      "priceYoY": 20,
+      "utilization": 78,
+      "alertLevel": "yellow",
+      "ticker": "ZN",
+      "leadingIndicators": [
+        {"name": "LME 재고", "value": "5일분", "status": "warning"},
+        {"name": "광산 공급", "value": "안정", "status": "normal"}
+      ],
+      "priceData": {"current": 2800, "unit": "USD/ton", "trend": "up", "history": [2350, 2450, 2550, 2650, 2700, 2750, 2800]}
+    },
+    {
+      "id": 28,
+      "name": "주석",
+      "category": "산업금속",
+      "inventory": 4,
+      "leadTime": 1.8,
+      "priceYoY": 35,
+      "utilization": 85,
+      "alertLevel": "yellow",
+      "ticker": "SN",
+      "leadingIndicators": [
+        {"name": "반도체 수요", "value": "+15%", "status": "warning"},
+        {"name": "인도네시아 수출", "value": "규제", "status": "warning"}
+      ],
+      "priceData": {"current": 32000, "unit": "USD/ton", "trend": "up", "history": [24000, 26000, 28000, 29500, 30500, 31500, 32000]}
+    },
+    {
+      "id": 29,
+      "name": "납",
+      "category": "산업금속",
+      "inventory": 8,
+      "leadTime": 1.3,
+      "priceYoY": 12,
+      "utilization": 75,
+      "alertLevel": "yellow",
+      "ticker": "PB",
+      "leadingIndicators": [
+        {"name": "자동차 배터리", "value": "안정", "status": "normal"},
+        {"name": "재활용 비율", "value": "85%", "status": "normal"}
+      ],
+      "priceData": {"current": 2100, "unit": "USD/ton", "trend": "stable", "history": [1880, 1920, 1980, 2020, 2050, 2080, 2100]}
+    },
+    {
+      "id": 30,
+      "name": "천연가스 (LNG)",
+      "category": "에너지",
+      "inventory": 6,
+      "leadTime": 1.6,
+      "priceYoY": 30,
+      "utilization": 90,
+      "alertLevel": "yellow",
+      "ticker": "NG",
+      "leadingIndicators": [
+        {"name": "유럽 재고", "value": "85%", "status": "normal"},
+        {"name": "LNG 터미널", "value": "증설중", "status": "warning"}
+      ],
+      "priceData": {"current": 12, "unit": "USD/MMBtu", "trend": "up", "history": [8, 9, 10, 10.5, 11, 11.5, 12]}
+    },
+    {
+      "id": 31,
+      "name": "질소비료 (암모니아)",
+      "category": "농업",
+      "inventory": 5,
+      "leadTime": 1.7,
+      "priceYoY": 25,
+      "utilization": 85,
+      "alertLevel": "yellow",
+      "ticker": "NH3",
+      "leadingIndicators": [
+        {"name": "천연가스 가격", "value": "+30%", "status": "warning"},
+        {"name": "중국 수출", "value": "제한", "status": "warning"}
+      ],
+      "priceData": {"current": 450, "unit": "USD/ton", "trend": "up", "history": [360, 380, 400, 420, 435, 445, 450]}
+    },
+    {
+      "id": 32,
+      "name": "인광석",
+      "category": "농업",
+      "inventory": 6,
+      "leadTime": 1.5,
+      "priceYoY": 20,
+      "utilization": 80,
+      "alertLevel": "yellow",
+      "ticker": "PHOS",
+      "leadingIndicators": [
+        {"name": "중국 수출 쿼터", "value": "유지", "status": "warning"},
+        {"name": "모로코 생산", "value": "안정", "status": "normal"}
+      ],
+      "priceData": {"current": 180, "unit": "USD/ton", "trend": "stable", "history": [150, 155, 160, 170, 175, 178, 180]}
+    },
+    {
+      "id": 33,
+      "name": "칼륨비료 (KCl)",
+      "category": "농업",
+      "inventory": 7,
+      "leadTime": 1.4,
+      "priceYoY": 15,
+      "utilization": 75,
+      "alertLevel": "yellow",
+      "ticker": "KCL",
+      "leadingIndicators": [
+        {"name": "벨라루스 제재", "value": "지속", "status": "warning"},
+        {"name": "캐나다 공급", "value": "증가", "status": "normal"}
+      ],
+      "priceData": {"current": 350, "unit": "USD/ton", "trend": "stable", "history": [310, 320, 330, 340, 345, 348, 350]}
+    },
+    {
+      "id": 34,
+      "name": "유리 기판 (AI 반도체용)",
+      "category": "반도체",
+      "inventory": 4,
+      "leadTime": 2.0,
+      "priceYoY": 50,
+      "utilization": 92,
+      "alertLevel": "yellow",
+      "ticker": "GLSS",
+      "leadingIndicators": [
+        {"name": "Intel 수요", "value": "급증", "status": "warning"},
+        {"name": "Corning 증설", "value": "진행중", "status": "warning"}
+      ],
+      "priceData": {"current": 150, "unit": "USD/unit", "trend": "up", "history": [100, 110, 120, 130, 140, 145, 150]}
+    },
+    {
+      "id": 35,
+      "name": "EUV 포토레지스트",
+      "category": "반도체",
+      "inventory": 5,
+      "leadTime": 1.8,
+      "priceYoY": 35,
+      "utilization": 90,
+      "alertLevel": "yellow",
+      "ticker": "EUVPR",
+      "leadingIndicators": [
+        {"name": "일본 공급", "value": "독점", "status": "warning"},
+        {"name": "EUV 장비 증가", "value": "+25%", "status": "warning"}
+      ],
+      "priceData": {"current": 8000, "unit": "USD/L", "trend": "up", "history": [6000, 6500, 7000, 7300, 7600, 7800, 8000]}
+    },
+    {
+      "id": 36,
+      "name": "네온 가스",
+      "category": "반도체",
+      "inventory": 6,
+      "leadTime": 1.6,
+      "priceYoY": -30,
+      "utilization": 70,
+      "alertLevel": "yellow",
+      "ticker": "NE",
+      "leadingIndicators": [
+        {"name": "우크라이나 복구", "value": "진행중", "status": "normal"},
+        {"name": "대체 공급선", "value": "확보", "status": "normal"}
+      ],
+      "priceData": {"current": 200, "unit": "USD/m3", "trend": "down", "history": [500, 450, 380, 320, 280, 240, 200]}
+    },
+    {
+      "id": 37,
+      "name": "크립톤",
+      "category": "희소가스",
+      "inventory": 5,
+      "leadTime": 1.8,
+      "priceYoY": 30,
+      "utilization": 85,
+      "alertLevel": "yellow",
+      "ticker": "KR",
+      "leadingIndicators": [
+        {"name": "반도체 리소그래피", "value": "+20%", "status": "warning"},
+        {"name": "우크라이나 공급", "value": "회복중", "status": "warning"}
+      ],
+      "priceData": {"current": 800, "unit": "USD/L", "trend": "up", "history": [620, 660, 700, 740, 770, 790, 800]}
+    },
+    {
+      "id": 38,
+      "name": "제논",
+      "category": "희소가스",
+      "inventory": 5,
+      "leadTime": 1.8,
+      "priceYoY": 25,
+      "utilization": 82,
+      "alertLevel": "yellow",
+      "ticker": "XE",
+      "leadingIndicators": [
+        {"name": "위성 추진체", "value": "+40%", "status": "warning"},
+        {"name": "의료용 수요", "value": "안정", "status": "normal"}
+      ],
+      "priceData": {"current": 3500, "unit": "USD/L", "trend": "up", "history": [2800, 2950, 3100, 3250, 3350, 3450, 3500]}
+    },
+    {
+      "id": 39,
+      "name": "SRM (고체 로켓 모터)",
+      "category": "방산",
+      "inventory": 5,
+      "leadTime": 2.2,
+      "priceYoY": 40,
+      "utilization": 95,
+      "alertLevel": "yellow",
+      "ticker": "SRM",
+      "leadingIndicators": [
+        {"name": "미사일 수요", "value": "+60%", "status": "critical"},
+        {"name": "AP 공급", "value": "제한적", "status": "warning"}
+      ],
+      "priceData": {"current": 500000, "unit": "USD/unit", "trend": "up", "history": [350000, 380000, 420000, 450000, 475000, 490000, 500000]}
+    },
+    {
+      "id": 40,
+      "name": "155mm 포탄",
+      "category": "방산",
+      "inventory": 4,
+      "leadTime": 2.5,
+      "priceYoY": 60,
+      "utilization": 100,
+      "alertLevel": "yellow",
+      "ticker": "155MM",
+      "leadingIndicators": [
+        {"name": "우크라이나 소모", "value": "월 20만발", "status": "critical"},
+        {"name": "NATO 증산", "value": "진행중", "status": "warning"}
+      ],
+      "priceData": {"current": 8000, "unit": "USD/round", "trend": "up", "history": [5000, 5500, 6200, 6800, 7300, 7700, 8000]}
+    },
+    {
+      "id": 41,
+      "name": "의료용 방사성 동위원소",
+      "category": "의료",
+      "inventory": 2,
+      "leadTime": 1.5,
+      "priceYoY": 30,
+      "utilization": 95,
+      "alertLevel": "yellow",
+      "ticker": "MO99",
+      "leadingIndicators": [
+        {"name": "원자로 노후화", "value": "심각", "status": "critical"},
+        {"name": "신규 원자로", "value": "건설중", "status": "warning"}
+      ],
+      "priceData": {"current": 150, "unit": "USD/dose", "trend": "up", "history": [115, 125, 130, 138, 143, 148, 150]}
+    },
+    {
+      "id": 42,
+      "name": "밀",
+      "category": "농산물",
+      "inventory": 8,
+      "leadTime": 1.3,
+      "priceYoY": 15,
+      "utilization": 75,
+      "alertLevel": "yellow",
+      "ticker": "W",
+      "leadingIndicators": [
+        {"name": "흑해 수출", "value": "제한", "status": "warning"},
+        {"name": "글로벌 재고", "value": "적정", "status": "normal"}
+      ],
+      "priceData": {"current": 280, "unit": "USD/ton", "trend": "stable", "history": [245, 255, 262, 268, 273, 277, 280]}
+    },
+    {
+      "id": 43,
+      "name": "옥수수",
+      "category": "농산물",
+      "inventory": 9,
+      "leadTime": 1.2,
+      "priceYoY": 10,
+      "utilization": 70,
+      "alertLevel": "yellow",
+      "ticker": "C",
+      "leadingIndicators": [
+        {"name": "미국 수확", "value": "양호", "status": "normal"},
+        {"name": "에탄올 수요", "value": "+5%", "status": "normal"}
+      ],
+      "priceData": {"current": 200, "unit": "USD/ton", "trend": "stable", "history": [182, 185, 190, 193, 196, 198, 200]}
+    },
+    {
+      "id": 44,
+      "name": "대두",
+      "category": "농산물",
+      "inventory": 7,
+      "leadTime": 1.4,
+      "priceYoY": 18,
+      "utilization": 78,
+      "alertLevel": "yellow",
+      "ticker": "S",
+      "leadingIndicators": [
+        {"name": "브라질 수확", "value": "풍작", "status": "normal"},
+        {"name": "중국 수입", "value": "+8%", "status": "warning"}
+      ],
+      "priceData": {"current": 420, "unit": "USD/ton", "trend": "stable", "history": [356, 370, 385, 398, 408, 415, 420]}
+    },
+    {
+      "id": 45,
+      "name": "설탕",
+      "category": "농산물",
+      "inventory": 6,
+      "leadTime": 1.5,
+      "priceYoY": 22,
+      "utilization": 82,
+      "alertLevel": "yellow",
+      "ticker": "SB",
+      "leadingIndicators": [
+        {"name": "인도 수출 제한", "value": "시행", "status": "warning"},
+        {"name": "엘니뇨 영향", "value": "감산", "status": "warning"}
+      ],
+      "priceData": {"current": 24, "unit": "USD/lb", "trend": "up", "history": [19.5, 20.5, 21.5, 22.5, 23, 23.5, 24]}
+    },
+    {
+      "id": 46,
+      "name": "팔라듐",
+      "category": "귀금속",
+      "inventory": 6,
+      "leadTime": 1.6,
+      "priceYoY": -25,
+      "utilization": 72,
+      "alertLevel": "yellow",
+      "ticker": "PA",
+      "leadingIndicators": [
+        {"name": "러시아 공급", "value": "40%", "status": "warning"},
+        {"name": "ICE 차량 감소", "value": "-5%", "status": "normal"}
+      ],
+      "priceData": {"current": 1000, "unit": "USD/oz", "trend": "down", "history": [1500, 1400, 1300, 1200, 1100, 1050, 1000]}
+    },
+    {
+      "id": 47,
+      "name": "플래티넘",
+      "category": "귀금속",
+      "inventory": 7,
+      "leadTime": 1.5,
+      "priceYoY": 10,
+      "utilization": 80,
+      "alertLevel": "yellow",
+      "ticker": "PL",
+      "leadingIndicators": [
+        {"name": "남아공 공급", "value": "70%", "status": "warning"},
+        {"name": "수소연료전지", "value": "+20%", "status": "warning"}
+      ],
+      "priceData": {"current": 1050, "unit": "USD/oz", "trend": "stable", "history": [950, 970, 990, 1010, 1030, 1040, 1050]}
+    },
+    {
+      "id": 48,
+      "name": "금",
+      "category": "귀금속",
+      "inventory": 15,
+      "leadTime": 1.0,
+      "priceYoY": 18,
+      "utilization": 65,
+      "alertLevel": "yellow",
+      "ticker": "GC",
+      "leadingIndicators": [
+        {"name": "중앙은행 매수", "value": "+15%", "status": "warning"},
+        {"name": "달러 약세", "value": "예상", "status": "normal"}
+      ],
+      "priceData": {"current": 2050, "unit": "USD/oz", "trend": "up", "history": [1750, 1820, 1880, 1950, 2000, 2030, 2050]}
+    },
+    {
+      "id": 49,
+      "name": "은",
+      "category": "귀금속",
+      "inventory": 10,
+      "leadTime": 1.2,
+      "priceYoY": 22,
+      "utilization": 78,
+      "alertLevel": "yellow",
+      "ticker": "SI",
+      "leadingIndicators": [
+        {"name": "태양광 수요", "value": "+30%", "status": "warning"},
+        {"name": "산업용 비중", "value": "55%", "status": "normal"}
+      ],
+      "priceData": {"current": 25, "unit": "USD/oz", "trend": "up", "history": [20.5, 21.5, 22.5, 23.5, 24, 24.5, 25]}
+    },
+    {
+      "id": 50,
+      "name": "망간",
+      "category": "산업금속",
+      "inventory": 8,
+      "leadTime": 1.4,
+      "priceYoY": 12,
+      "utilization": 75,
+      "alertLevel": "yellow",
+      "ticker": "MN",
+      "leadingIndicators": [
+        {"name": "철강 수요", "value": "안정", "status": "normal"},
+        {"name": "배터리 용도", "value": "+15%", "status": "warning"}
+      ],
+      "priceData": {"current": 4.5, "unit": "USD/kg", "trend": "stable", "history": [4.0, 4.1, 4.2, 4.3, 4.4, 4.45, 4.5]}
+    },
+    {
+      "id": 51,
+      "name": "바나듐",
+      "category": "산업금속",
+      "inventory": 6,
+      "leadTime": 1.6,
+      "priceYoY": 22,
+      "utilization": 82,
+      "alertLevel": "yellow",
+      "ticker": "V",
+      "leadingIndicators": [
+        {"name": "VRFB 수요", "value": "+30%", "status": "warning"},
+        {"name": "중국 생산", "value": "50%", "status": "warning"}
+      ],
+      "priceData": {"current": 35, "unit": "USD/kg", "trend": "up", "history": [29, 30, 31, 32, 33, 34, 35]}
+    },
+    {
+      "id": 52,
+      "name": "실리콘 메탈",
+      "category": "산업금속",
+      "inventory": 7,
+      "leadTime": 1.5,
+      "priceYoY": 18,
+      "utilization": 78,
+      "alertLevel": "yellow",
+      "ticker": "SIM",
+      "leadingIndicators": [
+        {"name": "태양광 수요", "value": "+25%", "status": "warning"},
+        {"name": "중국 공급", "value": "70%", "status": "warning"}
+      ],
+      "priceData": {"current": 2800, "unit": "USD/ton", "trend": "up", "history": [2400, 2500, 2550, 2650, 2700, 2750, 2800]}
+    },
+    {
+      "id": 53,
+      "name": "인듐",
+      "category": "특수금속",
+      "inventory": 5,
+      "leadTime": 1.8,
+      "priceYoY": 28,
+      "utilization": 85,
+      "alertLevel": "yellow",
+      "ticker": "IN",
+      "leadingIndicators": [
+        {"name": "ITO 디스플레이", "value": "안정", "status": "normal"},
+        {"name": "중국 공급", "value": "60%", "status": "warning"}
+      ],
+      "priceData": {"current": 320, "unit": "USD/kg", "trend": "up", "history": [250, 270, 285, 300, 310, 315, 320]}
+    },
+    {
+      "id": 54,
+      "name": "텔루륨",
+      "category": "특수금속",
+      "inventory": 5,
+      "leadTime": 1.8,
+      "priceYoY": 35,
+      "utilization": 88,
+      "alertLevel": "yellow",
+      "ticker": "TE",
+      "leadingIndicators": [
+        {"name": "CdTe 태양광", "value": "+25%", "status": "warning"},
+        {"name": "구리 부산물", "value": "제한적", "status": "warning"}
+      ],
+      "priceData": {"current": 120, "unit": "USD/kg", "trend": "up", "history": [88, 95, 102, 108, 114, 118, 120]}
+    },
+    {
+      "id": 55,
+      "name": "비스무트",
+      "category": "특수금속",
+      "inventory": 6,
+      "leadTime": 1.6,
+      "priceYoY": 18,
+      "utilization": 78,
+      "alertLevel": "yellow",
+      "ticker": "BI",
+      "leadingIndicators": [
+        {"name": "의약품 수요", "value": "안정", "status": "normal"},
+        {"name": "중국 공급", "value": "80%", "status": "warning"}
+      ],
+      "priceData": {"current": 12, "unit": "USD/kg", "trend": "up", "history": [10.2, 10.6, 11, 11.3, 11.6, 11.8, 12]}
+    },
+    {
+      "id": 56,
+      "name": "전해액 (배터리)",
+      "category": "배터리",
+      "inventory": 7,
+      "leadTime": 1.5,
+      "priceYoY": -25,
+      "utilization": 72,
+      "alertLevel": "yellow",
+      "ticker": "ELEC",
+      "leadingIndicators": [
+        {"name": "EV 생산", "value": "+25%", "status": "normal"},
+        {"name": "LiPF6 가격", "value": "-30%", "status": "normal"}
+      ],
+      "priceData": {"current": 4.5, "unit": "USD/kg", "trend": "down", "history": [7.5, 6.8, 6.0, 5.4, 5.0, 4.7, 4.5]}
+    },
+    {
+      "id": 57,
+      "name": "분리막 (배터리)",
+      "category": "배터리",
+      "inventory": 8,
+      "leadTime": 1.4,
+      "priceYoY": -15,
+      "utilization": 70,
+      "alertLevel": "yellow",
+      "ticker": "SEP",
+      "leadingIndicators": [
+        {"name": "EV 생산", "value": "+25%", "status": "normal"},
+        {"name": "중국 공급과잉", "value": "심각", "status": "normal"}
+      ],
+      "priceData": {"current": 1.2, "unit": "USD/m2", "trend": "down", "history": [1.8, 1.65, 1.5, 1.4, 1.3, 1.25, 1.2]}
+    },
+    {
+      "id": 58,
+      "name": "양극재 (NCM)",
+      "category": "배터리",
+      "inventory": 7,
+      "leadTime": 1.5,
+      "priceYoY": -40,
+      "utilization": 68,
+      "alertLevel": "yellow",
+      "ticker": "NCM",
+      "leadingIndicators": [
+        {"name": "리튬 가격", "value": "-60%", "status": "normal"},
+        {"name": "High-Ni 전환", "value": "가속", "status": "normal"}
+      ],
+      "priceData": {"current": 25, "unit": "USD/kg", "trend": "down", "history": [50, 45, 38, 32, 28, 26, 25]}
+    },
+    {
+      "id": 59,
+      "name": "음극재 (흑연)",
+      "category": "배터리",
+      "inventory": 6,
+      "leadTime": 1.6,
+      "priceYoY": 15,
+      "utilization": 80,
+      "alertLevel": "yellow",
+      "ticker": "ANODE",
+      "leadingIndicators": [
+        {"name": "중국 흑연 규제", "value": "강화", "status": "warning"},
+        {"name": "실리콘 음극재", "value": "개발중", "status": "normal"}
+      ],
+      "priceData": {"current": 8.5, "unit": "USD/kg", "trend": "up", "history": [7.4, 7.6, 7.9, 8.1, 8.3, 8.4, 8.5]}
+    },
+    {
+      "id": 60,
+      "name": "광섬유",
+      "category": "통신",
+      "inventory": 8,
+      "leadTime": 1.3,
+      "priceYoY": 12,
+      "utilization": 75,
+      "alertLevel": "yellow",
+      "ticker": "FIBER",
+      "leadingIndicators": [
+        {"name": "데이터센터 증설", "value": "+30%", "status": "warning"},
+        {"name": "5G 투자", "value": "가속", "status": "normal"}
+      ],
+      "priceData": {"current": 8, "unit": "USD/km", "trend": "stable", "history": [7.1, 7.3, 7.5, 7.7, 7.8, 7.9, 8]}
+    },
+    {
+      "id": 61,
+      "name": "폴리실리콘",
+      "category": "태양광",
+      "inventory": 10,
+      "leadTime": 1.2,
+      "priceYoY": -40,
+      "utilization": 60,
+      "alertLevel": "green",
+      "ticker": "POLY",
+      "leadingIndicators": [
+        {"name": "중국 과잉 공급", "value": "심각", "status": "normal"},
+        {"name": "태양광 설치", "value": "+40%", "status": "normal"}
+      ],
+      "priceData": {"current": 8, "unit": "USD/kg", "trend": "down", "history": [18, 15, 12, 10, 9, 8.5, 8]}
+    },
+    {
+      "id": 62,
+      "name": "태양광 셀",
+      "category": "태양광",
+      "inventory": 12,
+      "leadTime": 1.0,
+      "priceYoY": -50,
+      "utilization": 55,
+      "alertLevel": "green",
+      "ticker": "CELL",
+      "leadingIndicators": [
+        {"name": "중국 점유율", "value": "80%", "status": "normal"},
+        {"name": "가격 하락", "value": "지속", "status": "normal"}
+      ],
+      "priceData": {"current": 0.05, "unit": "USD/W", "trend": "down", "history": [0.12, 0.10, 0.08, 0.07, 0.06, 0.055, 0.05]}
+    },
+    {
+      "id": 63,
+      "name": "태양광 모듈",
+      "category": "태양광",
+      "inventory": 14,
+      "leadTime": 0.9,
+      "priceYoY": -45,
+      "utilization": 52,
+      "alertLevel": "green",
+      "ticker": "MODULE",
+      "leadingIndicators": [
+        {"name": "글로벌 설치", "value": "+35%", "status": "normal"},
+        {"name": "재고 과잉", "value": "심각", "status": "normal"}
+      ],
+      "priceData": {"current": 0.12, "unit": "USD/W", "trend": "down", "history": [0.25, 0.22, 0.18, 0.16, 0.14, 0.13, 0.12]}
+    },
+    {
+      "id": 64,
+      "name": "풍력 터빈 베어링",
+      "category": "풍력",
+      "inventory": 9,
+      "leadTime": 1.3,
+      "priceYoY": 8,
+      "utilization": 72,
+      "alertLevel": "green",
+      "ticker": "WBEAR",
+      "leadingIndicators": [
+        {"name": "풍력 설치", "value": "+20%", "status": "normal"},
+        {"name": "SKF/Schaeffler", "value": "증설", "status": "normal"}
+      ],
+      "priceData": {"current": 50000, "unit": "USD/unit", "trend": "stable", "history": [46000, 47000, 48000, 49000, 49500, 49800, 50000]}
+    },
+    {
+      "id": 65,
+      "name": "풍력 타워",
+      "category": "풍력",
+      "inventory": 10,
+      "leadTime": 1.2,
+      "priceYoY": 5,
+      "utilization": 68,
+      "alertLevel": "green",
+      "ticker": "WTOWER",
+      "leadingIndicators": [
+        {"name": "철강 가격", "value": "안정", "status": "normal"},
+        {"name": "공급 업체", "value": "다양", "status": "normal"}
+      ],
+      "priceData": {"current": 200000, "unit": "USD/unit", "trend": "stable", "history": [190000, 192000, 195000, 197000, 198500, 199500, 200000]}
+    },
+    {
+      "id": 66,
+      "name": "풍력 블레이드",
+      "category": "풍력",
+      "inventory": 9,
+      "leadTime": 1.4,
+      "priceYoY": 10,
+      "utilization": 75,
+      "alertLevel": "green",
+      "ticker": "WBLADE",
+      "leadingIndicators": [
+        {"name": "대형화 추세", "value": "가속", "status": "normal"},
+        {"name": "탄소섬유 수요", "value": "+20%", "status": "normal"}
+      ],
+      "priceData": {"current": 180000, "unit": "USD/unit", "trend": "stable", "history": [165000, 168000, 172000, 175000, 177000, 179000, 180000]}
+    },
+    {
+      "id": 67,
+      "name": "철광석",
+      "category": "산업금속",
+      "inventory": 12,
+      "leadTime": 1.1,
+      "priceYoY": -5,
+      "utilization": 65,
+      "alertLevel": "green",
+      "ticker": "FE",
+      "leadingIndicators": [
+        {"name": "중국 수요", "value": "-3%", "status": "normal"},
+        {"name": "호주/브라질 공급", "value": "안정", "status": "normal"}
+      ],
+      "priceData": {"current": 110, "unit": "USD/ton", "trend": "stable", "history": [120, 118, 115, 113, 112, 111, 110]}
+    },
+    {
+      "id": 68,
+      "name": "석탄 (열연)",
+      "category": "에너지",
+      "inventory": 15,
+      "leadTime": 1.0,
+      "priceYoY": -15,
+      "utilization": 60,
+      "alertLevel": "green",
+      "ticker": "COAL",
+      "leadingIndicators": [
+        {"name": "탈석탄 정책", "value": "강화", "status": "normal"},
+        {"name": "글로벌 재고", "value": "충분", "status": "normal"}
+      ],
+      "priceData": {"current": 130, "unit": "USD/ton", "trend": "down", "history": [180, 165, 155, 145, 140, 135, 130]}
+    },
+    {
+      "id": 69,
+      "name": "원유 (WTI)",
+      "category": "에너지",
+      "inventory": 20,
+      "leadTime": 1.0,
+      "priceYoY": 5,
+      "utilization": 70,
+      "alertLevel": "green",
+      "ticker": "CL",
+      "leadingIndicators": [
+        {"name": "OPEC+ 감산", "value": "유지", "status": "normal"},
+        {"name": "미국 생산", "value": "+5%", "status": "normal"}
+      ],
+      "priceData": {"current": 78, "unit": "USD/bbl", "trend": "stable", "history": [74, 75, 76, 77, 77.5, 77.8, 78]}
+    },
+    {
+      "id": 70,
+      "name": "원유 (Brent)",
+      "category": "에너지",
+      "inventory": 18,
+      "leadTime": 1.0,
+      "priceYoY": 6,
+      "utilization": 72,
+      "alertLevel": "green",
+      "ticker": "CO",
+      "leadingIndicators": [
+        {"name": "글로벌 수요", "value": "+1%", "status": "normal"},
+        {"name": "지정학 리스크", "value": "상존", "status": "normal"}
+      ],
+      "priceData": {"current": 82, "unit": "USD/bbl", "trend": "stable", "history": [77, 78, 79, 80, 81, 81.5, 82]}
+    },
+    {
+      "id": 71,
+      "name": "가솔린 (RBOB)",
+      "category": "에너지",
+      "inventory": 16,
+      "leadTime": 1.0,
+      "priceYoY": 8,
+      "utilization": 75,
+      "alertLevel": "green",
+      "ticker": "RB",
+      "leadingIndicators": [
+        {"name": "드라이빙 시즌", "value": "종료", "status": "normal"},
+        {"name": "정유 가동률", "value": "92%", "status": "normal"}
+      ],
+      "priceData": {"current": 2.4, "unit": "USD/gal", "trend": "stable", "history": [2.2, 2.25, 2.3, 2.35, 2.38, 2.39, 2.4]}
+    },
+    {
+      "id": 72,
+      "name": "난방유",
+      "category": "에너지",
+      "inventory": 14,
+      "leadTime": 1.0,
+      "priceYoY": 5,
+      "utilization": 70,
+      "alertLevel": "green",
+      "ticker": "HO",
+      "leadingIndicators": [
+        {"name": "겨울 수요", "value": "평년", "status": "normal"},
+        {"name": "유럽 재고", "value": "충분", "status": "normal"}
+      ],
+      "priceData": {"current": 2.6, "unit": "USD/gal", "trend": "stable", "history": [2.48, 2.52, 2.55, 2.57, 2.58, 2.59, 2.6]}
+    },
+    {
+      "id": 73,
+      "name": "DRAM",
+      "category": "반도체",
+      "inventory": 11,
+      "leadTime": 1.1,
+      "priceYoY": -10,
+      "utilization": 65,
+      "alertLevel": "green",
+      "ticker": "DRAM",
+      "leadingIndicators": [
+        {"name": "PC 수요", "value": "-5%", "status": "normal"},
+        {"name": "서버 수요", "value": "+10%", "status": "normal"}
+      ],
+      "priceData": {"current": 1.5, "unit": "USD/GB", "trend": "down", "history": [2.0, 1.9, 1.8, 1.7, 1.6, 1.55, 1.5]}
+    },
+    {
+      "id": 74,
+      "name": "NAND Flash",
+      "category": "반도체",
+      "inventory": 13,
+      "leadTime": 1.0,
+      "priceYoY": -20,
+      "utilization": 58,
+      "alertLevel": "green",
+      "ticker": "NAND",
+      "leadingIndicators": [
+        {"name": "공급 과잉", "value": "지속", "status": "normal"},
+        {"name": "감산 효과", "value": "제한적", "status": "normal"}
+      ],
+      "priceData": {"current": 0.06, "unit": "USD/GB", "trend": "down", "history": [0.10, 0.09, 0.08, 0.075, 0.07, 0.065, 0.06]}
+    },
+    {
+      "id": 75,
+      "name": "실리콘 웨이퍼 (300mm)",
+      "category": "반도체",
+      "inventory": 10,
+      "leadTime": 1.2,
+      "priceYoY": -8,
+      "utilization": 68,
+      "alertLevel": "green",
+      "ticker": "WAFER",
+      "leadingIndicators": [
+        {"name": "파운드리 가동률", "value": "75%", "status": "normal"},
+        {"name": "AI 수요", "value": "상승", "status": "normal"}
+      ],
+      "priceData": {"current": 95, "unit": "USD/wafer", "trend": "stable", "history": [105, 102, 100, 98, 96, 95.5, 95]}
+    },
+    {
+      "id": 76,
+      "name": "디스플레이 패널",
+      "category": "디스플레이",
+      "inventory": 14,
+      "leadTime": 1.0,
+      "priceYoY": -25,
+      "utilization": 55,
+      "alertLevel": "green",
+      "ticker": "LCD",
+      "leadingIndicators": [
+        {"name": "TV 수요", "value": "-8%", "status": "normal"},
+        {"name": "중국 증설", "value": "완료", "status": "normal"}
+      ],
+      "priceData": {"current": 85, "unit": "USD/unit", "trend": "down", "history": [120, 110, 100, 95, 90, 87, 85]}
+    },
+    {
+      "id": 77,
+      "name": "OLED 패널",
+      "category": "디스플레이",
+      "inventory": 10,
+      "leadTime": 1.3,
+      "priceYoY": -15,
+      "utilization": 70,
+      "alertLevel": "green",
+      "ticker": "OLED",
+      "leadingIndicators": [
+        {"name": "스마트폰 전환", "value": "가속", "status": "normal"},
+        {"name": "중국 추격", "value": "진행중", "status": "normal"}
+      ],
+      "priceData": {"current": 45, "unit": "USD/unit", "trend": "down", "history": [60, 55, 52, 50, 48, 46, 45]}
+    },
+    {
+      "id": 78,
+      "name": "LED 칩",
+      "category": "디스플레이",
+      "inventory": 16,
+      "leadTime": 0.9,
+      "priceYoY": -30,
+      "utilization": 50,
+      "alertLevel": "green",
+      "ticker": "LED",
+      "leadingIndicators": [
+        {"name": "공급 과잉", "value": "심각", "status": "normal"},
+        {"name": "수요 회복", "value": "느림", "status": "normal"}
+      ],
+      "priceData": {"current": 0.01, "unit": "USD/unit", "trend": "down", "history": [0.02, 0.018, 0.016, 0.014, 0.012, 0.011, 0.01]}
+    },
+    {
+      "id": 79,
+      "name": "커피 (아라비카)",
+      "category": "농산물",
+      "inventory": 10,
+      "leadTime": 1.2,
+      "priceYoY": 15,
+      "utilization": 72,
+      "alertLevel": "green",
+      "ticker": "KC",
+      "leadingIndicators": [
+        {"name": "브라질 수확", "value": "양호", "status": "normal"},
+        {"name": "베트남 공급", "value": "안정", "status": "normal"}
+      ],
+      "priceData": {"current": 200, "unit": "USD/60kg", "trend": "stable", "history": [175, 180, 185, 190, 195, 198, 200]}
+    },
+    {
+      "id": 80,
+      "name": "커피 (로부스타)",
+      "category": "농산물",
+      "inventory": 11,
+      "leadTime": 1.1,
+      "priceYoY": 25,
+      "utilization": 78,
+      "alertLevel": "green",
+      "ticker": "RC",
+      "leadingIndicators": [
+        {"name": "베트남 작황", "value": "보통", "status": "normal"},
+        {"name": "수요 증가", "value": "+8%", "status": "normal"}
+      ],
+      "priceData": {"current": 180, "unit": "USD/60kg", "trend": "up", "history": [145, 150, 158, 165, 172, 177, 180]}
+    },
+    {
+      "id": 81,
+      "name": "면화",
+      "category": "농산물",
+      "inventory": 12,
+      "leadTime": 1.1,
+      "priceYoY": -10,
+      "utilization": 65,
+      "alertLevel": "green",
+      "ticker": "CT",
+      "leadingIndicators": [
+        {"name": "중국 수입", "value": "감소", "status": "normal"},
+        {"name": "인도 수출", "value": "증가", "status": "normal"}
+      ],
+      "priceData": {"current": 78, "unit": "USD/lb", "trend": "down", "history": [88, 85, 82, 80, 79, 78.5, 78]}
+    },
+    {
+      "id": 82,
+      "name": "쌀",
+      "category": "농산물",
+      "inventory": 10,
+      "leadTime": 1.2,
+      "priceYoY": 18,
+      "utilization": 75,
+      "alertLevel": "green",
+      "ticker": "ZR",
+      "leadingIndicators": [
+        {"name": "인도 수출 제한", "value": "시행", "status": "warning"},
+        {"name": "태국/베트남", "value": "안정", "status": "normal"}
+      ],
+      "priceData": {"current": 520, "unit": "USD/ton", "trend": "up", "history": [440, 460, 480, 495, 508, 515, 520]}
+    },
+    {
+      "id": 83,
+      "name": "팜유",
+      "category": "농산물",
+      "inventory": 11,
+      "leadTime": 1.1,
+      "priceYoY": 8,
+      "utilization": 72,
+      "alertLevel": "green",
+      "ticker": "PO",
+      "leadingIndicators": [
+        {"name": "인도네시아 수출", "value": "정상", "status": "normal"},
+        {"name": "바이오연료 수요", "value": "+10%", "status": "normal"}
+      ],
+      "priceData": {"current": 850, "unit": "USD/ton", "trend": "stable", "history": [790, 805, 820, 835, 843, 848, 850]}
+    },
+    {
+      "id": 84,
+      "name": "고무 (천연)",
+      "category": "농산물",
+      "inventory": 10,
+      "leadTime": 1.2,
+      "priceYoY": 5,
+      "utilization": 70,
+      "alertLevel": "green",
+      "ticker": "RU",
+      "leadingIndicators": [
+        {"name": "태국 생산", "value": "안정", "status": "normal"},
+        {"name": "타이어 수요", "value": "+3%", "status": "normal"}
+      ],
+      "priceData": {"current": 1.6, "unit": "USD/kg", "trend": "stable", "history": [1.52, 1.54, 1.56, 1.57, 1.58, 1.59, 1.6]}
+    },
+    {
+      "id": 85,
+      "name": "생우",
+      "category": "축산",
+      "inventory": 15,
+      "leadTime": 1.0,
+      "priceYoY": -5,
+      "utilization": 65,
+      "alertLevel": "green",
+      "ticker": "LC",
+      "leadingIndicators": [
+        {"name": "미국 사육두수", "value": "안정", "status": "normal"},
+        {"name": "사료비", "value": "-5%", "status": "normal"}
+      ],
+      "priceData": {"current": 175, "unit": "USD/100lb", "trend": "stable", "history": [185, 182, 180, 178, 176, 175.5, 175]}
+    },
+    {
+      "id": 86,
+      "name": "비육우",
+      "category": "축산",
+      "inventory": 14,
+      "leadTime": 1.0,
+      "priceYoY": -3,
+      "utilization": 68,
+      "alertLevel": "green",
+      "ticker": "FC",
+      "leadingIndicators": [
+        {"name": "도축 두수", "value": "안정", "status": "normal"},
+        {"name": "소비 수요", "value": "평년", "status": "normal"}
+      ],
+      "priceData": {"current": 245, "unit": "USD/100lb", "trend": "stable", "history": [255, 252, 250, 248, 246, 245.5, 245]}
+    },
+    {
+      "id": 87,
+      "name": "돈육 (Lean Hogs)",
+      "category": "축산",
+      "inventory": 12,
+      "leadTime": 1.0,
+      "priceYoY": 8,
+      "utilization": 72,
+      "alertLevel": "green",
+      "ticker": "LH",
+      "leadingIndicators": [
+        {"name": "중국 수입", "value": "+10%", "status": "normal"},
+        {"name": "미국 생산", "value": "안정", "status": "normal"}
+      ],
+      "priceData": {"current": 85, "unit": "USD/100lb", "trend": "stable", "history": [78, 80, 82, 83, 84, 84.5, 85]}
+    },
+    {
+      "id": 88,
+      "name": "원료의약품 (API)",
+      "category": "의료",
+      "inventory": 9,
+      "leadTime": 1.4,
+      "priceYoY": 12,
+      "utilization": 78,
+      "alertLevel": "green",
+      "ticker": "API",
+      "leadingIndicators": [
+        {"name": "인도/중국 공급", "value": "안정", "status": "normal"},
+        {"name": "리쇼어링 추진", "value": "진행중", "status": "normal"}
+      ],
+      "priceData": {"current": 150, "unit": "USD/kg", "trend": "stable", "history": [135, 138, 142, 145, 148, 149, 150]}
+    },
+    {
+      "id": 89,
+      "name": "헤파린",
+      "category": "의료",
+      "inventory": 8,
+      "leadTime": 1.5,
+      "priceYoY": 15,
+      "utilization": 82,
+      "alertLevel": "green",
+      "ticker": "HEP",
+      "leadingIndicators": [
+        {"name": "중국 돼지 공급", "value": "회복", "status": "normal"},
+        {"name": "의료 수요", "value": "+5%", "status": "normal"}
+      ],
+      "priceData": {"current": 3500, "unit": "USD/kg", "trend": "up", "history": [3050, 3150, 3250, 3350, 3420, 3470, 3500]}
+    },
+    {
+      "id": 90,
+      "name": "탄소섬유",
+      "category": "소재",
+      "inventory": 8,
+      "leadTime": 1.5,
+      "priceYoY": 10,
+      "utilization": 80,
+      "alertLevel": "green",
+      "ticker": "CF",
+      "leadingIndicators": [
+        {"name": "항공우주 수요", "value": "+15%", "status": "normal"},
+        {"name": "풍력 블레이드", "value": "+20%", "status": "normal"}
+      ],
+      "priceData": {"current": 25, "unit": "USD/kg", "trend": "stable", "history": [22.7, 23.2, 23.7, 24.2, 24.6, 24.8, 25]}
+    },
+    {
+      "id": 91,
+      "name": "에폭시 수지",
+      "category": "소재",
+      "inventory": 10,
+      "leadTime": 1.2,
+      "priceYoY": 5,
+      "utilization": 72,
+      "alertLevel": "green",
+      "ticker": "EPOXY",
+      "leadingIndicators": [
+        {"name": "전자제품 수요", "value": "안정", "status": "normal"},
+        {"name": "중국 공급", "value": "과잉", "status": "normal"}
+      ],
+      "priceData": {"current": 2.8, "unit": "USD/kg", "trend": "stable", "history": [2.65, 2.7, 2.72, 2.75, 2.77, 2.79, 2.8]}
+    },
+    {
+      "id": 92,
+      "name": "산화알루미늄 (알루미나)",
+      "category": "산업금속",
+      "inventory": 11,
+      "leadTime": 1.2,
+      "priceYoY": 15,
+      "utilization": 75,
+      "alertLevel": "green",
+      "ticker": "ALO",
+      "leadingIndicators": [
+        {"name": "알루미늄 생산", "value": "안정", "status": "normal"},
+        {"name": "중국 정련", "value": "지배적", "status": "normal"}
+      ],
+      "priceData": {"current": 380, "unit": "USD/ton", "trend": "up", "history": [330, 345, 355, 365, 372, 377, 380]}
+    },
+    {
+      "id": 93,
+      "name": "형석 (Fluorspar)",
+      "category": "산업광물",
+      "inventory": 9,
+      "leadTime": 1.3,
+      "priceYoY": 12,
+      "utilization": 78,
+      "alertLevel": "green",
+      "ticker": "FSP",
+      "leadingIndicators": [
+        {"name": "알루미늄 생산", "value": "안정", "status": "normal"},
+        {"name": "냉매 수요", "value": "+8%", "status": "normal"}
+      ],
+      "priceData": {"current": 450, "unit": "USD/ton", "trend": "stable", "history": [400, 415, 428, 438, 445, 448, 450]}
+    },
+    {
+      "id": 94,
+      "name": "보크사이트",
+      "category": "산업광물",
+      "inventory": 15,
+      "leadTime": 1.0,
+      "priceYoY": 5,
+      "utilization": 65,
+      "alertLevel": "green",
+      "ticker": "BAU",
+      "leadingIndicators": [
+        {"name": "기니 공급", "value": "안정", "status": "normal"},
+        {"name": "알루미나 수요", "value": "+3%", "status": "normal"}
+      ],
+      "priceData": {"current": 55, "unit": "USD/ton", "trend": "stable", "history": [52, 53, 53.5, 54, 54.5, 54.8, 55]}
+    },
+    {
+      "id": 95,
+      "name": "규사 (Silica Sand)",
+      "category": "산업광물",
+      "inventory": 18,
+      "leadTime": 0.9,
+      "priceYoY": 8,
+      "utilization": 60,
+      "alertLevel": "green",
+      "ticker": "SIS",
+      "leadingIndicators": [
+        {"name": "유리 생산", "value": "안정", "status": "normal"},
+        {"name": "태양광 수요", "value": "+15%", "status": "normal"}
+      ],
+      "priceData": {"current": 40, "unit": "USD/ton", "trend": "stable", "history": [37, 38, 38.5, 39, 39.5, 39.8, 40]}
+    },
+    {
+      "id": 96,
+      "name": "석회석",
+      "category": "산업광물",
+      "inventory": 20,
+      "leadTime": 0.8,
+      "priceYoY": 3,
+      "utilization": 55,
+      "alertLevel": "green",
+      "ticker": "LIME",
+      "leadingIndicators": [
+        {"name": "시멘트 수요", "value": "안정", "status": "normal"},
+        {"name": "철강 생산", "value": "-2%", "status": "normal"}
+      ],
+      "priceData": {"current": 15, "unit": "USD/ton", "trend": "stable", "history": [14.5, 14.6, 14.7, 14.8, 14.9, 14.95, 15]}
+    },
+    {
+      "id": 97,
+      "name": "벤토나이트",
+      "category": "산업광물",
+      "inventory": 14,
+      "leadTime": 1.0,
+      "priceYoY": 5,
+      "utilization": 68,
+      "alertLevel": "green",
+      "ticker": "BENT",
+      "leadingIndicators": [
+        {"name": "시추 활동", "value": "+5%", "status": "normal"},
+        {"name": "철강 주조", "value": "안정", "status": "normal"}
+      ],
+      "priceData": {"current": 85, "unit": "USD/ton", "trend": "stable", "history": [81, 82, 83, 84, 84.5, 84.8, 85]}
+    },
+    {
+      "id": 98,
+      "name": "카올린 (Kaolin)",
+      "category": "산업광물",
+      "inventory": 12,
+      "leadTime": 1.1,
+      "priceYoY": 6,
+      "utilization": 70,
+      "alertLevel": "green",
+      "ticker": "KAO",
+      "leadingIndicators": [
+        {"name": "제지 수요", "value": "-5%", "status": "normal"},
+        {"name": "도자기/세라믹", "value": "+3%", "status": "normal"}
+      ],
+      "priceData": {"current": 150, "unit": "USD/ton", "trend": "stable", "history": [142, 144, 146, 148, 149, 149.5, 150]}
+    },
+    {
+      "id": 99,
+      "name": "활석 (Talc)",
+      "category": "산업광물",
+      "inventory": 13,
+      "leadTime": 1.0,
+      "priceYoY": 4,
+      "utilization": 68,
+      "alertLevel": "green",
+      "ticker": "TALC",
+      "leadingIndicators": [
+        {"name": "플라스틱 첨가제", "value": "안정", "status": "normal"},
+        {"name": "화장품 수요", "value": "+2%", "status": "normal"}
+      ],
+      "priceData": {"current": 200, "unit": "USD/ton", "trend": "stable", "history": [192, 194, 196, 198, 199, 199.5, 200]}
+    },
+    {
+      "id": 100,
+      "name": "운모 (Mica)",
+      "category": "산업광물",
+      "inventory": 11,
+      "leadTime": 1.2,
+      "priceYoY": 8,
+      "utilization": 72,
+      "alertLevel": "green",
+      "ticker": "MICA",
+      "leadingIndicators": [
+        {"name": "전자제품 수요", "value": "+5%", "status": "normal"},
+        {"name": "인도 공급", "value": "안정", "status": "normal"}
+      ],
+      "priceData": {"current": 450, "unit": "USD/ton", "trend": "stable", "history": [418, 425, 432, 440, 445, 448, 450]}
+    }
+  ],
+  "interdependencyChains": [
+    {
+      "id": 1,
+      "name": "천연가스-비료-식량 체인",
+      "nodes": ["천연가스", "암모니아", "질소비료", "밀/옥수수"],
+      "monitoringPoint": "천연가스 가격 $5/MMBtu 돌파",
+      "status": "warning"
+    },
+    {
+      "id": 2,
+      "name": "구리-황산-리튬 체인",
+      "nodes": ["구리 광산", "황산 (부산물)", "리튬 추출", "배터리"],
+      "monitoringPoint": "구리 TC/RC 급락 시 황산 부족",
+      "status": "warning"
+    },
+    {
+      "id": 3,
+      "name": "EV-전기강판-변압기 체인",
+      "nodes": ["EV 생산 증가", "GOES 수요 급증", "변압기 병목", "전력망"],
+      "monitoringPoint": "EV 연 2000만대 돌파",
+      "status": "critical"
+    },
+    {
+      "id": 4,
+      "name": "전쟁-탄약-SRM-우주 체인",
+      "nodes": ["지정학 리스크", "탄약 생산", "고체 로켓 모터", "우주발사"],
+      "monitoringPoint": "AP (과염소산암모늄) 공급 제한",
+      "status": "warning"
+    },
+    {
+      "id": 5,
+      "name": "AI칩-HBM-CoWoS-유리기판 체인",
+      "nodes": ["AI 수요 폭증", "HBM 부족", "CoWoS 병목", "유리 기판"],
+      "monitoringPoint": "NVIDIA Blackwell 양산",
+      "status": "critical"
+    },
+    {
+      "id": 6,
+      "name": "해상풍력-HVDC-CLV 체인",
+      "nodes": ["해상풍력 목표", "HVDC 케이블", "CLV 선박", "설치 지연"],
+      "monitoringPoint": "글로벌 CLV 30척 미만",
+      "status": "critical"
+    },
+    {
+      "id": 7,
+      "name": "중국제재-희소금속-반도체 체인",
+      "nodes": ["중국 수출 규제", "갈륨/게르마늄", "GaN/광섬유", "첨단 반도체"],
+      "monitoringPoint": "중국 희소금속 수출 허가제",
+      "status": "critical"
+    },
+    {
+      "id": 8,
+      "name": "엘니뇨-코코아-초콜릿 체인",
+      "nodes": ["엘니뇨 현상", "서아프리카 가뭄", "코코아 흉작", "초콜릿 가격"],
+      "monitoringPoint": "ONI 지수 +1.5 이상",
+      "status": "critical"
+    },
+    {
+      "id": 9,
+      "name": "러시아-우라늄-원전 체인",
+      "nodes": ["러시아 제재", "농축 우라늄 부족", "원전 연료 위기", "전력 가격"],
+      "monitoringPoint": "SWU 가격 $200 돌파",
+      "status": "critical"
+    },
+    {
+      "id": 10,
+      "name": "헬륨-MRI-의료 체인",
+      "nodes": ["헬륨 공급 부족", "MRI 운영 비용", "의료 접근성", "진단 지연"],
+      "monitoringPoint": "헬륨 가격 $50/L 돌파",
+      "status": "warning"
+    }
+  ],
+  "leadingIndicators": [
+    {
+      "id": 1,
+      "name": "LME 구리 재고량",
+      "value": 3,
+      "unit": "일",
+      "threshold": 5,
+      "status": "critical",
+      "source": "LME",
+      "trend": "down"
+    },
+    {
+      "id": 2,
+      "name": "엘니뇨 지수 (ONI)",
+      "value": 2.0,
+      "unit": "index",
+      "threshold": 1.5,
+      "status": "critical",
+      "source": "NOAA",
+      "trend": "up"
+    },
+    {
+      "id": 3,
+      "name": "EV 생산량 YoY",
+      "value": 25,
+      "unit": "%",
+      "threshold": 20,
+      "status": "warning",
+      "source": "IEA",
+      "trend": "up"
+    },
+    {
+      "id": 4,
+      "name": "컨테이너 운임 (CCFI)",
+      "value": 1850,
+      "unit": "index",
+      "threshold": 2000,
+      "status": "warning",
+      "source": "Shanghai Shipping Exchange",
+      "trend": "up"
+    },
+    {
+      "id": 5,
+      "name": "구리 TC/RC",
+      "value": 25,
+      "unit": "USD/ton",
+      "threshold": 30,
+      "status": "warning",
+      "source": "Fastmarkets",
+      "trend": "down"
+    },
+    {
+      "id": 6,
+      "name": "해상풍력 착공 (연간)",
+      "value": 35,
+      "unit": "GW",
+      "threshold": 40,
+      "status": "warning",
+      "source": "GWEC",
+      "trend": "up"
+    },
+    {
+      "id": 7,
+      "name": "GOES 글로벌 가동률",
+      "value": 95,
+      "unit": "%",
+      "threshold": 90,
+      "status": "critical",
+      "source": "CRU",
+      "trend": "up"
+    },
+    {
+      "id": 8,
+      "name": "AI 서버 출하량 YoY",
+      "value": 180,
+      "unit": "%",
+      "threshold": 100,
+      "status": "critical",
+      "source": "TrendForce",
+      "trend": "up"
+    },
+    {
+      "id": 9,
+      "name": "중국 희소금속 수출",
+      "value": -45,
+      "unit": "% YoY",
+      "threshold": -30,
+      "status": "critical",
+      "source": "China Customs",
+      "trend": "down"
+    },
+    {
+      "id": 10,
+      "name": "글로벌 반도체 재고",
+      "value": 1.8,
+      "unit": "개월",
+      "threshold": 1.5,
+      "status": "warning",
+      "source": "WSTS",
+      "trend": "down"
+    },
+    {
+      "id": 11,
+      "name": "BDI (발틱운임지수)",
+      "value": 1650,
+      "unit": "index",
+      "threshold": 2000,
+      "status": "normal",
+      "source": "Baltic Exchange",
+      "trend": "stable"
+    },
+    {
+      "id": 12,
+      "name": "미국 SPR 재고",
+      "value": 350,
+      "unit": "M bbl",
+      "threshold": 400,
+      "status": "warning",
+      "source": "EIA",
+      "trend": "down"
+    }
+  ],
+  "categories": [
+    "전력 인프라",
+    "원자력",
+    "산업금속",
+    "반도체",
+    "반도체장비",
+    "해상풍력",
+    "농산물",
+    "항공우주",
+    "배터리",
+    "희토류",
+    "특수금속",
+    "희소가스",
+    "에너지",
+    "농업",
+    "방산",
+    "의료",
+    "귀금속",
+    "태양광",
+    "풍력",
+    "디스플레이",
+    "통신",
+    "축산",
+    "소재",
+    "산업광물"
+  ]
+}

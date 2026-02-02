@@ -1,0 +1,344 @@
+/* Bloomberg Terminal Theme - Color Variables and Base Styles */
+
+:root {
+    /* 배경 색상 */
+    --bg-primary: #0d1117;
+    --bg-secondary: #161b22;
+    --bg-card: #1c2128;
+    --bg-hover: #21262d;
+    --bg-active: #2d333b;
+
+    /* 텍스트 색상 */
+    --text-primary: #c9d1d9;
+    --text-secondary: #8b949e;
+    --text-muted: #6e7681;
+    --text-bright: #f0f6fc;
+
+    /* 경보 색상 */
+    --alert-red: #f85149;
+    --alert-red-bg: rgba(248, 81, 73, 0.15);
+    --alert-red-border: rgba(248, 81, 73, 0.4);
+
+    --alert-yellow: #d29922;
+    --alert-yellow-bg: rgba(210, 153, 34, 0.15);
+    --alert-yellow-border: rgba(210, 153, 34, 0.4);
+
+    --alert-green: #3fb950;
+    --alert-green-bg: rgba(63, 185, 80, 0.15);
+    --alert-green-border: rgba(63, 185, 80, 0.4);
+
+    /* 강조 색상 */
+    --accent-blue: #58a6ff;
+    --accent-blue-bg: rgba(88, 166, 255, 0.15);
+    --accent-gold: #f0c674;
+    --accent-purple: #bc8cff;
+    --accent-cyan: #39c5cf;
+
+    /* 테두리 */
+    --border-primary: #30363d;
+    --border-secondary: #21262d;
+    --border-muted: #161b22;
+
+    /* 그림자 */
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.5);
+
+    /* 폰트 */
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-mono: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
+
+    /* 사이즈 */
+    --header-height: 56px;
+    --footer-height: 40px;
+    --sidebar-width: 280px;
+    --border-radius: 6px;
+    --border-radius-sm: 4px;
+    --border-radius-lg: 8px;
+
+    /* 트랜지션 */
+    --transition-fast: 150ms ease;
+    --transition-normal: 250ms ease;
+    --transition-slow: 350ms ease;
+}
+
+/* 기본 리셋 */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 14px;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-sans);
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.5;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* 스크롤바 스타일링 */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--border-primary);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--text-muted);
+}
+
+/* 선택 스타일 */
+::selection {
+    background-color: var(--accent-blue);
+    color: var(--text-bright);
+}
+
+/* 링크 스타일 */
+a {
+    color: var(--accent-blue);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+a:hover {
+    color: var(--text-bright);
+    text-decoration: underline;
+}
+
+/* 숫자/데이터용 모노스페이스 */
+.mono, .value, [data-value] {
+    font-family: var(--font-mono);
+}
+
+/* 경보 배지 색상 */
+.alert-red, .status-critical, [data-alert="red"] {
+    color: var(--alert-red);
+}
+
+.alert-yellow, .status-warning, [data-alert="yellow"] {
+    color: var(--alert-yellow);
+}
+
+.alert-green, .status-stable, [data-alert="green"] {
+    color: var(--alert-green);
+}
+
+/* 배경 색상 */
+.bg-red {
+    background-color: var(--alert-red-bg);
+    border-color: var(--alert-red-border);
+}
+
+.bg-yellow {
+    background-color: var(--alert-yellow-bg);
+    border-color: var(--alert-yellow-border);
+}
+
+.bg-green {
+    background-color: var(--alert-green-bg);
+    border-color: var(--alert-green-border);
+}
+
+/* 유틸리티 클래스 */
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.text-left { text-align: left; }
+
+.text-primary { color: var(--text-primary); }
+.text-secondary { color: var(--text-secondary); }
+.text-muted { color: var(--text-muted); }
+.text-bright { color: var(--text-bright); }
+
+.font-bold { font-weight: 700; }
+.font-semibold { font-weight: 600; }
+.font-medium { font-weight: 500; }
+
+.uppercase { text-transform: uppercase; }
+.lowercase { text-transform: lowercase; }
+.capitalize { text-transform: capitalize; }
+
+/* 애니메이션 */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+.animate-fade-in {
+    animation: fadeIn var(--transition-normal) ease-out;
+}
+
+.animate-slide-up {
+    animation: slideUp var(--transition-normal) ease-out;
+}
+
+.animate-pulse {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.animate-blink {
+    animation: blink 1s ease-in-out infinite;
+}
+
+/* 블룸버그 스타일 글로우 효과 */
+.glow-red {
+    box-shadow: 0 0 10px var(--alert-red), 0 0 20px rgba(248, 81, 73, 0.3);
+}
+
+.glow-yellow {
+    box-shadow: 0 0 10px var(--alert-yellow), 0 0 20px rgba(210, 153, 34, 0.3);
+}
+
+.glow-green {
+    box-shadow: 0 0 10px var(--alert-green), 0 0 20px rgba(63, 185, 80, 0.3);
+}
+
+.glow-blue {
+    box-shadow: 0 0 10px var(--accent-blue), 0 0 20px rgba(88, 166, 255, 0.3);
+}
+
+/* 트렌드 아이콘 */
+.trend-up::before {
+    content: '\u25B2';
+    color: var(--alert-green);
+    margin-right: 4px;
+}
+
+.trend-down::before {
+    content: '\u25BC';
+    color: var(--alert-red);
+    margin-right: 4px;
+}
+
+.trend-stable::before {
+    content: '\u25AC';
+    color: var(--text-muted);
+    margin-right: 4px;
+}
+
+/* 포커스 상태 */
+:focus {
+    outline: none;
+}
+
+:focus-visible {
+    outline: 2px solid var(--accent-blue);
+    outline-offset: 2px;
+}
+
+/* 버튼 기본 스타일 */
+button {
+    font-family: var(--font-sans);
+    cursor: pointer;
+    border: none;
+    background: none;
+    color: inherit;
+}
+
+/* 인풋 기본 스타일 */
+input, select, textarea {
+    font-family: var(--font-sans);
+    font-size: inherit;
+    color: var(--text-primary);
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--border-radius-sm);
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 0 3px var(--accent-blue-bg);
+}
+
+/* 플레이스홀더 */
+::placeholder {
+    color: var(--text-muted);
+    opacity: 1;
+}
+
+/* 로딩 스피너 */
+.loading-spinner {
+    width: 24px;
+    height: 24px;
+    border: 2px solid var(--border-primary);
+    border-top-color: var(--accent-blue);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* 빈 상태 */
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 48px 24px;
+    color: var(--text-muted);
+}
+
+.empty-state svg {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 16px;
+    opacity: 0.5;
+}
+
+/* 터미널 스타일 텍스트 */
+.terminal-text {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--accent-green);
+    letter-spacing: 0.5px;
+}
+
+/* 데이터 그리드 라인 */
+.grid-line {
+    stroke: var(--border-secondary);
+    stroke-width: 1;
+}
+
+.grid-line-major {
+    stroke: var(--border-primary);
+    stroke-width: 1;
+}
