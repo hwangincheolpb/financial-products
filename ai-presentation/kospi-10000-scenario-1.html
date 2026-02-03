@@ -229,6 +229,14 @@
     border-top: 1px solid #1e2230;
   }
 
+  .chart-placeholder {
+    padding: 40px 24px;
+    text-align: center;
+    font-size: 14px;
+    color: #9ca3af;
+    background: rgba(201, 165, 90, 0.05);
+  }
+
   /* Lists */
   ul, ol {
     margin: 16px 0;
@@ -394,6 +402,8 @@
 
     <p>물론 시나리오입니다. 그런데 이렇게 될 수도 있지 않을까요.</p>
 
+    <p><strong>저는 Personal AI가 멀지 않았다고 봅니다.</strong> 그 관점에서 쓴 글입니다.</p>
+
     <h2>로컬 AI, 이제 쓸 만해졌습니다</h2>
 
     <p>2~3년 전만 해도 로컬 LLM은 느리고 성능이 떨어지는 대안이었습니다. 지금은 다릅니다.</p>
@@ -450,7 +460,7 @@
         <tr>
           <td>Samsung Exynos 2600</td>
           <td>80 TOPS</td>
-          <td>Galaxy S26 탑재</td>
+          <td>세계 최초 2nm GAA, Galaxy S26 탑재</td>
         </tr>
       </tbody>
     </table>
@@ -472,35 +482,36 @@
     <p>(전력 문제는 이 시리즈 #2, #3에서 자세히 다루겠습니다.)</p>
 
     <div class="image-box">
-      <img src="power-supply-gap.png" alt="전력 수급 전망">
-      <div class="caption">출처: S&P Global Market Intelligence, 미래에셋증권 리서치센터</div>
+      <div class="chart-placeholder">📊 US Data Center Power Demand Forecast (S&P Global, 2026.01)</div>
+      <div class="caption">출처: S&P Global 451 Research (2026년 1월)</div>
     </div>
 
     <ul>
-      <li>미국 데이터센터 전력 수요: 2024년 약 50GW → 2030년 117GW 전망</li>
-      <li>전력 공급은 2025년부터 수요를 따라가지 못하는 갭 발생 예상</li>
+      <li>미국 데이터센터 전력 수요: 2026년 <strong>75.8GW</strong> → 2030년 <strong>134.4GW</strong></li>
+      <li>2026년 AI 워크로드만 44GW, 비AI 워크로드 38GW</li>
+      <li>1980년대 이후 처음 보는 수준의 전력 수요 증가</li>
     </ul>
 
+    <p class="source">출처: <a href="https://www.spglobal.com/energy/en/news-research/latest-news/electric-power/101425-data-center-grid-power-demand-to-rise-22-in-2025-nearly-triple-by-2030" target="_blank">S&P Global (2026.01)</a></p>
+
     <div class="image-box">
-      <img src="grid-connection-wait.png" alt="그리드 연결 대기">
-      <div class="caption">출처: Alpha Structure, Schneider Electric, 미래에셋증권 리서치센터</div>
+      <div class="chart-placeholder">📊 PJM Grid Capacity Shortage Forecast (2027)</div>
+      <div class="caption">출처: PJM Interconnection (2026년 1월)</div>
     </div>
 
     <ul>
-      <li>250MW 이상 대형 데이터센터의 그리드 연결 대기: <strong class="highlight">7~9년이 61%</strong></li>
-      <li>신규 프로젝트의 44%가 4년 이상 전력 연결 대기 중</li>
+      <li>PJM(미국 최대 전력망): 2027년까지 <strong class="highlight">6GW 부족</strong> 예상 — 필라델피아 전체 수요와 맞먹음</li>
+      <li>고압 송전선 신설: 2020~2023년 연평균 350마일 → 최근 2년 <strong>180마일</strong>로 급감</li>
+      <li>그리드 연결 대기열: 전례 없는 수준의 백로그</li>
     </ul>
 
-    <div class="image-box">
-      <img src="delay-reasons.png" alt="지연 사유">
-      <div class="caption">출처: Alpha Structure, Schneider Electric, 미래에셋증권 리서치센터</div>
-    </div>
+    <p class="source">출처: <a href="https://www.enr.com/articles/62227-grid-access-not-land-emerges-as-bottleneck-for-data-center-construction" target="_blank">ENR (2026.01)</a>, <a href="https://www.datacenterdynamics.com/en/news/us-data-centers-face-grid-bottlenecks-as-regional-operators-delay-upgrades/" target="_blank">DCD (2026.01)</a></p>
 
     <p>주요 병목:</p>
     <ul>
-      <li>유틸리티 용량/송전 제약 (40%)</li>
-      <li>인허가 문제 (26~30%)</li>
-      <li>대중의 반대 (16~25%)</li>
+      <li>송전 용량 부족 — 새 발전소를 지어도 연결이 안 됨</li>
+      <li>인허가 지연 — FERC Order 1000이 18~24개월 추가</li>
+      <li>Microsoft: "전력 접근성이 미국 내 가장 큰 장애물"</li>
     </ul>
 
     <p>돈이 없어서가 아닙니다. <strong>승인이 안 나고, 전력이 없고, 시간이 부족합니다.</strong></p>
@@ -517,11 +528,29 @@
 
     <p>단순한 요청은 로컬에서 처리하고, 복잡한 것만 클라우드로 올립니다.</p>
 
-    <p>이렇게 되면 양쪽 다 이득입니다:</p>
+    <p>이렇게 되면 시장 참여자 모두에게 유리할 수 있습니다:</p>
     <ul>
       <li><strong>소비자</strong>: 응답 빠르고, API 비용 절감</li>
       <li><strong>클라우드</strong>: 단순 쿼리 부담 감소, 서버 증설 압박 완화</li>
+      <li><strong>디바이스 제조사</strong>: 새로운 하드웨어 수요 창출</li>
     </ul>
+
+    <h2>로봇과 고성능 기기의 문제</h2>
+
+    <p>앞으로 고성능 연산이 필요한 기기가 많이 나올 겁니다.</p>
+
+    <ul>
+      <li>휴머노이드 로봇 — Tesla Optimus, Figure 등</li>
+      <li>AR/VR 디바이스 — Apple Vision Pro, Meta Quest</li>
+      <li>자율주행 — 차량 내 AI 연산</li>
+      <li>스마트홈 — AI 기반 가전</li>
+    </ul>
+
+    <p>문제는 <strong>배터리</strong>입니다.</p>
+
+    <p>고성능 = 고발열 = 고전력입니다. 모바일 기기에서 고성능 AI를 돌리면 배터리가 버티질 못합니다. 발열도 심해집니다.</p>
+
+    <p>그래서 <strong>홈 허브</strong>가 방법일 수 있습니다. 거치형 디바이스에서 무거운 연산을 처리하고, 모바일 기기는 결과만 받아서 쓰는 구조입니다.</p>
 
     <h2>가정 내 AI 허브의 자리</h2>
 
@@ -530,10 +559,10 @@
     <ul>
       <li><strong>공유기</strong> — 인터넷 쓰려면 반드시 필요</li>
       <li><strong>TV/셋톱박스</strong> — 거실에 항상 연결</li>
-      <li><strong>스마트 스피커</strong> — 이미 많은 가정에 보급</li>
+      <li><strong>스마트 스피커</strong> — 제품이 많이 나오긴 했다</li>
     </ul>
 
-    <p>예전에 집전화가 있던 자리입니다. 그 자리가 비었고, 이 디바이스들이 차지하고 있습니다.</p>
+    <p>예전에 집전화가 있던 자리입니다. 그 자리가 비었습니다.</p>
 
     <p><strong>이것들이 AI 허브로 진화할 수 있지 않을까요?</strong></p>
 
@@ -640,9 +669,53 @@ AP (Exynos 80 TOPS)
 
     <p><strong>어느 쪽이 되든 밸류체인 안에 있습니다.</strong></p>
 
+    <h3>사업부별 수혜 전망 (Personal AI 시나리오 가정)</h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th>사업부</th>
+          <th>시나리오 내 역할</th>
+          <th>전망</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>DS (메모리)</strong></td>
+          <td>HBM + LPDDR 양쪽 수요</td>
+          <td style="color: #68d391;">🟢 강한 수혜</td>
+        </tr>
+        <tr>
+          <td><strong>DS (파운드리)</strong></td>
+          <td>레거시 팹 활용, 거치형 칩 생산</td>
+          <td style="color: #68d391;">🟢 강한 수혜</td>
+        </tr>
+        <tr>
+          <td><strong>MX (모바일)</strong></td>
+          <td>플래그십 수요는 제한적, Exynos 탑재</td>
+          <td style="color: #ecc94b;">🟡 중립</td>
+        </tr>
+        <tr>
+          <td><strong>VD (TV/디스플레이)</strong></td>
+          <td>홈 AI 허브 디바이스 가능성</td>
+          <td style="color: #68d391;">🟢 수혜</td>
+        </tr>
+        <tr>
+          <td><strong>DA (가전)</strong></td>
+          <td>스마트홈 AI 탑재</td>
+          <td style="color: #ecc94b;">🟡 중립~수혜</td>
+        </tr>
+        <tr>
+          <td><strong>Harman</strong></td>
+          <td>차량 AI, 오디오 시스템</td>
+          <td style="color: #68d391;">🟢 수혜</td>
+        </tr>
+      </tbody>
+    </table>
+
     <div class="callout samsung">
-      <h4>삼성만 가능한 조합</h4>
-      <p>엣지 AI 디바이스를 만든다고 가정해봅시다.</p>
+      <h4>비중국권에서, 삼성만 가능한 조합</h4>
+      <p>엣지 AI 허브를 만든다고 가정해봅시다. 단일 용도 거치형 디바이스입니다.</p>
       <ul>
         <li><strong>Exynos AP</strong> — 자체 설계, NPU 80 TOPS</li>
         <li><strong>LPDDR 메모리</strong> — 자체 생산, 외부 구매 불필요</li>
@@ -650,8 +723,19 @@ AP (Exynos 80 TOPS)
         <li><strong>디바이스</strong> — Galaxy, TV, 가전까지 완제품 라인업</li>
       </ul>
       <p>AP + 메모리 + 디바이스를 <strong>수직계열화</strong>로 묶을 수 있는 회사가 삼성 외에 있을까요?</p>
-      <p>Apple도 메모리는 삼성/SK에서 삽니다. Qualcomm은 디바이스가 없습니다.</p>
-      <p><strong>비용 구조에서 우위</strong>가 생길 수 있습니다.</p>
+      <p>Apple도 메모리는 삼성/SK에서 삽니다. Qualcomm은 디바이스가 없습니다. 중국에는 화웨이+알리바바 조합이 있지만, 비중국권에서는 삼성이 유일합니다.</p>
+      <p><strong>맥미니보다 싸게 만들 수 있습니다.</strong> 단일 용도 거치형이면 디스플레이도 필요 없고, 범용 OS도 필요 없습니다. 자체 AP + 자체 메모리면 비용 구조에서 우위가 생깁니다.</p>
+    </div>
+
+    <div class="callout">
+      <h4>🍎 참고: Apple + Gemini 파트너십 (2026.01)</h4>
+      <p>2026년 1월, Apple은 Google과 다년간 AI 파트너십을 발표했습니다. 차세대 Apple Intelligence는 Google Gemini를 기반으로 구동됩니다.</p>
+      <ul>
+        <li>Apple은 Gemini 사용료로 <strong>연간 약 $1B</strong>를 지불할 것으로 추정</li>
+        <li>iOS 26.4부터 Gemini 기반 Siri 출시 예정</li>
+      </ul>
+      <p>이게 의미하는 것: <strong>Apple조차 AI 모델을 자체 개발하지 않습니다.</strong> 반면 삼성은 Exynos + Galaxy AI로 온디바이스 AI를 직접 구현 중입니다. 물론 Apple이 삼성에게 홈 AI 허브를 맡길 가능성은 낮겠지만, 삼성 입장에서는 자체 생태계로 갈 기회입니다.</p>
+      <p class="source">출처: <a href="https://www.cnbc.com/2026/01/12/apple-google-ai-siri-gemini.html" target="_blank">CNBC (2026.01)</a></p>
     </div>
 
     <h3>밸류체인 내 주요 기업</h3>
