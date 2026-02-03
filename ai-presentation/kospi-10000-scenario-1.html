@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KOSPI 10,000pt 시나리오 - #1 삼성전자와 Personal AI 하드웨어 Full Stack</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #0a0c10;
+    color: #e8e6e1;
+    font-family: 'Noto Sans KR', -apple-system, sans-serif;
+    font-weight: 400;
+    line-height: 1.85;
+    padding: 60px 20px;
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  /* Header */
+  .header {
+    margin-bottom: 48px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid #1e2230;
+  }
+
+  .series-badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #c9a55a;
+    border: 1px solid rgba(201, 165, 90, 0.3);
+    padding: 4px 12px;
+    border-radius: 2px;
+    margin-bottom: 16px;
+  }
+
+  h1 {
+    font-size: 28px;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.4;
+    margin-bottom: 8px;
+  }
+
+  h1 span {
+    color: #c9a55a;
+  }
+
+  .subtitle {
+    font-size: 16px;
+    color: #9ca3af;
+    font-weight: 400;
+  }
+
+  /* Disclaimer */
+  .disclaimer {
+    background: rgba(201, 165, 90, 0.08);
+    border-left: 3px solid #c9a55a;
+    padding: 20px 24px;
+    margin-bottom: 40px;
+    border-radius: 0 8px 8px 0;
+  }
+
+  .disclaimer p {
+    font-size: 13px;
+    color: #9ca3af;
+    margin-bottom: 8px;
+    line-height: 1.7;
+  }
+
+  .disclaimer p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Series Nav */
+  .series-nav {
+    background: #12151b;
+    border: 1px solid #1e2230;
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin-bottom: 48px;
+  }
+
+  .series-nav h4 {
+    font-size: 12px;
+    font-weight: 600;
+    color: #6b7280;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .series-nav ul {
+    list-style: none;
+  }
+
+  .series-nav li {
+    font-size: 14px;
+    color: #9ca3af;
+    padding: 6px 0;
+  }
+
+  .series-nav li.current {
+    color: #c9a55a;
+    font-weight: 500;
+  }
+
+  /* Sections */
+  h2 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #fff;
+    margin-top: 56px;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #1e2230;
+  }
+
+  h3 {
+    font-size: 17px;
+    font-weight: 600;
+    color: #e8e6e1;
+    margin-top: 32px;
+    margin-bottom: 12px;
+  }
+
+  p {
+    font-size: 15px;
+    color: #c8c5be;
+    margin-bottom: 16px;
+  }
+
+  strong {
+    color: #e8e6e1;
+    font-weight: 600;
+  }
+
+  .highlight {
+    color: #c9a55a;
+    font-weight: 500;
+  }
+
+  /* Quote */
+  .quote {
+    font-size: 18px;
+    font-weight: 500;
+    color: #c9a55a;
+    text-align: center;
+    padding: 32px;
+    margin: 32px 0;
+    background: rgba(201, 165, 90, 0.05);
+    border-radius: 8px;
+  }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0;
+    background: #12151b;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #1e2230;
+  }
+
+  th {
+    background: #0e1017;
+    padding: 12px 16px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #9ca3af;
+    text-align: left;
+    letter-spacing: 0.5px;
+  }
+
+  td {
+    padding: 12px 16px;
+    font-size: 14px;
+    color: #c8c5be;
+    border-top: 1px solid #1e2230;
+  }
+
+  tr:hover {
+    background: rgba(255,255,255,0.02);
+  }
+
+  /* Code blocks */
+  .diagram {
+    background: #12151b;
+    border: 1px solid #1e2230;
+    border-radius: 8px;
+    padding: 24px;
+    margin: 24px 0;
+    font-family: 'SF Mono', Consolas, monospace;
+    font-size: 13px;
+    color: #9ca3af;
+    line-height: 1.8;
+    white-space: pre;
+    overflow-x: auto;
+  }
+
+  /* Images */
+  .image-box {
+    margin: 32px 0;
+    background: #12151b;
+    border: 1px solid #1e2230;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .image-box img {
+    width: 100%;
+    display: block;
+  }
+
+  .image-box .caption {
+    padding: 12px 16px;
+    font-size: 12px;
+    color: #6b7280;
+    border-top: 1px solid #1e2230;
+  }
+
+  /* Lists */
+  ul, ol {
+    margin: 16px 0;
+    padding-left: 24px;
+  }
+
+  li {
+    font-size: 15px;
+    color: #c8c5be;
+    margin-bottom: 8px;
+  }
+
+  /* Callout */
+  .callout {
+    background: #12151b;
+    border: 1px solid #1e2230;
+    border-radius: 8px;
+    padding: 24px;
+    margin: 32px 0;
+  }
+
+  .callout.samsung {
+    border-color: rgba(99, 179, 237, 0.3);
+    background: rgba(99, 179, 237, 0.05);
+  }
+
+  .callout h4 {
+    font-size: 15px;
+    font-weight: 600;
+    color: #63b3ed;
+    margin-bottom: 16px;
+  }
+
+  /* Final */
+  .conclusion {
+    text-align: center;
+    padding: 48px 32px;
+    margin: 48px 0;
+    background: linear-gradient(135deg, rgba(201, 165, 90, 0.1) 0%, rgba(201, 165, 90, 0.02) 100%);
+    border-radius: 12px;
+    border: 1px solid rgba(201, 165, 90, 0.2);
+  }
+
+  .conclusion .big-number {
+    font-size: 48px;
+    font-weight: 900;
+    color: #c9a55a;
+    margin-bottom: 8px;
+  }
+
+  .conclusion .label {
+    font-size: 14px;
+    color: #9ca3af;
+  }
+
+  /* Footer */
+  .footer {
+    margin-top: 64px;
+    padding-top: 32px;
+    border-top: 1px solid #1e2230;
+    text-align: center;
+  }
+
+  .footer p {
+    font-size: 13px;
+    color: #6b7280;
+  }
+
+  /* Next */
+  .next-posts {
+    background: #12151b;
+    border: 1px solid #1e2230;
+    border-radius: 8px;
+    padding: 24px;
+    margin-top: 48px;
+  }
+
+  .next-posts h4 {
+    font-size: 12px;
+    font-weight: 600;
+    color: #6b7280;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .next-posts ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .next-posts li {
+    padding: 8px 0;
+    color: #9ca3af;
+    font-size: 14px;
+  }
+
+  /* Source link */
+  .source {
+    font-size: 12px;
+    color: #6b7280;
+  }
+
+  .source a {
+    color: #63b3ed;
+    text-decoration: none;
+  }
+
+  .source a:hover {
+    text-decoration: underline;
+  }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    body { padding: 40px 16px; }
+    h1 { font-size: 22px; }
+    h2 { font-size: 18px; }
+    .diagram { font-size: 11px; padding: 16px; }
+    table { font-size: 12px; }
+    th, td { padding: 10px 12px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Header -->
+  <header class="header">
+    <div class="series-badge">KOSPI 10,000pt 시나리오</div>
+    <h1>#1. 삼성전자와 <span>Personal AI</span> 하드웨어 Full Stack</h1>
+    <p class="subtitle">Personal AI 대란을 보며 든 상상</p>
+  </header>
+
+  <!-- Disclaimer -->
+  <div class="disclaimer">
+    <p><strong>Disclaimer</strong></p>
+    <p>아이디어와 논리 구조는 제가 잡았고, 자료 조사·수치 인용·문장 작성은 AI(Claude)가 수행했습니다. 웹 검색, 리서치 자료 참조, 문장 다듬기까지 AI가 담당했습니다.</p>
+    <p>여러 모델에 교차 검토를 시키고 올리지만, 구체적인 수치나 인용이 틀릴 수 있습니다. 이 점 인지하고 읽어주시면 감사하겠습니다.</p>
+    <p>본 글은 투자 권유가 아닌 개인적인 시나리오입니다.</p>
+  </div>
+
+  <!-- Series Nav -->
+  <nav class="series-nav">
+    <h4>시리즈</h4>
+    <ul>
+      <li class="current">#1. 삼성전자와 Personal AI 하드웨어 Full Stack ← 현재 글</li>
+      <li>#2. 전력망 — 그리드 병목과 수혜자</li>
+      <li>#3. 에너지 — BESS와 새로운 인프라</li>
+    </ul>
+  </nav>
+
+  <!-- Content -->
+  <article>
+
+    <h2>Personal AI 대란을 보며</h2>
+
+    <p>맥미니 M4가 품절입니다. OpenClaw 같은 로컬 AI 서비스가 인기를 얻으면서, 개인용 AI 서버로 맥미니를 사는 수요가 급증했습니다.</p>
+
+    <p>이 현상을 보며 이런 상상을 했습니다.</p>
+
+    <p class="quote">"AI가 클라우드에서 내려오기 시작한 거 아닌가?"</p>
+
+    <p>물론 시나리오입니다. 그런데 이렇게 될 수도 있지 않을까요.</p>
+
+    <h2>로컬 AI, 이제 쓸 만해졌습니다</h2>
+
+    <p>2~3년 전만 해도 로컬 LLM은 느리고 성능이 떨어지는 대안이었습니다. 지금은 다릅니다.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>모델</th>
+          <th>특징</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Mistral 7B</td>
+          <td>Q4 양자화 시 4~5GB, Apple Silicon에서 25~35 tokens/sec</td>
+        </tr>
+        <tr>
+          <td>Llama 3.2</td>
+          <td>1B/3B 경량 모델, 리소스 제한 환경에 최적화</td>
+        </tr>
+        <tr>
+          <td>Phi-3, Gemma 2B</td>
+          <td>저비용 로컬 사용에 적합</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>NPU 성능도 급격히 좋아졌습니다.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>칩셋</th>
+          <th>NPU 성능</th>
+          <th>비고</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Qualcomm Snapdragon X2 Elite</td>
+          <td>80~85 TOPS</td>
+          <td>3nm, AI PC용</td>
+        </tr>
+        <tr>
+          <td>Qualcomm Snapdragon 8 Gen 5</td>
+          <td>100+ TOPS</td>
+          <td>220 tokens/sec</td>
+        </tr>
+        <tr>
+          <td>Apple A19 Pro</td>
+          <td>~75 TOPS</td>
+          <td>8B 모델 20 tok/sec</td>
+        </tr>
+        <tr>
+          <td>Samsung Exynos 2600</td>
+          <td>80 TOPS</td>
+          <td>Galaxy S26 탑재</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Snapdragon 8 Gen 5는 사람이 읽는 속도보다 빠르게 LLM을 돌립니다. 기술적으로 <strong>"내 손 안의 AI"</strong>가 가능해진 겁니다.</p>
+
+    <p class="source">출처: <a href="https://iproyal.com/blog/best-local-llms/" target="_blank">Best Local LLMs 2026</a>, <a href="https://markets.financialcontent.com/wral/article/tokenring-2026-1-5-qualcomm-redefines-the-ai-pc-snapdragon-x2-elite-debuts-at-ces-2026-with-85-tops-npu-and-3nm-architecture" target="_blank">Qualcomm Snapdragon X2 Elite</a></p>
+
+    <h2>그런데 클라우드는 막혀 있습니다</h2>
+
+    <p>AI 수요는 폭발하는데, 데이터센터 증설이 따라가지 못하고 있습니다.</p>
+
+    <p>일론 머스크도 이 문제를 언급했습니다:</p>
+
+    <p class="quote">"변압기 부족이 해결되면, 다음은 전력 부족이다. 2025년 중반~말에 전력 문제가 시작될 것이다."</p>
+
+    <p class="source">출처: <a href="https://www.cnbc.com/2025/05/20/elon-musk-says-ai-could-run-into-power-capacity-issues-by-middle-of-next-year.html" target="_blank">CNBC - Elon Musk on AI Power Capacity</a></p>
+
+    <p>(전력 문제는 이 시리즈 #2, #3에서 자세히 다루겠습니다.)</p>
+
+    <div class="image-box">
+      <img src="power-supply-gap.png" alt="전력 수급 전망">
+      <div class="caption">출처: S&P Global Market Intelligence, 미래에셋증권 리서치센터</div>
+    </div>
+
+    <ul>
+      <li>미국 데이터센터 전력 수요: 2024년 약 50GW → 2030년 117GW 전망</li>
+      <li>전력 공급은 2025년부터 수요를 따라가지 못하는 갭 발생 예상</li>
+    </ul>
+
+    <div class="image-box">
+      <img src="grid-connection-wait.png" alt="그리드 연결 대기">
+      <div class="caption">출처: Alpha Structure, Schneider Electric, 미래에셋증권 리서치센터</div>
+    </div>
+
+    <ul>
+      <li>250MW 이상 대형 데이터센터의 그리드 연결 대기: <strong class="highlight">7~9년이 61%</strong></li>
+      <li>신규 프로젝트의 44%가 4년 이상 전력 연결 대기 중</li>
+    </ul>
+
+    <div class="image-box">
+      <img src="delay-reasons.png" alt="지연 사유">
+      <div class="caption">출처: Alpha Structure, Schneider Electric, 미래에셋증권 리서치센터</div>
+    </div>
+
+    <p>주요 병목:</p>
+    <ul>
+      <li>유틸리티 용량/송전 제약 (40%)</li>
+      <li>인허가 문제 (26~30%)</li>
+      <li>대중의 반대 (16~25%)</li>
+    </ul>
+
+    <p>돈이 없어서가 아닙니다. <strong>승인이 안 나고, 전력이 없고, 시간이 부족합니다.</strong></p>
+
+    <h2>병목을 피하려면</h2>
+
+    <p>클라우드가 막혀 있으니, 병목을 피하는 방법은 <strong>엣지로 내리는 것</strong>입니다.</p>
+
+    <div class="diagram">[기존]  디바이스 ──────────→ 클라우드
+
+[변화]  디바이스 → 로컬 허브 → 클라우드
+                      ↑
+               엣지 디바이스 / 홈서버</div>
+
+    <p>단순한 요청은 로컬에서 처리하고, 복잡한 것만 클라우드로 올립니다.</p>
+
+    <p>이렇게 되면 양쪽 다 이득입니다:</p>
+    <ul>
+      <li><strong>소비자</strong>: 응답 빠르고, API 비용 절감</li>
+      <li><strong>클라우드</strong>: 단순 쿼리 부담 감소, 서버 증설 압박 완화</li>
+    </ul>
+
+    <h2>가정 내 AI 허브의 자리</h2>
+
+    <p>생각해보면, 집에 꼭 있어야 하는 디바이스가 있습니다.</p>
+
+    <ul>
+      <li><strong>공유기</strong> — 인터넷 쓰려면 반드시 필요</li>
+      <li><strong>TV/셋톱박스</strong> — 거실에 항상 연결</li>
+      <li><strong>스마트 스피커</strong> — 이미 많은 가정에 보급</li>
+    </ul>
+
+    <p>예전에 집전화가 있던 자리입니다. 그 자리가 비었고, 이 디바이스들이 차지하고 있습니다.</p>
+
+    <p><strong>이것들이 AI 허브로 진화할 수 있지 않을까요?</strong></p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>디바이스</th>
+          <th>현재</th>
+          <th>진화 가능성</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>공유기</td>
+          <td>네트워크 연결</td>
+          <td>AI 라우팅 + 로컬 추론</td>
+        </tr>
+        <tr>
+          <td>애플TV / 셋톱박스</td>
+          <td>스트리밍</td>
+          <td>홈 AI 허브</td>
+        </tr>
+        <tr>
+          <td>스마트 스피커</td>
+          <td>음성 명령</td>
+          <td>로컬 LLM + 에이전트</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>공유기는 특히 유력합니다. 어차피 전원이 항상 켜져 있고, 네트워크 중심에 위치합니다.</p>
+
+    <div class="diagram">[가정 내 모든 디바이스]
+          ↓
+     [AI 공유기/허브]  ← 단순 요청 로컬 처리
+          ↓
+       [클라우드]     ← 복잡한 요청만 전달</div>
+
+    <p>새로운 디바이스를 사는 게 아니라, <strong>이미 있는 것이 진화하는 구조</strong>입니다.</p>
+
+    <h2>그렇다고 비싼 폰이 많이 팔릴까?</h2>
+
+    <p>여기서 현실적인 질문이 생깁니다.</p>
+
+    <p>NPU 100 TOPS 시대가 왔다고 해서, 2~300만원짜리 플래그십 폰이 갑자기 많이 팔릴 것 같진 않습니다. 대부분의 사람들은 50~100만원대 폰을 씁니다.</p>
+
+    <p>그래서 <strong>거치형 디바이스</strong>가 중요해질 수 있습니다:</p>
+    <ul>
+      <li>가격 부담이 상대적으로 낮음</li>
+      <li>선단 공정 필수 아님 (다이 크기, 발열 제약 낮음)</li>
+      <li>레거시 팹(28nm, 40nm)으로 충분</li>
+      <li>이미 있는 디바이스(공유기, 스피커)에 탑재 가능</li>
+    </ul>
+
+    <p>Apple이 HomePod에 구형 A8 칩을 넣는 이유가 여기 있을 수 있습니다.</p>
+
+    <h2>하드웨어 수요 변화</h2>
+
+    <p>이 시나리오대로라면, 수요 구조가 달라집니다.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>항목</th>
+          <th>변화 가능성</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>메모리</strong></td>
+          <td>LPDDR 수요 증가 — 온디바이스 AI에 필수</td>
+        </tr>
+        <tr>
+          <td><strong>공정</strong></td>
+          <td>선단 필수 아님 — 거치형은 레거시 OK</td>
+        </tr>
+        <tr>
+          <td><strong>기판</strong></td>
+          <td>고다층 기판 수요 증가</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p><strong>선단 공정 경쟁만이 답이 아닐 수 있습니다.</strong></p>
+
+    <h2>삼성전자 — 하드웨어 Full Stack</h2>
+
+    <p>이 관점에서 삼성전자를 봤습니다.</p>
+
+    <div class="diagram">메모리 (HBM, LPDDR)
+        ↓
+파운드리 (선단 + 레거시)
+        ↓
+AP (Exynos 80 TOPS)
+        ↓
+디바이스 (Galaxy, TV, 가전)</div>
+
+    <p>밸류체인 전 구간을 가진 회사가 많지 않습니다.</p>
+
+    <ul>
+      <li>클라우드가 성장하면 → HBM/서버 메모리 공급</li>
+      <li>엣지가 성장하면 → LPDDR/레거시 파운드리/디바이스 수혜</li>
+    </ul>
+
+    <p><strong>어느 쪽이 되든 밸류체인 안에 있습니다.</strong></p>
+
+    <div class="callout samsung">
+      <h4>삼성만 가능한 조합</h4>
+      <p>엣지 AI 디바이스를 만든다고 가정해봅시다.</p>
+      <ul>
+        <li><strong>Exynos AP</strong> — 자체 설계, NPU 80 TOPS</li>
+        <li><strong>LPDDR 메모리</strong> — 자체 생산, 외부 구매 불필요</li>
+        <li><strong>파운드리</strong> — 선단이든 레거시든 자체 팹</li>
+        <li><strong>디바이스</strong> — Galaxy, TV, 가전까지 완제품 라인업</li>
+      </ul>
+      <p>AP + 메모리 + 디바이스를 <strong>수직계열화</strong>로 묶을 수 있는 회사가 삼성 외에 있을까요?</p>
+      <p>Apple도 메모리는 삼성/SK에서 삽니다. Qualcomm은 디바이스가 없습니다.</p>
+      <p><strong>비용 구조에서 우위</strong>가 생길 수 있습니다.</p>
+    </div>
+
+    <h3>밸류체인 내 주요 기업</h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th>영역</th>
+          <th>기업</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>메모리</td>
+          <td>삼성전자, SK하이닉스</td>
+        </tr>
+        <tr>
+          <td>기판</td>
+          <td>이수페타시스, 대덕전자</td>
+        </tr>
+        <tr>
+          <td>소재</td>
+          <td>두산, 솔브레인</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>시나리오</h2>
+
+    <p>다음 조건들이 맞물린다면:</p>
+
+    <ol>
+      <li>데이터센터 병목 지속</li>
+      <li>AI의 엣지 확산</li>
+      <li>메모리/레거시 팹/기판 수요 증가</li>
+      <li>한국 기업들의 점유율 유지</li>
+    </ol>
+
+    <p>삼성전자, SK하이닉스, 이수페타시스, 두산 같은 밸류체인이 재평가될 수 있습니다.</p>
+
+    <div class="conclusion">
+      <div class="big-number">KOSPI 10,000pt</div>
+      <div class="label">물론, 여러 가정이 맞아야 하는 시나리오입니다. 그냥 상상입니다.</div>
+    </div>
+
+  </article>
+
+  <!-- Next Posts -->
+  <div class="next-posts">
+    <h4>다음 글</h4>
+    <ul>
+      <li>#2. 전력망 — 그리드 연결 7~9년 대기, 누가 수혜를 보나</li>
+      <li>#3. 에너지 — BESS, 테슬라 Megapack, 새로운 인프라</li>
+    </ul>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>2026.02 황인철</p>
+  </footer>
+
+</div>
+
+</body>
+</html>
