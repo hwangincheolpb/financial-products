@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 인프라 구조적 쇼티지 — 리드타임과 출처</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@100..900&family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #030712;
+            --bg-card: rgba(17, 24, 39, 0.7);
+            --text: #f3f4f6;
+            --text-muted: #9ca3af;
+            --accent: #60a5fa;
+            --secondary: #a78bfa;
+            --green: #34d399;
+            --red: #f87171;
+            --yellow: #fbbf24;
+            --border: rgba(255, 255, 255, 0.1);
+            --glass: rgba(255, 255, 255, 0.03);
+            --shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Pretendard', -apple-system, sans-serif;
+            background: var(--bg);
+            background-image:
+                radial-gradient(circle at 20% 20%, rgba(248, 113, 113, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 80% 80%, rgba(251, 191, 36, 0.05) 0%, transparent 40%);
+            color: var(--text);
+            line-height: 1.8;
+            font-size: 17px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3em 2em;
+        }
+
+        h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.5em;
+            margin-bottom: 0.5em;
+            background: linear-gradient(135deg, var(--red), var(--yellow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            color: var(--text-muted);
+            font-size: 1.1em;
+            margin-bottom: 2em;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent);
+            text-decoration: none;
+            margin-bottom: 2em;
+            padding: 0.5em 1em;
+            border: 1px solid var(--accent);
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        .back-link:hover {
+            background: var(--accent);
+            color: var(--bg);
+        }
+
+        h2 {
+            font-size: 1.8em;
+            margin: 2.5em 0 1em;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 0.5em;
+        }
+
+        h2::before {
+            content: '';
+            width: 4px;
+            height: 1.2em;
+            background: linear-gradient(to bottom, var(--red), var(--yellow));
+            border-radius: 2px;
+        }
+
+        h3 {
+            font-size: 1.3em;
+            margin: 1.5em 0 0.8em;
+            color: var(--yellow);
+        }
+
+        p { margin: 1em 0; opacity: 0.9; }
+
+        .shortage-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2em;
+            margin: 2em 0;
+            box-shadow: var(--shadow);
+        }
+
+        .shortage-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1em;
+            flex-wrap: wrap;
+            gap: 1em;
+        }
+
+        .shortage-title {
+            font-size: 1.4em;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .lead-time {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5em;
+            font-weight: 800;
+            padding: 0.3em 0.8em;
+            border-radius: 8px;
+        }
+
+        .lead-time.critical {
+            background: rgba(248, 113, 113, 0.2);
+            color: var(--red);
+            border: 1px solid var(--red);
+        }
+
+        .lead-time.warning {
+            background: rgba(251, 191, 36, 0.2);
+            color: var(--yellow);
+            border: 1px solid var(--yellow);
+        }
+
+        .source-list {
+            margin-top: 1.5em;
+            padding-top: 1.5em;
+            border-top: 1px solid var(--border);
+        }
+
+        .source-list h4 {
+            color: var(--text-muted);
+            font-size: 0.9em;
+            margin-bottom: 0.8em;
+        }
+
+        .source-item {
+            display: flex;
+            gap: 0.5em;
+            margin: 0.5em 0;
+            font-size: 0.9em;
+            flex-wrap: wrap;
+        }
+
+        .source-item a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .source-item a:hover {
+            text-decoration: underline;
+        }
+
+        .source-date {
+            color: var(--text-muted);
+            white-space: nowrap;
+        }
+
+        .key-point {
+            background: linear-gradient(135deg, rgba(248, 113, 113, 0.1), rgba(251, 191, 36, 0.05));
+            border: 1px solid rgba(248, 113, 113, 0.2);
+            padding: 1.5em;
+            margin: 1.5em 0;
+            border-radius: 12px;
+        }
+
+        .key-point strong {
+            color: var(--red);
+        }
+
+        ul {
+            margin: 1em 0;
+            padding-left: 1.5em;
+        }
+
+        li { margin: 0.5em 0; }
+
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 2em 0;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        th, td {
+            padding: 1em 1.2em;
+            border-bottom: 1px solid var(--border);
+            text-align: left;
+        }
+
+        th {
+            background: rgba(255, 255, 255, 0.03);
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .update-note {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5em;
+            margin: 3em 0;
+            text-align: center;
+        }
+
+        .update-note .date {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid var(--border);
+            margin: 3em 0;
+        }
+
+        footer {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9em;
+            margin-top: 3em;
+        }
+
+        .verified {
+            display: inline-block;
+            background: rgba(52, 211, 153, 0.2);
+            color: var(--green);
+            padding: 0.2em 0.6em;
+            border-radius: 4px;
+            font-size: 0.8em;
+            margin-left: 0.5em;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <a href="AI_에이전트_발표_article.html" class="back-link">← 본문으로 돌아가기</a>
+
+        <h1>AI 인프라 구조적 쇼티지</h1>
+        <p class="subtitle">리드타임과 출처 — 수요는 폭발하는데 공급은 물리적으로 못 따라간다</p>
+
+        <div class="update-note">
+            <span class="date">최종 업데이트: 2026.02.03</span><br>
+            <span style="color: var(--text-muted);">모든 출처 6개월 이내 (2025.08 ~ 2026.02) 기준</span>
+        </div>
+
+        <!-- 핵심 요약 -->
+        <div class="key-point" style="margin: 2em 0; padding: 2em;">
+            <h3 style="color: var(--red); margin-bottom: 1em; font-size: 1.3em;">📌 핵심 요약 (30초 버전)</h3>
+            <p style="font-size: 1.2em; line-height: 1.6; margin-bottom: 1em;">
+                <strong style="color: var(--red);">구리(15~25년)</strong> →
+                <strong style="color: var(--red);">에너지/원자력</strong> →
+                <strong style="color: var(--red);">변압기(30~48개월)</strong> →
+                <strong style="color: var(--yellow);">CoWoS(12~24개월)</strong> →
+                <strong style="color: var(--yellow);">HBM(12~18개월)</strong>
+            </p>
+            <ul style="margin-left: 1.5em; line-height: 2;">
+                <li><strong>리드타임 길수록</strong> = 공급 증가 불가능 = 가격 결정력 강화</li>
+                <li><strong>구리·변압기</strong> = 물리적으로 단기 해결 불가, 가장 구조적인 수혜</li>
+                <li><strong>CoWoS·HBM</strong> = 2026년 증설 효과로 점진 완화, 단 2027년까지 쇼티지 지속</li>
+                <li><strong>주가 반영 순서</strong> = 메모리 → 네트워킹 → PCB → 전력 인프라 (현재 포커스)</li>
+                <li><strong>다음 쇼티지</strong> = 엣지 AI 확산 → NPU, LPDDR, 통신칩 (삼성전자 수혜)</li>
+            </ul>
+        </div>
+
+        <h2>AI 밸류체인 전체 구조</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Tier</th>
+                    <th>영역</th>
+                    <th>핵심 기업</th>
+                    <th>병목/특징</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr style="background: rgba(248, 113, 113, 0.15);">
+                    <td><strong>1</strong></td>
+                    <td>원자재</td>
+                    <td>FCX, SCCO (구리), POSCO (GOES)</td>
+                    <td style="color: var(--red);"><strong>15~25년</strong></td>
+                </tr>
+                <tr style="background: rgba(248, 113, 113, 0.1);">
+                    <td><strong>2</strong></td>
+                    <td>소재/부품</td>
+                    <td>두산 (CCL), Resonac, EMC</td>
+                    <td>품질검증 병목</td>
+                </tr>
+                <tr>
+                    <td><strong>3</strong></td>
+                    <td>장비</td>
+                    <td>ASML, Lam Research, AMAT</td>
+                    <td>EUV 독점</td>
+                </tr>
+                <tr style="background: rgba(251, 191, 36, 0.15);">
+                    <td><strong>4</strong></td>
+                    <td>패키징</td>
+                    <td>TSMC (CoWoS), ASE, Amkor</td>
+                    <td style="color: var(--yellow);"><strong>12~24개월+</strong></td>
+                </tr>
+                <tr>
+                    <td><strong>5</strong></td>
+                    <td>반도체</td>
+                    <td>NVIDIA, AMD, Broadcom, Google</td>
+                    <td>CoWoS/HBM 확보 경쟁</td>
+                </tr>
+                <tr style="background: rgba(251, 191, 36, 0.15);">
+                    <td><strong>6</strong></td>
+                    <td>메모리</td>
+                    <td>SK하이닉스, 삼성, Micron</td>
+                    <td style="color: var(--yellow);"><strong>12~18개월+</strong></td>
+                </tr>
+                <tr>
+                    <td><strong>7</strong></td>
+                    <td>PCB/기판</td>
+                    <td>이수페타시스, Unimicron</td>
+                    <td>18층+ MLB</td>
+                </tr>
+                <tr style="background: rgba(248, 113, 113, 0.2);">
+                    <td><strong>8</strong></td>
+                    <td>에너지</td>
+                    <td><strong>원자력:</strong> NuScale, Cameco, CEG<br><strong>재생:</strong> NextEra, First Solar</td>
+                    <td style="color: var(--red);">DC 전력 수요 폭발, SMR 부상</td>
+                </tr>
+                <tr style="background: rgba(248, 113, 113, 0.15);">
+                    <td><strong>9</strong></td>
+                    <td>전력 인프라</td>
+                    <td>Eaton, Siemens, Hitachi</td>
+                    <td style="color: var(--red);"><strong>30~48개월</strong></td>
+                </tr>
+                <tr>
+                    <td><strong>10</strong></td>
+                    <td>냉각</td>
+                    <td>Vertiv, Schneider Electric</td>
+                    <td>액체냉각 전환</td>
+                </tr>
+                <tr>
+                    <td><strong>11</strong></td>
+                    <td>네트워킹</td>
+                    <td>Broadcom, Arista, Cisco</td>
+                    <td>800G 이더넷</td>
+                </tr>
+                <tr>
+                    <td><strong>12</strong></td>
+                    <td>클라우드</td>
+                    <td>AWS, Azure, GCP, 알리바바</td>
+                    <td>TPU/GPU 경쟁</td>
+                </tr>
+                <tr>
+                    <td><strong>13</strong></td>
+                    <td>모델</td>
+                    <td>OpenAI, Anthropic, Google, DeepSeek</td>
+                    <td>가격 경쟁</td>
+                </tr>
+                <tr>
+                    <td><strong>14</strong></td>
+                    <td>에이전트</td>
+                    <td>OpenClaw, Claude Code, Cursor</td>
+                    <td>서비스 레이어</td>
+                </tr>
+                <tr style="background: rgba(52, 211, 153, 0.15);">
+                    <td><strong>15</strong></td>
+                    <td>엣지 디바이스</td>
+                    <td><strong>스마트폰:</strong> 삼성전자, Apple, Xiaomi<br><strong>XR:</strong> Meta, Apple Vision<br><strong>홈:</strong> Amazon, Google Nest</td>
+                    <td style="color: var(--green);">최종 소비자 접점, 온디바이스 AI</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <hr>
+
+        <h2>상세 분석</h2>
+
+        <!-- GOES 변압기 -->
+        <div class="shortage-card">
+            <div class="shortage-header">
+                <span class="shortage-title">GOES 변압기 (Grain-Oriented Electrical Steel) <span class="verified">✓ 검증됨</span></span>
+                <span class="lead-time critical">30~48개월</span>
+            </div>
+            <p>데이터센터 전력 공급의 핵심 부품. 대형 변압기에 필수적인 방향성 전기강판(GOES)으로 만들어지며, 고출력 AI 서버 클러스터에 안정적인 전력을 공급하는 데 필수적이다.</p>
+
+            <div class="key-point">
+                <strong>왜 30~48개월인가?</strong> Wood Mackenzie Q2 2025 조사 기준, 일반 전력 변압기 128주(~30개월), 발전소용 GSU 변압기 144주(~33개월), 대형 전력 변압기는 NERC 기준 최대 210주(~48개월). 신규 제조 설비 증설은 2027~2028년 이후에야 본격화.
+            </div>
+
+            <ul>
+                <li>배전용 변압기: 리드타임 개선 중 (~30주, 2023년 100주+ 대비)</li>
+                <li>대형 전력 변압기: 여전히 2년+ 소요</li>
+                <li>Thyssenkrupp GOES 공장 일시 폐쇄 (2025.12) — 공급 추가 악화</li>
+                <li>가격: 2020년 대비 60~95% 상승 유지</li>
+            </ul>
+
+            <div class="source-list">
+                <h4>출처 (6개월 이내)</h4>
+                <div class="source-item">
+                    <span class="source-date">[2025.12]</span>
+                    <a href="https://www.powermag.com/transformers-in-2026-shortage-scramble-or-self-inflicted-crisis/" target="_blank">Power Magazine - Transformers in 2026: Shortage, Scramble, or Self-Inflicted Crisis?</a>
+                </div>
+                <div class="source-item">
+                    <span class="source-date">[2025.12]</span>
+                    <a href="https://www.fastcompany.com/91442349/supply-chain-delays-transformers-push-power-grid" target="_blank">Fast Company - Supply Chain Delays for Transformers Push Power Grid</a>
+                </div>
+                <div class="source-item">
+                    <span class="source-date">[2025.12]</span>
+                    <a href="https://www.theinvadingsea.com/2025/12/05/power-grid-electricity-supply-chain-data-centers-transformers-circuit-breakers-utilities/" target="_blank">The Invading Sea - Power Grid Supply Chain Threats</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- CoWoS 패키징 -->
+        <div class="shortage-card">
+            <div class="shortage-header">
+                <span class="shortage-title">CoWoS 패키징 (Chip on Wafer on Substrate) <span class="verified">✓ 검증됨</span></span>
+                <span class="lead-time warning">12~24개월+</span>
+            </div>
+            <p>AI 칩(GPU, TPU) 생산의 최대 병목. TSMC가 사실상 독점하는 첨단 패키징 기술로, HBM 메모리와 로직 칩을 하나로 통합하는 핵심 공정이다.</p>
+
+            <div class="key-point">
+                <strong>현황:</strong> TSMC CoWoS-L/S 라인 2026년 중반까지 풀부킹 상태. NVIDIA가 전체 용량의 60~70% 선점. 대형 고객은 18~24개월 전 예약, 소규모 고객은 더 긴 대기.
+            </div>
+
+            <ul>
+                <li>TSMC 월 생산능력: 35,000장 (2024말) → 130,000장 목표 (2026말)</li>
+                <li>NVIDIA: 2026~27년 물량까지 선예약 완료</li>
+                <li>대안: ASE, Amkor 등 OSAT 업체들 진입 중</li>
+                <li>2026년 초 기준 "CoWoS Crunch" 완화 조짐 (증설 효과)</li>
+            </ul>
+
+            <div class="source-list">
+                <h4>출처 (6개월 이내)</h4>
+                <div class="source-item">
+                    <span class="source-date">[2025.12]</span>
+                    <a href="https://www.trendforce.com/news/2025/12/08/news-tsmcs-cowos-l-s-reportedly-fully-booked-osat-partners-step-up-with-ases-cowop-in-focus/" target="_blank">TrendForce - TSMC's CoWoS-L/S Fully Booked</a>
+                </div>
+                <div class="source-item">
+                    <span class="source-date">[2025.12]</span>
+                    <a href="https://www.digitimes.com/news/a20251210PD218/tsmc-cowos-capacity-nvidia-equipment.html" target="_blank">DigiTimes - TSMC CoWoS Capacity, NVIDIA Booking into 2026-27</a>
+                </div>
+                <div class="source-item">
+                    <span class="source-date">[2026.01]</span>
+                    <a href="https://markets.financialcontent.com/wral/article/tokenring-2026-1-2-the-cowos-crunch-ends-tsmc-unleashes-massive-packaging-expansion-to-power-the-2026-ai-supercycle" target="_blank">Financial Content - The CoWoS Crunch Ends (2026 Expansion)</a>
+                </div>
+                <div class="source-item">
+                    <span class="source-date">[2025.10]</span>
+                    <a href="https://www.fusionww.com/insights/blog/inside-the-ai-bottleneck-cowos-hbm-and-2-3nm-capacity-constraints-through-2027" target="_blank">Fusion Worldwide - Inside the AI Bottleneck: CoWoS, HBM Constraints</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- HBM 메모리 -->
+        <div class="shortage-card">
+            <div class="shortage-header">
+                <span class="shortage-title">HBM 메모리 (High Bandwidth Memory) <span class="verified">✓ 검증됨</span></span>
+                <span class="lead-time warning">12~18개월+</span>
+            </div>
+            <p>AI 가속기의 핵심 메모리. 일반 DRAM 대비 대역폭이 10배 이상 높아 대규모 모델 학습에 필수. SK하이닉스가 시장 점유율 ~53%로 1위, 삼성 ~40%.</p>
+
+            <div class="key-point">
+                <strong>현황:</strong> SK하이닉스·삼성·Micron 3사 모두 <strong>2026년 생산분 완판</strong>. HBM3E 가격 20% 인상 예정. 쇼티지는 2027년 말까지 지속 전망 (신규 팹 가동 이후 완화).
+            </div>
+
+            <ul>
+                <li>SK하이닉스: "2026년 용량 사실상 매진" (애널리스트 콜)</li>
+                <li>삼성: 2026년 HBM 공급분 완판, HBM4 양산 2026년 2월 시작</li>
+                <li>HBM 제조는 일반 DRAM 대비 웨이퍼 2배 소요, 수율 50~60%</li>
+                <li>DRAM 가격 40~50% 상승 전망 (2026 상반기)</li>
+            </ul>
+
+            <div class="source-list">
+                <h4>출처 (6개월 이내)</h4>
+                <div class="source-item">
+                    <span class="source-date">[2025.12]</span>
+                    <a href="https://www.trendforce.com/news/2025/12/24/news-samsung-sk-hynix-reportedly-plan-20-hbm3e-price-hike-for-2026-as-nvidia-h200-asic-demand-rises/" target="_blank">TrendForce - Samsung/SK Hynix 20% HBM3E Price Hike for 2026</a>
+                </div>
+                <div class="source-item">
+                    <span class="source-date">[2025.12]</span>
+                    <a href="https://www.networkworld.com/article/4113772/samsung-warns-of-memory-shortages-driving-industry-wide-price-surge-in-2026.html" target="_blank">Network World - Samsung Warns of Memory Shortages in 2026</a>
+                </div>
+                <div class="source-item">
+                    <span class="source-date">[2025.10]</span>
+                    <a href="https://www.kedglobal.com/earnings/newsView/ked202510300005" target="_blank">KED Global - Samsung Sold Out 2026 HBM Supply</a>
+                </div>
+                <div class="source-item">
+                    <span class="source-date">[2025.12]</span>
+                    <a href="https://www.digitimes.com/news/a20251226PD223/samsung-sk-hynix-production-hbm4-2026.html" target="_blank">DigiTimes - HBM4 Mass Production Feb 2026</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 구리 -->
+        <div class="shortage-card">
+            <div class="shortage-header">
+                <span class="shortage-title">구리 (Copper) — 신규 광산 개발 <span class="verified">✓ 검증됨</span></span>
+                <span class="lead-time critical">15~25년</span>
+            </div>
+            <p>AI 데이터센터, 전기차, 로봇 모두가 대량으로 필요로 하는 원자재. 전력 인프라, 배선, 냉각 시스템 등 거의 모든 곳에 사용.</p>
+
+            <div class="key-point">
+                <strong>핵심:</strong> 기존에 알려진 "5~10년"은 <strong>과소평가</strong>. 실제 글로벌 평균 광산 개발 기간은 <strong>17.9년</strong> (Mining Visuals), 구리 특정 시 <strong>24.1년</strong> (S&P Global). 미국은 허가만 7~10년, 전체 <strong>29년</strong>.
+            </div>
+
+            <ul>
+                <li>글로벌 평균: 17.9년 (탐사→생산)</li>
+                <li>구리 특화: 24.1년 (글로벌), 29년 (미국)</li>
+                <li>최단 사례: Kamoa-Kakula (DRC) 14년 (2008 발견 → 2022 생산)</li>
+                <li>기존 광산 품위(구리 함량) 하락 중 — 생산 효율 악화</li>
+                <li>2030년 예상 부족량: 연간 600만~800만 톤</li>
+            </ul>
+
+            <div class="source-list">
+                <h4>출처 (6개월 이내)</h4>
+                <div class="source-item">
+                    <span class="source-date">[2025]</span>
+                    <a href="https://www.miningvisuals.com/post/copper-mines-average-time-from-discovery-to-production-is-17-9-years" target="_blank">Mining Visuals - Average Time 17.9 Years</a>
+                </div>
+                <div class="source-item">
+                    <span class="source-date">[2025]</span>
+                    <a href="https://www.spglobal.com/market-intelligence/en/news-insights/research/from-6years-to-18years-the-increasing-trend-of-mine-lead-times" target="_blank">S&P Global - Mine Lead Times Increasing to 18 Years</a>
+                </div>
+                <div class="source-item">
+                    <span class="source-date">[2025]</span>
+                    <a href="https://www.mining.com/us-has-second-longest-mine-development-timeline-in-the-world-sp-global-says/" target="_blank">MINING.COM - US 29 Years (2nd Longest Globally)</a>
+                </div>
+                <div class="source-item">
+                    <span class="source-date">[2025]</span>
+                    <a href="https://discoveryalert.com.au/news/widening-gap-discovery-development-mining-2025/" target="_blank">Discovery Alert - Widening Gap in Mining Development</a>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <h2>요약: 리드타임 비교</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>항목</th>
+                    <th>리드타임</th>
+                    <th>병목 원인</th>
+                    <th>수혜 기업</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>GOES 변압기</strong></td>
+                    <td style="color: var(--red);"><strong>30~48개월</strong></td>
+                    <td>제철소 생산능력, Thyssenkrupp 폐쇄</td>
+                    <td>POSCO, Nippon Steel</td>
+                </tr>
+                <tr>
+                    <td><strong>CoWoS 패키징</strong></td>
+                    <td style="color: var(--yellow);"><strong>12~24개월+</strong></td>
+                    <td>TSMC 독점, 60~70% NVIDIA 선점</td>
+                    <td>TSMC, ASE, Amkor</td>
+                </tr>
+                <tr>
+                    <td><strong>HBM 메모리</strong></td>
+                    <td style="color: var(--yellow);"><strong>12~18개월+</strong></td>
+                    <td>2026년분 완판, 2027년 말까지 쇼티지</td>
+                    <td>SK하이닉스, 삼성전자</td>
+                </tr>
+                <tr>
+                    <td><strong>구리 광산</strong></td>
+                    <td style="color: var(--red);"><strong>15~25년</strong></td>
+                    <td>허가 7~10년, 개발 5~15년</td>
+                    <td>Freeport-McMoRan, SCCO</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="key-point">
+            <strong>투자 시사점:</strong> 리드타임이 길수록 = 공급 증가 불가능 = 가격 결정력 강화 = 마진 확대 지속. 구리(15~25년)와 변압기(30~48개월)는 단기 공급 증가가 물리적으로 불가능한 구조적 수혜 영역.
+        </div>
+
+        <hr>
+
+        <h2>엣지 AI 확산 — 다음 쇼티지 영역</h2>
+
+        <p>개인 AI 에이전트가 확산되는 순서: <strong>스마트폰/AI 스피커 → 홈 허브/XR → 자율주행/로봇</strong></p>
+        <p>어느 쪽이든 (홈 서버 vs 클라우드) <strong>반도체/메모리/통신 수요는 폭발</strong>한다.</p>
+
+        <!-- 한 눈에 보기 -->
+        <div class="shortage-card" style="background: linear-gradient(135deg, rgba(96, 165, 250, 0.1), rgba(167, 139, 250, 0.05));">
+            <h3 style="color: var(--accent); margin-bottom: 1em;">📊 엣지 AI 밸류체인 한 눈에 보기</h3>
+
+            <pre style="margin: 0; background: transparent; border: none; padding: 0; font-size: 0.85em; line-height: 1.8;">
+┌─────────────────────────────────────────────────────────────────────────────┐
+│  <strong style="color: var(--red);">원재료/에너지</strong>                                                              │
+│  └─ <a href="#rare-earth" style="color: var(--red);">희토류·갈륨·게르마늄</a> ─ 중국 98% 독점, 지정학 리스크                  │
+│  └─ <a href="#nuclear" style="color: var(--red);">원자력/SMR</a> ─ 빅테크 4사 계약, 2030년+ 상용화                         │
+├─────────────────────────────────────────────────────────────────────────────┤
+│  <strong style="color: var(--yellow);">반도체 제조</strong>                                                              │
+│  └─ <a href="#tsmc" style="color: var(--yellow);">TSMC 3nm/5nm</a> ─ 2026년 100% 풀부킹, AI 수요의 1/3만 충족            │
+├─────────────────────────────────────────────────────────────────────────────┤
+│  <strong style="color: var(--yellow);">메모리</strong>                                                                    │
+│  └─ <a href="#lpddr" style="color: var(--yellow);">LPDDR5X</a> ─ 가격 2배↑ ($30→$70), HBM에 웨이퍼 우선 배분              │
+├─────────────────────────────────────────────────────────────────────────────┤
+│  <strong style="color: var(--accent);">엣지 디바이스</strong>                                                            │
+│  ├─ <a href="#samsung-full" style="color: var(--green);">스마트폰</a> ─ 삼성 8억 대 Galaxy AI, Exynos 2600 (80 TOPS)          │
+│  ├─ <a href="#microoled" style="color: var(--accent);">XR/AR</a> ─ Micro OLED 2026년 +58%, BOE/SeeYa 공급                    │
+│  └─ <a href="#lidar" style="color: var(--accent);">자율주행</a> ─ LiDAR 6개월 리드타임, 반도체·희토류 병목                │
+│  └─ <a href="#robot" style="color: var(--accent);">로봇</a> ─ Tesla Optimus 희토류 자석 지연, 2026년 5만 대 목표           │
+└─────────────────────────────────────────────────────────────────────────────┘
+            </pre>
+        </div>
+
+        <!-- 요약 테이블 -->
+        <table>
+            <thead>
+                <tr>
+                    <th>영역</th>
+                    <th>상태</th>
+                    <th>핵심 수치</th>
+                    <th>수혜 기업</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr style="background: rgba(248, 113, 113, 0.15);">
+                    <td><strong><a href="#rare-earth" style="color: inherit;">희토류/갈륨</a></strong></td>
+                    <td style="color: var(--red);">🔴 지정학</td>
+                    <td>중국 98%, 2026.11 유예</td>
+                    <td>MTM, Lynas</td>
+                </tr>
+                <tr style="background: rgba(248, 113, 113, 0.1);">
+                    <td><strong><a href="#nuclear" style="color: inherit;">원자력/SMR</a></strong></td>
+                    <td style="color: var(--red);">🔴 2030년+</td>
+                    <td>빅테크 4사 계약 완료</td>
+                    <td>NuScale, Cameco, CEG</td>
+                </tr>
+                <tr style="background: rgba(251, 191, 36, 0.15);">
+                    <td><strong><a href="#tsmc" style="color: inherit;">TSMC 3nm</a></strong></td>
+                    <td style="color: var(--yellow);">🟡 100%</td>
+                    <td>AI 수요의 1/3만 충족</td>
+                    <td>TSMC</td>
+                </tr>
+                <tr style="background: rgba(251, 191, 36, 0.1);">
+                    <td><strong><a href="#lpddr" style="color: inherit;">LPDDR5X</a></strong></td>
+                    <td style="color: var(--yellow);">🟡 부족</td>
+                    <td>가격 $30→$70, 수요+35%</td>
+                    <td>삼성, SK하이닉스</td>
+                </tr>
+                <tr>
+                    <td><strong><a href="#samsung-full" style="color: inherit;">스마트폰 AI</a></strong></td>
+                    <td style="color: var(--green);">🟢 확산</td>
+                    <td>Galaxy AI 8억 대</td>
+                    <td>삼성전자, Qualcomm</td>
+                </tr>
+                <tr>
+                    <td><strong><a href="#microoled" style="color: inherit;">XR/Micro OLED</a></strong></td>
+                    <td style="color: var(--green);">🟢 +58%</td>
+                    <td>2026년 2,020만 대</td>
+                    <td>BOE, SeeYa, 삼성디스플레이</td>
+                </tr>
+                <tr>
+                    <td><strong><a href="#lidar" style="color: inherit;">LiDAR</a></strong></td>
+                    <td style="color: var(--yellow);">🟡 6개월</td>
+                    <td>시장 15~20% 억제</td>
+                    <td>Hesai, Luminar, Sony</td>
+                </tr>
+                <tr>
+                    <td><strong><a href="#robot" style="color: inherit;">휴머노이드</a></strong></td>
+                    <td style="color: var(--yellow);">🟡 초기</td>
+                    <td>2026년 5만 대 목표</td>
+                    <td>Tesla, Figure, BYD</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="key-point" style="background: linear-gradient(135deg, rgba(52, 211, 153, 0.15), rgba(96, 165, 250, 0.1)); border-color: rgba(52, 211, 153, 0.3);">
+            <strong style="color: var(--green);">투자 포인트: 삼성전자 수직계열화 수혜</strong>
+            <ul style="margin-left: 1.5em; margin-top: 0.5em;">
+                <li><strong>Galaxy AI 8억 대:</strong> 2026년 말 목표, Gemini 통합</li>
+                <li><strong>Exynos 2600:</strong> 80 TOPS NPU, A19 Pro 대비 6배 (자체 테스트)</li>
+                <li><strong>LPDDR5X:</strong> iPhone 17의 60~70% 공급</li>
+                <li><strong>HBM3E:</strong> Google TPU 60%+ 점유</li>
+            </ul>
+        </div>
+
+        <h3>상세 분석 ↓</h3>
+
+        <!-- LPDDR5X 메모리 -->
+        <div class="shortage-card">
+            <div class="shortage-header">
+                <span class="shortage-title">LPDDR5X 메모리 — 온디바이스 AI 핵심 <span class="verified">✓ 검증됨</span></span>
+                <span class="lead-time warning">공급 부족</span>
+            </div>
+            <p>온디바이스 AI가 요구하는 메모리 용량 증가로 LPDDR5X 수요 폭발. 서버용 HBM에 웨이퍼 우선 배분되면서 모바일용 공급 부족.</p>
+
+            <div class="key-point">
+                <strong>핵심 수치:</strong> 12GB LPDDR5X 모듈 가격 <strong>$30 → $70</strong> (2025년 내 2배 이상 상승). 2026년 수요 +35% vs 공급 +23% = 수십 년 만의 최고 가격 상승.
+            </div>
+
+            <ul>
+                <li>iPhone 17: 12GB LPDDR5X 탑재 (역대 최대), 삼성이 60~70% 공급</li>
+                <li>HBM 1GB 생산에 LPDDR5X 3GB 분량 웨이퍼 소모</li>
+                <li>3사(삼성, SK, Micron) HBM에 전체 DRAM 용량의 18~28% 할당</li>
+                <li>스마트폰 가격 10~15% 인상 불가피</li>
+            </ul>
+
+            <div class="source-list">
+                <h4>출처 (6개월 이내)</h4>
+                <div class="source-item">
+                    <span class="source-date">[2026.01]</span>
+                    <a href="https://www.androidheadlines.com/2026/01/smartphone-price-hike-2026-ai-memory-chip-dram-crisis-shortage.html" target="_blank">Android Headlines - Smartphone Price Hike 2026</a>
+                </div>
+                <div class="source-item">
+                    <span class="source-date">[2025.12]</span>
+                    <a href="https://www.technetbooks.com/2025/12/samsung-becomes-main-lpddr5x-dram.html" target="_blank">Technetbook - Samsung Main LPDDR5X Supplier for iPhone 17</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- TSMC 3nm 용량 -->
+        <div class="shortage-card">
+            <div class="shortage-header">
+                <span class="shortage-title">TSMC 3nm/5nm — 첨단 공정 풀부킹 <span class="verified">✓ 검증됨</span></span>
+                <span class="lead-time warning">100% 가동</span>
+            </div>
+            <p>AI 칩 수요로 TSMC 첨단 공정 용량 부족. Apple, Qualcomm, NVIDIA, AMD 모두 3nm 경쟁.</p>
+
+            <div class="key-point">
+                <strong>C.C. Wei 회장:</strong> "첨단 노드 용량이 AI 수요의 <strong>약 1/3 수준</strong>에 불과" — 웨이퍼 공급이 여전히 부족.
+            </div>
+
+            <ul>
+                <li>3nm/5nm 라인: 2026년 상반기 <strong>가동률 100%</strong> 예상</li>
+                <li>Arizona/Dresden/Kumamoto 신규 팹 3nm 양산: 2027년 이후</li>
+                <li>2nm 웨이퍼 가격: 3nm 대비 <strong>50% 인상</strong></li>
+                <li>CoWoS 패키징: 2026년 말 월 12~13만 장까지 증설 목표</li>
+            </ul>
+
+            <div class="source-list">
+                <h4>출처 (6개월 이내)</h4>
+                <div class="source-item">
+                    <span class="source-date">[2025.12]</span>
+                    <a href="https://www.tweaktown.com/news/107923/tsmcs-entire-3nm-and-5nm-production-expected-to-be-100-percent-booked-out-in-2026/index.html" target="_blank">TweakTown - TSMC 3nm/5nm 100% Booked in 2026</a>
+                </div>
+                <div class="source-item">
+                    <span class="source-date">[2025]</span>
+                    <a href="https://www.tomshardware.com/tech-industry/semiconductors/tsmc-csays-advanced-node-capacity-falls-short-of-ai-demand" target="_blank">Tom's Hardware - TSMC Capacity Falls Short of AI Demand</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 희토류/갈륨/게르마늄 -->
+        <div class="shortage-card">
+            <div class="shortage-header">
+                <span class="shortage-title">희토류·갈륨·게르마늄 — 중국 수출 통제 <span class="verified">✓ 검증됨</span></span>
+                <span class="lead-time critical">지정학 리스크</span>
+            </div>
+            <p>반도체 핵심 원소의 중국 의존도 극심. 수출 통제 시 대안 없음.</p>
+
+            <div class="key-point">
+                <strong>중국 점유율:</strong> 갈륨 <strong>98%</strong>, 게르마늄 <strong>60%+</strong>, 희토류 <strong>70%</strong> (글로벌 생산 기준)
+            </div>
+
+            <ul>
+                <li><strong>2024.12:</strong> 중국, 미국향 갈륨·게르마늄·안티몬 수출 사실상 금지</li>
+                <li><strong>2025.04:</strong> 사마륨, 가돌리늄, 테르븀 등 7개 희토류 추가 규제</li>
+                <li><strong>2025.11:</strong> 1년간 수출 통제 일시 유예 (2026.11까지) — 협상 중</li>
+                <li>가격: 규제 후 <strong>2~3배 급등</strong>, Ford 공장 일시 폐쇄</li>
+                <li>미국 내 갈륨 회수 시설 (MTM Critical Metals): 2026년 초 가동 예정</li>
+            </ul>
+
+            <div class="source-list">
+                <h4>출처 (6개월 이내)</h4>
+                <div class="source-item">
+                    <span class="source-date">[2025]</span>
+                    <a href="https://www.csis.org/analysis/beyond-rare-earths-chinas-growing-threat-gallium-supply-chains" target="_blank">CSIS - China's Threat to Gallium Supply Chains</a>
+                </div>
+                <div class="source-item">
+                    <span class="source-date">[2025]</span>
+                    <a href="https://www.tomshardware.com/tech-industry/china-suspends-ban-on-rare-earth-exports-to-us-but-licensing-remains" target="_blank">Tom's Hardware - China Suspends Ban (Temporary)</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 데이터센터 전력/원자력 -->
+        <div class="shortage-card">
+            <div class="shortage-header">
+                <span class="shortage-title">데이터센터 전력 — 빅테크 원자력 베팅 <span class="verified">✓ 검증됨</span></span>
+                <span class="lead-time warning">SMR 2030년+</span>
+            </div>
+            <p>AI 데이터센터 전력 수요 폭발. 빅테크 4사 모두 원자력(SMR) 장기 계약 체결.</p>
+
+            <div class="key-point">
+                <strong>IEA 전망:</strong> 데이터센터 전력 소비 2022년 460TWh → <strong>2026년 1,000TWh+</strong> (2배 이상). 미국 전력 수요 2028년까지 총 사용량의 <strong>12%</strong>까지 상승 전망.
+            </div>
+
+            <table style="margin: 1em 0;">
+                <thead>
+                    <tr>
+                        <th>기업</th>
+                        <th>원자력 계약</th>
+                        <th>규모</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Amazon</strong></td>
+                        <td>X-energy SMR 투자</td>
+                        <td>5GW, $500M 투자</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Google</strong></td>
+                        <td>Kairos Power 용융염로</td>
+                        <td>500MW (2035년)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Microsoft</strong></td>
+                        <td>TMI Unit 2 재가동</td>
+                        <td>837MW (2028년)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Meta</strong></td>
+                        <td>Constellation Energy PPA</td>
+                        <td>6.6GW 포트폴리오</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <ul>
+                <li>SMR 상용화: <strong>2030년 이후</strong> — 현재는 기존 원전 재가동/PPA로 브릿지</li>
+                <li>2035년까지 데이터센터 전력의 <strong>10%</strong>를 원자력으로 충당 전망 (Deloitte)</li>
+                <li><strong>투자 수혜:</strong> NuScale, Cameco, Constellation Energy (CEG)</li>
+            </ul>
+
+            <div class="source-list">
+                <h4>출처 (6개월 이내)</h4>
+                <div class="source-item">
+                    <span class="source-date">[2025]</span>
+                    <a href="https://trellis.net/article/amazon-google-meta-and-microsoft-go-nuclear/" target="_blank">Trellis - Amazon, Google, Meta and Microsoft Go Nuclear</a>
+                </div>
+                <div class="source-item">
+                    <span class="source-date">[2025]</span>
+                    <a href="https://www.powermag.com/the-smr-gamble-betting-on-nuclear-to-fuel-the-data-center-boom/" target="_blank">Power Magazine - The SMR Gamble</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- LiDAR/자율주행 -->
+        <div class="shortage-card">
+            <div class="shortage-header">
+                <span class="shortage-title">LiDAR — 자율주행 센서 공급망 <span class="verified">✓ 검증됨</span></span>
+                <span class="lead-time warning">6개월+ 리드타임</span>
+            </div>
+            <p>자율주행 핵심 센서. 반도체·광학부품·희토류 모두 필요해 공급망 취약.</p>
+
+            <div class="key-point">
+                <strong>시장 성장:</strong> 2025년 $25.6억 → 2035년 $97.4억. 2026년까지 럭셔리 차량의 <strong>45%</strong>에 LiDAR 표준 탑재 전망.
+            </div>
+
+            <ul>
+                <li>핵심 부품: 반도체 (실리콘, 갈륨비소), 고출력 레이저, MEMS 칩, InGaAs 검출기</li>
+                <li>광학/칩 리드타임: <strong>최대 6개월</strong></li>
+                <li>공급망 병목으로 시장 성장률 <strong>연 15~20% 억제</strong> 전망 (2026년까지)</li>
+                <li>솔리드스테이트 LiDAR: 제조 복잡도 60~80% 감소, 가격 $8,000 → $500 이하로 하락 중</li>
+                <li><strong>핵심 기업:</strong> Hesai, Luminar, Velodyne, Sony, ON Semiconductor</li>
+            </ul>
+
+            <div class="source-list">
+                <h4>출처</h4>
+                <div class="source-item">
+                    <span class="source-date">[2025]</span>
+                    <a href="https://www.marketsandmarkets.com/Market-Reports/lidar-sensor-automotive-market-34875060.html" target="_blank">MarketsandMarkets - Automotive LiDAR Market</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 휴머노이드 로봇 -->
+        <div class="shortage-card">
+            <div class="shortage-header">
+                <span class="shortage-title">휴머노이드 로봇 — 액추에이터·희토류 의존 <span class="verified">✓ 검증됨</span></span>
+                <span class="lead-time warning">초기 단계</span>
+            </div>
+            <p>Tesla Optimus, Figure 02 등 휴머노이드 로봇 양산 임박. 액추에이터에 희토류 자석 필수.</p>
+
+            <div class="key-point">
+                <strong>Tesla Optimus:</strong> 2025년 수백 대 → 2026년 <strong>5만 대</strong> 목표. 현재 가격 $12~15만, 장기 목표 $2~3만.
+            </div>
+
+            <ul>
+                <li><strong>중국 희토류 자석 수출 통제</strong>로 Tesla Optimus 액추에이터 지연 발생</li>
+                <li>BYD: 2025년 1,500대 → 2026년 2만 대 배치 목표</li>
+                <li>Mercedes-Benz (Apptronik), BMW (Figure.AI) 파일럿 진행 중</li>
+                <li>본격 산업 배치: <strong>2026~27년</strong> 전망 (IDTechEx)</li>
+                <li>소비자 보급: <strong>2040년대</strong> 예상</li>
+            </ul>
+
+            <div class="source-list">
+                <h4>출처</h4>
+                <div class="source-item">
+                    <span class="source-date">[2025]</span>
+                    <a href="https://standardbots.com/blog/tesla-robot" target="_blank">Standard Bots - Tesla Optimus Price 2026</a>
+                </div>
+                <div class="source-item">
+                    <span class="source-date">[2025]</span>
+                    <a href="https://www.idtechex.com/en/research-report/humanoid-robots/1093" target="_blank">IDTechEx - Humanoid Robots 2025-2035</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Micro OLED / XR -->
+        <div class="shortage-card">
+            <div class="shortage-header">
+                <span class="shortage-title">Micro OLED — XR 디스플레이 공급 <span class="verified">✓ 검증됨</span></span>
+                <span class="lead-time warning">2026년 반등</span>
+            </div>
+            <p>Apple Vision Pro, Meta Quest 4 등 XR 기기에 OLEDoS(OLED on Silicon) 필수. 2026년 수요 급증 예상.</p>
+
+            <div class="key-point">
+                <strong>Omdia 전망:</strong> Near-eye 디스플레이 출하량 2025년 1,280만 대 → <strong>2026년 2,020만 대 (+58% YoY)</strong>
+            </div>
+
+            <ul>
+                <li><strong>2026년 신제품:</strong> Meta Quest 4, Apple Vision Pro 2, Pico, Huawei — 모두 OLEDoS 채택</li>
+                <li>주요 공급사: <strong>BOE (BMOT), SeeYa</strong> — 중국 업체 집중</li>
+                <li>Samsung Galaxy XR: 듀얼 4K Micro-OLED, 2,700만 픽셀</li>
+                <li>Meta: 0.91인치 소형 패널로 원가/무게 절감 시도</li>
+            </ul>
+
+            <div class="source-list">
+                <h4>출처</h4>
+                <div class="source-item">
+                    <span class="source-date">[2025]</span>
+                    <a href="https://omdia.tech.informa.com/blogs/2025/sep/near-eye-display-market-to-see-a-2025-slowdown-before-a-major-rebound-in-2026" target="_blank">Omdia - Near-eye Display Market Rebound 2026</a>
+                </div>
+                <div class="source-item">
+                    <span class="source-date">[2025]</span>
+                    <a href="https://www.oled-info.com/meta-adopt-oled-microdisplays-2026-quest-vr-headset-supplied-seeya-and-boe" target="_blank">OLED-Info - Meta Quest 2026 Micro OLED</a>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <h2>한국 기업 TPU 밸류체인</h2>
+
+        <div class="shortage-card">
+            <div class="shortage-header">
+                <span class="shortage-title">이수페타시스 (ISU Petasys) <span class="verified">✓ 검증됨</span></span>
+            </div>
+            <p><strong>TPU용 MLB(다층기판) 공급, 점유율 40~50%</strong></p>
+            <ul>
+                <li>18층 이상 고다층 PCB 매출 기준 세계 1위</li>
+                <li>Anthropic-Google TPU 100만 개 계약 → 추가 매출 1,000억원+ 예상</li>
+                <li>메리츠증권 목표가: 89,000원 → 105,000원 상향 (2025.10)</li>
+            </ul>
+            <div class="source-list">
+                <h4>출처</h4>
+                <div class="source-item">
+                    <span class="source-date">[2025.10]</span>
+                    <a href="https://alphabiz.co.kr/news/view/1065579104635449" target="_blank">메리츠증권 - 이수페타시스 목표가 상향</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="shortage-card">
+            <div class="shortage-header">
+                <span class="shortage-title">두산전자 (Doosan) <span class="verified">✓ 검증됨</span></span>
+            </div>
+            <p><strong>CCL(동박적층판) 공급 — PCB의 핵심 원재료</strong></p>
+            <ul>
+                <li>고성능 AI CCL 시장 Top 2~3 (EMC, Resonac와 경쟁)</li>
+                <li>대만 EMC가 NVIDIA GB300 품질검증 탈락 → 두산 반사수혜</li>
+                <li>NVIDIA 차세대 Rubin 칩용 CCL 독점 공급 가능성</li>
+                <li>2025년 CCL 설비투자 3배 확대</li>
+            </ul>
+            <div class="source-list">
+                <h4>출처</h4>
+                <div class="source-item">
+                    <span class="source-date">[2025.08]</span>
+                    <a href="https://www.digitimes.com/news/a20250826PD213/doosan-ccl-competition-equipment-2025.html" target="_blank">DigiTimes - Doosan to Triple CCL Equipment Spending</a>
+                </div>
+                <div class="source-item">
+                    <span class="source-date">[2025]</span>
+                    <a href="https://www.businesskorea.co.kr/news/articleView.html?idxno=256909" target="_blank">Business Korea - Doosan Set for 1 Tril. Won in NVIDIA-driven Sales</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="shortage-card">
+            <div class="shortage-header">
+                <span class="shortage-title">삼성전자 — 수직계열화 수혜 <span class="verified">✓ 검증됨</span></span>
+            </div>
+            <p><strong>HBM + LPDDR + 갤럭시 AI + Exynos NPU — 엣지 AI 전 영역 커버</strong></p>
+
+            <div class="key-point">
+                <strong>Galaxy AI 목표:</strong> 2026년 말까지 <strong>8억 대</strong> AI 디바이스 (2025년 4억 대의 2배)
+            </div>
+
+            <h4 style="color: var(--accent); margin-top: 1.5em;">HBM/메모리</h4>
+            <ul>
+                <li>Google TPU용 HBM3E 점유율 <strong>60%+</strong></li>
+                <li>iPhone 17 LPDDR5X 공급 <strong>60~70%</strong></li>
+                <li>2026년 HBM4 주 공급자 유지, 물량 2배+ 증가 예상</li>
+            </ul>
+
+            <h4 style="color: var(--green); margin-top: 1.5em;">Exynos 2600 (2nm)</h4>
+            <ul>
+                <li>NPU 성능: <strong>80 TOPS</strong></li>
+                <li>Apple A19 Pro 대비 NPU <strong>6배</strong>, GPU <strong>75%</strong> 우수 (삼성 자체 테스트)</li>
+                <li>Snapdragon 8 Elite Gen 5 대비 NPU <strong>30%</strong>, GPU <strong>29%</strong> 우수</li>
+                <li>Galaxy S26: 한국/유럽은 Exynos, 미국/일본/중국은 Snapdragon (<strong>50:50 분할</strong>)</li>
+                <li>온디바이스로 Gemini Nano 3 (100억 파라미터) 구동 가능</li>
+            </ul>
+
+            <div class="source-list">
+                <h4>출처</h4>
+                <div class="source-item">
+                    <span class="source-date">[2026.01]</span>
+                    <a href="https://markets.financialcontent.com/wral/article/tokenring-2026-1-12-samsung-targets-800-million-ai-powered-devices-by-end-of-2026-deepening-google-gemini-alliance" target="_blank">Samsung Targets 800 Million AI Devices by 2026</a>
+                </div>
+                <div class="source-item">
+                    <span class="source-date">[2025.10]</span>
+                    <a href="https://www.kedglobal.com/korean-chipmakers/newsView/ked202510200015" target="_blank">KED Global - Exynos 2600 to Power 50% of Galaxy S26</a>
+                </div>
+                <div class="source-item">
+                    <span class="source-date">[2025.12]</span>
+                    <a href="https://www.trendforce.com/news/2025/12/01/news-samsung-reportedly-supplies-60-of-google-tpu-hbm3e-set-to-remain-primary-supplier-in-2026/" target="_blank">TrendForce - Samsung 60%+ of Google TPU HBM3E</a>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <footer>
+            황인철 PB | 신한투자증권 서울금융센터 | 2026.02.03<br>
+            <span style="color: var(--text-muted);">본 자료는 투자 참고용이며, 투자 판단의 최종 책임은 투자자 본인에게 있습니다.</span>
+        </footer>
+    </div>
+</body>
+
+</html>
