@@ -1,34 +1,230 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>금융상품 제안서</title>
+    <title>2026 Market Strategy | Kospi 5,000</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Noto Sans KR', sans-serif; }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
-<body class="bg-slate-50">
-    <div class="container mx-auto px-4 py-16 max-w-4xl">
-        <h1 class="text-4xl font-bold mb-4">금융상품 제안서</h1>
-        <p class="text-slate-600 mb-12">투자 제안서 및 상품 정보를 확인하세요.</p>
-        
-        <div class="grid gap-6">
-            <a href="/financial-products/brazil-bond/" class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition">
-                <h2 class="text-2xl font-bold mb-2">브라질 국채</h2>
-                <p class="text-slate-600">2026 브라질 국채 리밸런싱 전략 제안서</p>
-            </a>
-            <a href="/financial-products/fund-2026/" class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition">
-                <h2 class="text-2xl font-bold mb-2">2026 주식형 펀드 제안</h2>
-                <p class="text-slate-600">KOSPI 5,000 시대의 펀드 전략 및 상품 제안</p>
-            </a>
-            <a href="/financial-products/structural-shortage/" class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition">
-                <h2 class="text-2xl font-bold mb-2">구조적 쇼티지 모니터링</h2>
-                <p class="text-slate-600">구조적 쇼티지 산업 연구 및 대시보드</p>
+
+<body class="antialiased min-h-screen flex flex-col">
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-panel border-b-0 border-b-slate-700/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <a href="index.html"
+                        class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-cyan-400">
+                        Fund Strategy 2026
+                    </a>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex check-baseline space-x-1">
+                        <a href="index.html"
+                            class="px-3 py-2 rounded-md text-sm font-medium text-white bg-slate-800 border border-slate-700">Market
+                            Insight</a>
+                        <a href="strategy.html"
+                            class="px-3 py-2 rounded-md text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition-colors">Lineup
+                            & Choice</a>
+                        <a href="dsasset.html"
+                            class="px-3 py-2 rounded-md text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition-colors">DS
+                            BraveS</a>
+                        <a href="timefolio.html"
+                            class="px-3 py-2 rounded-md text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition-colors">TIMEFOLIO
+                            The Time</a>
+                        <a href="comparison.html"
+                            class="px-3 py-2 rounded-md text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition-colors">Conclusion</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex-grow pt-24 pb-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
+
+        <!-- Header -->
+        <div class="text-center mb-16 animate-fade-in">
+            <h2 class="text-emerald-400 font-semibold tracking-wide uppercase text-sm">2026.01.26 Market Outlook</h2>
+            <h1 class="mt-2 text-5xl md:text-6xl font-extrabold text-white tracking-tight">
+                KOSPI <span class="text-gradient-blue">5,000</span> Era
+            </h1>
+            <p class="mt-4 max-w-2xl mx-auto text-xl text-slate-400">
+                국내 주요 증권사 리포트 뷰: <span class="text-red-500 font-black text-2xl">[추세적 롱]</span> vs <span
+                    class="text-blue-500 font-black text-2xl">[단기 조정]</span>
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- Long View Column (Strong Red/Warm) -->
+            <div class="space-y-6 animate-fade-in delay-200">
+                <div class="flex items-center gap-3 mb-4 border-b border-red-500/30 pb-4">
+                    <div class="p-3 bg-red-600 rounded-lg shadow-lg shadow-red-500/20">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-3xl font-black text-red-500">[Long] 추세적 상승</h3>
+                        <p class="text-slate-400 text-sm mt-1">실적(EPS) 성장이 지수 상승 정당화 (5,000pt = New Bottom)</p>
+                    </div>
+                </div>
+
+                <!-- Cards for Long -->
+                <div class="space-y-4">
+                    <!-- Item: NH -->
+                    <div
+                        class="glass-card p-6 rounded-xl border-l-4 border-l-yellow-400 border-y border-r border-slate-700/50 hover:border-yellow-400/50 transition-all">
+                        <div class="flex justify-between items-center mb-3">
+                            <h4 class="text-xl font-black text-white flex items-center gap-2">
+                                <span class="text-yellow-400">NH투자</span> <span
+                                    class="text-slate-500 text-sm font-normal">(1/26)</span>
+                            </h4>
+                            <span
+                                class="px-3 py-1 rounded-full text-sm font-bold bg-red-500/20 text-red-400 border border-red-500/30">Target
+                                5,500p</span>
+                        </div>
+                        <p class="text-lg font-bold text-slate-200 mb-1">"5,500p, 안착 후 추가 랠리"</p>
+                        <p class="text-sm text-slate-400">반도체 이익 가시성 확보 및 2~3분기 실적 피크아웃 우려 불식.</p>
+                    </div>
+                    <!-- Item: Hana -->
+                    <div
+                        class="glass-card p-6 rounded-xl border-l-4 border-l-emerald-500 border-y border-r border-slate-700/50 hover:border-emerald-500/50 transition-all">
+                        <div class="flex justify-between items-center mb-3">
+                            <h4 class="text-xl font-black text-white flex items-center gap-2">
+                                <span class="text-emerald-500">하나증권</span> <span
+                                    class="text-slate-500 text-sm font-normal">(1/25)</span>
+                            </h4>
+                            <span
+                                class="px-3 py-1 rounded-full text-sm font-bold bg-red-500/20 text-red-400 border border-red-500/30">Target
+                                5,600p</span>
+                        </div>
+                        <p class="text-lg font-bold text-slate-200 mb-1">"코스피 5,600p 시대의 개막"</p>
+                        <p class="text-sm text-slate-400">밸류업 프로그램에 따른 주주환원 확대로 PER 13배 상향 적용 가능.</p>
+                    </div>
+                    <!-- Item: Shinhan -->
+                    <div
+                        class="glass-card p-6 rounded-xl border-l-4 border-l-blue-400 border-y border-r border-slate-700/50 hover:border-blue-400/50 transition-all">
+                        <div class="flex justify-between items-center mb-3">
+                            <h4 class="text-xl font-black text-white flex items-center gap-2">
+                                <span class="text-blue-400">신한투자</span> <span
+                                    class="text-slate-500 text-sm font-normal">(1/23)</span>
+                            </h4>
+                        </div>
+                        <p class="text-lg font-bold text-slate-200 mb-1">"반도체 실적 레벨업 지속"</p>
+                        <p class="text-sm text-slate-400">삼성전자/하이닉스 합산 이익 전망치 상향으로 상방 제한 해제.</p>
+                    </div>
+                    <!-- Item: KB -->
+                    <div
+                        class="glass-card p-6 rounded-xl border-l-4 border-l-yellow-500 border-y border-r border-slate-700/50 hover:border-yellow-500/50 transition-all">
+                        <div class="flex justify-between items-center mb-3">
+                            <h4 class="text-xl font-black text-white flex items-center gap-2">
+                                <span class="text-yellow-500">KB증권</span> <span
+                                    class="text-slate-500 text-sm font-normal">(1/12)</span>
+                            </h4>
+                            <span
+                                class="px-3 py-1 rounded-full text-sm font-bold bg-red-500/20 text-red-400 border border-red-500/30">Target
+                                7,500p</span>
+                        </div>
+                        <p class="text-lg font-bold text-slate-200 mb-1">"최대 7,500p 슈퍼 사이클"</p>
+                        <p class="text-sm text-slate-400">80년대 3저 호황급 매크로 환경. 코스피 이익 400조 시대 진입.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Adjustment View Column (Cool Blue/Caution) -->
+            <div class="space-y-6 animate-fade-in delay-300">
+                <div class="flex items-center gap-3 mb-4 border-b border-blue-500/30 pb-4">
+                    <div class="p-3 bg-blue-600 rounded-lg shadow-lg shadow-blue-500/20">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z">
+                            </path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-3xl font-black text-blue-500">[Adjustment] 단기 과열</h3>
+                        <p class="text-slate-400 text-sm mt-1">단기 급등 피로감 + 매물 소화 필요 (신중론)</p>
+                    </div>
+                </div>
+
+                <!-- Cards for Adjustment -->
+                <div class="space-y-4">
+                    <!-- Item: Daishin -->
+                    <div
+                        class="glass-card p-6 rounded-xl border-l-4 border-l-green-600 border-y border-r border-slate-700/50 hover:border-green-600/50 transition-all">
+                        <div class="flex justify-between items-center mb-3">
+                            <h4 class="text-xl font-black text-white flex items-center gap-2">
+                                <span class="text-green-600">대신증권</span> <span
+                                    class="text-slate-500 text-sm font-normal">(1/26)</span>
+                            </h4>
+                            <span
+                                class="px-3 py-1 rounded-full text-sm font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30">관망(Neutral)</span>
+                        </div>
+                        <p class="text-lg font-bold text-slate-200 mb-1">"단기 과열 해소 국면"</p>
+                        <p class="text-sm text-slate-400">지수 상승률이 이익(EPS) 상승률을 추월. 추격 매수보다 관망.</p>
+                    </div>
+                    <!-- Item: Kiwoom -->
+                    <div
+                        class="glass-card p-6 rounded-xl border-l-4 border-l-pink-500 border-y border-r border-slate-700/50 hover:border-pink-500/50 transition-all">
+                        <div class="flex justify-between items-center mb-3">
+                            <h4 class="text-xl font-black text-white flex items-center gap-2">
+                                <span class="text-pink-500">키움증권</span> <span
+                                    class="text-slate-500 text-sm font-normal">(1/26)</span>
+                            </h4>
+                        </div>
+                        <p class="text-lg font-bold text-slate-200 mb-1">"5,020p 매물대 저항"</p>
+                        <p class="text-sm text-slate-400">5,000선 심리적 저항 및 차익실현 욕구 증대. 섹터 로테이션 대비.</p>
+                    </div>
+                    <!-- Item: Hanwha -->
+                    <div
+                        class="glass-card p-6 rounded-xl border-l-4 border-l-orange-500 border-y border-r border-slate-700/50 hover:border-orange-500/50 transition-all">
+                        <div class="flex justify-between items-center mb-3">
+                            <h4 class="text-xl font-black text-white flex items-center gap-2">
+                                <span class="text-orange-500">한화투자</span> <span
+                                    class="text-slate-500 text-sm font-normal">(1/26)</span>
+                            </h4>
+                        </div>
+                        <p class="text-lg font-bold text-slate-200 mb-1">"속도 조절이 필요한 시점"</p>
+                        <p class="text-sm text-slate-400">RSI 등 기술적 지표 과열권 진입. 가격보다 기간 조정 가능성.</p>
+                    </div>
+                    <!-- Item: Yuanta -->
+                    <div
+                        class="glass-card p-6 rounded-xl border-l-4 border-l-cyan-500 border-y border-r border-slate-700/50 hover:border-cyan-500/50 transition-all">
+                        <div class="flex justify-between items-center mb-3">
+                            <h4 class="text-xl font-black text-white flex items-center gap-2">
+                                <span class="text-cyan-500">유안타</span> <span
+                                    class="text-slate-500 text-sm font-normal">(1/21)</span>
+                            </h4>
+                        </div>
+                        <p class="text-lg font-bold text-slate-200 mb-1">"숨고르기 후 2차 랠리"</p>
+                        <p class="text-sm text-slate-400">단기적으로는 바이오/인터넷 등 소외주 위주의 순환매 장세 예상.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="mt-16 text-center">
+            <a href="strategy.html"
+                class="inline-flex items-center px-8 py-4 border border-transparent text-lg font-medium rounded-full text-white bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 shadow-lg transform hover:-translate-y-1 transition-all duration-200">
+                View Strategy & Solutions
+                <svg class="ml-2 -mr-1 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3">
+                    </path>
+                </svg>
             </a>
         </div>
-    </div>
+    </main>
+
+    <footer class="border-t border-slate-800 bg-slate-900 py-8">
+        <div class="max-w-7xl mx-auto px-4 text-center text-slate-500 text-sm">
+            &copy; 2026 Strategy Dashboard. All rights reserved.
+        </div>
+    </footer>
 </body>
+
 </html>
