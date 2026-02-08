@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>사모펀드 투자 제안서</title>
+    <style>
+        @page { size: A4; margin: 0; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Malgun Gothic', sans-serif; background: white; }
+        .page { width: 210mm; min-height: 297mm; padding: 15mm; margin: 0 auto; background: white; page-break-after: always; }
+        .page:last-child { page-break-after: auto; }
+        
+        @media print {
+            body { margin: 0; }
+            .page { margin: 0; page-break-after: always; }
+        }
+        
+        h1 { font-size: 20pt; font-weight: bold; margin-bottom: 8mm; border-bottom: 2pt solid #000; padding-bottom: 4mm; }
+        h2 { font-size: 14pt; font-weight: bold; margin: 6mm 0 3mm 0; }
+        img { width: 100%; height: auto; margin: 2mm 0; border: 1px solid #ddd; }
+        .text-box { background: #f9f9f9; padding: 4mm; margin: 2mm 0; border-left: 3pt solid #333; }
+        .text-box p { font-size: 10pt; line-height: 1.5; margin-bottom: 2mm; }
+        .text-box ul { margin-left: 5mm; font-size: 9pt; }
+        .text-box li { margin-bottom: 1.5mm; }
+        .small-img { width: 100%; height: auto; margin: 1mm 0; }
+    </style>
+</head>
+<body>
+
+<!-- PAGE 1: 비교 & 성과 -->
+<div class="page">
+    <h1>타임폴리오 vs 디에스 사모펀드 비교</h1>
+    
+    <h2>1. 핵심 전략 비교</h2>
+    <div class="text-box">
+        <p><strong>타임폴리오 The Time (Long-Short)</strong></p>
+        <ul>
+            <li>지수 중립 알파 추출 전략. 하락장에서도 수익 추구하는 방어적 절대수익형</li>
+            <li>10년 누적: +289.3% (KOSPI +131.3%) / 연환산: 15.1% / 샤프지수: 1.26</li>
+            <li>성과보수: 초과수익의 20% (HWM) / 최소가입: 5억(일반), 1억(전문)</li>
+        </ul>
+        <p style="margin-top: 4mm;"><strong>디에스 Brave S (Long-Biased)</strong></p>
+        <ul>
+            <li>성장 산업 초입 선점. 지수 대비 압도적 초과수익을 노리는 공격적 수익형</li>
+            <li>누적: +44.52% (설정 후 4개월) / YTD: +17.93% / 상대 알파: +34.7%p</li>
+            <li>성과보수: 초과수익의 15% (HWM) / 최소가입: 3억(일반), 1억(전문)</li>
+        </ul>
+    </div>
+    
+    <h2>2. 타임폴리오 10년 성과</h2>
+    <img src="images/timefolio_performance.png" alt="타임폴리오 10년 성과" class="small-img">
+    
+    <h2>3. 전사 사모펀드 성과 현황</h2>
+    <img src="images/fund_performance.png" alt="펀드 수익률 현황" class="small-img">
+</div>
+
+<!-- PAGE 2: 타임폴리오 1 -->
+<div class="page">
+    <h1>타임폴리오 The Time - 운용 전략</h1>
+    
+    <h2>Long/Short 전략 구성</h2>
+    <img src="images/timefolio_strategy.png" alt="타임폴리오 전략">
+    
+    <h2>운용 철학: 최적의 타이밍</h2>
+    <img src="images/timefolio_philosophy.png" alt="타임폴리오 운용철학">
+</div>
+
+<!-- PAGE 3: 타임폴리오 2 -->
+<div class="page">
+    <h1>타임폴리오 The Time - 운용 시스템</h1>
+    
+    <h2>MMS (Multi Manager System)</h2>
+    <img src="images/timefolio_mms.png" alt="타임폴리오 MMS">
+    
+    <h2>TMS (Timefolio Management System)</h2>
+    <img src="images/timefolio_tms.png" alt="타임폴리오 TMS">
+</div>
+
+<!-- PAGE 4: 디에스 1 -->
+<div class="page">
+    <h1>디에스 Brave S - 운용 철학 & 전략</h1>
+    
+    <h2>운용철학 및 투자스타일</h2>
+    <img src="images/ds_philosophy.png" alt="디에스 운용철학">
+    
+    <h2>핵심 운용전략</h2>
+    <img src="images/ds_core_strategy.png" alt="디에스 핵심전략">
+</div>
+
+<!-- PAGE 5: 디에스 2 -->
+<div class="page">
+    <h1>디에스 Brave S - 투자 프로세스</h1>
+    
+    <h2>세부 운용전략</h2>
+    <img src="images/ds_detail_strategy.png" alt="디에스 세부전략">
+    
+    <h2>4-Factor 종목선정 프로세스</h2>
+    <img src="images/ds_4factor.png" alt="디에스 4-Factor">
+</div>
+
+</body>
+</html>
